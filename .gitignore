@@ -1,0 +1,10 @@
+## User settings
+xcuserdata/
+
+# Swift Package Manager
+Package.resolved
+*.plist
+*.xcconfig
+
+### macOS ###
+.DS_Store
