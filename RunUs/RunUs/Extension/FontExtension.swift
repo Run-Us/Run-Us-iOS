@@ -10,7 +10,7 @@ import SwiftUI
 
 enum FontName {
     static let pretendardBold = "Pretendard-Bold"
-    static let pretendardRegular = "Pretendard-Regular"
+    static let pretendardMedium = "Pretendard-Medium"
 }
 
 /*
@@ -22,7 +22,7 @@ enum FontName {
 extension Font {
     static let title1: Font = .custom(FontName.pretendardBold, size: 30)
     static let title2: Font = .custom(FontName.pretendardBold, size: 26)
-    static let body1: Font = .custom(FontName.pretendardRegular, size: 17)
-    static let body2: Font = .custom(FontName.pretendardRegular, size: 13)
-    static let caption: Font = .custom(FontName.pretendardRegular, size: 11)
+    static let body1: Font = .custom(FontName.pretendardMedium, size: 17)
+    static let body2: Font = .custom(FontName.pretendardMedium, size: 13)
+    static let caption: Font = .custom(FontName.pretendardMedium, size: 11)
 }
