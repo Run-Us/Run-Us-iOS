@@ -14,8 +14,8 @@ struct RunUsApp: App {
     
     init() {
         // kakao sdk 초기화
-        let kakaoNativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
-        KakaoSDK.initSDK(appKey: kakaoNativeAppKey as! String)
+        let kakaoNativeAppKey = (Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] as? String) ?? ""
+        KakaoSDK.initSDK(appKey: kakaoNativeAppKey)
     }
     
     var body: some Scene {
