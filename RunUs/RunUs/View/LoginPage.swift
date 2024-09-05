@@ -18,7 +18,9 @@ struct LoginPage: View {
                 .font(.body1)
                 .lineSpacing(0.8)
             Button(action: {
-                authVM.kakaoLogin()
+                authVM.kakaoLogin { isSuccess in
+                    
+                }
             }, label: {
                 Image("kakao_login_button")
                     .resizable()
