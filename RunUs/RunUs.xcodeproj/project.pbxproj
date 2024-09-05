@@ -15,6 +15,7 @@
 		230314F22C89A00B00B299D5 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 230314F12C89A00B00B299D5 /* KakaoSDKAuth */; };
 		230314F42C89A00B00B299D5 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 230314F32C89A00B00B299D5 /* KakaoSDKCommon */; };
 		230314F62C89A00B00B299D5 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 230314F52C89A00B00B299D5 /* KakaoSDKUser */; };
+		230315002C8A096D00B299D5 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 230314FF2C8A096D00B299D5 /* KeychainSwift */; };
 		238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238E78F12C83147200D04F58 /* RunUsApp.swift */; };
 		238E78F62C83147300D04F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F52C83147300D04F58 /* Assets.xcassets */; };
 		238E78F92C83147300D04F58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F82C83147300D04F58 /* Preview Assets.xcassets */; };
@@ -41,6 +42,7 @@
 			files = (
 				230314F42C89A00B00B299D5 /* KakaoSDKCommon in Frameworks */,
 				230314F22C89A00B00B299D5 /* KakaoSDKAuth in Frameworks */,
+				230315002C8A096D00B299D5 /* KeychainSwift in Frameworks */,
 				230314F62C89A00B00B299D5 /* KakaoSDKUser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +143,7 @@
 				230314F12C89A00B00B299D5 /* KakaoSDKAuth */,
 				230314F32C89A00B00B299D5 /* KakaoSDKCommon */,
 				230314F52C89A00B00B299D5 /* KakaoSDKUser */,
+				230314FF2C8A096D00B299D5 /* KeychainSwift */,
 			);
 			productName = RunUs;
 			productReference = 238E78EE2C83147200D04F58 /* RunUs.app */;
@@ -172,6 +175,7 @@
 			mainGroup = 238E78E52C83147200D04F58;
 			packageReferences = (
 				230314F02C89A00B00B299D5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				230314FE2C8A096D00B299D5 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 238E78EF2C83147200D04F58 /* Products */;
 			projectDirPath = "";
@@ -424,6 +428,14 @@
 				minimumVersion = 2.22.6;
 			};
 		};
+		230314FE2C8A096D00B299D5 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -441,6 +453,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 230314F02C89A00B00B299D5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		230314FF2C8A096D00B299D5 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 230314FE2C8A096D00B299D5 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
