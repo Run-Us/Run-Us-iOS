@@ -6,12 +6,26 @@
 //
 
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 @main
 struct RunUsApp: App {
+    
+    init() {
+        // kakao sdk 초기화
+        let kakaoNativeAppKey = (Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] as? String) ?? ""
+        KakaoSDK.initSDK(appKey: kakaoNativeAppKey)
+    }
+    
     var body: some Scene {
         WindowGroup {
             LoginPage()
+                .onOpenURL(perform: { url in
+                    if AuthApi.isKakaoTalkLoginUrl(url) {
+                        _ = AuthController.handleOpenUrl(url: url)
+                    }
+                })
         }
     }
 }
