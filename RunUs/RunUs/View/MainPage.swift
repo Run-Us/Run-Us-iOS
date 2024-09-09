@@ -9,7 +9,28 @@ import SwiftUI
 
 struct MainPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            HomePage()
+                .tabItem {
+                    Image(systemName: "house")
+                }
+            CrewPage()
+                .tabItem {
+                    Image(systemName: "figure.2")
+                }
+            RunningPage()
+                .tabItem { 
+                    Image(systemName: "figure.run")
+                }
+            CharacterPage()
+                .tabItem {
+                    Image(systemName: "hare.fill")
+                }
+            MyPage()
+                .tabItem {
+                    Image(systemName: "info.circle")
+                }
+        }
     }
 }
 
