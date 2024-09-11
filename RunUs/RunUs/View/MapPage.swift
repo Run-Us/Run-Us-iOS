@@ -23,6 +23,7 @@ struct Map: UIViewRepresentable {
     
     func makeUIView(context: Context) -> NMFNaverMapView {
         let map = NMFNaverMapView()
+        map.showLocationButton = true
         return map
     }
     
