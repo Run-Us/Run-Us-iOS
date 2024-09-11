@@ -9,8 +9,13 @@ import NMapsMap
 import SwiftUI
 
 struct MapPage: View {
+    @StateObject var mapVM: MapViewModel = MapViewModel()
+    
     var body: some View {
         Map()
+            .onAppear(perform: {
+                mapVM.checkLocationPermission()
+            })
     }
 }
 
