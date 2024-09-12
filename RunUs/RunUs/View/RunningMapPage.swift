@@ -11,8 +11,17 @@ struct RunningMapPage: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 50) {
-                MapPage()
-                    .frame(height: geometry.size.width)
+                ZStack(alignment: .bottom) {
+                    MapPage()
+                        .frame(height: geometry.size.width)
+                    Button(action: {}, label: {
+                        Image(systemName: "pause.circle")
+                            .resizable()
+                            .frame(width: 70, height: 70)
+                            .foregroundStyle(.black)
+                    })
+                    .padding()
+                }
                 HStack {
                     VStack(spacing: 15) {
                         Text("시간")
