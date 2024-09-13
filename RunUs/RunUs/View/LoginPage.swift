@@ -28,7 +28,7 @@ struct LoginPage: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 })
-                .navigationDestination(isPresented: $loginSuccess) {
+                .fullScreenCover(isPresented: $loginSuccess) {
                     MainPage()
                 }
             }
