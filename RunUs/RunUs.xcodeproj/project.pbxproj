@@ -24,6 +24,12 @@
 		238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238E78F12C83147200D04F58 /* RunUsApp.swift */; };
 		238E78F62C83147300D04F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F52C83147300D04F58 /* Assets.xcassets */; };
 		238E78F92C83147300D04F58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F82C83147300D04F58 /* Preview Assets.xcassets */; };
+		88E556052C8F208F003789B7 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556042C8F208F003789B7 /* HomePage.swift */; };
+		88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556062C8F20C8003789B7 /* CrewPage.swift */; };
+		88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556082C8F20E8003789B7 /* RunningPage.swift */; };
+		88E5560D2C8F213E003789B7 /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5560C2C8F213E003789B7 /* MyPage.swift */; };
+		88E556112C8F5CCC003789B7 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556102C8F5CCC003789B7 /* MainPage.swift */; };
+		88E556132C8F5E49003789B7 /* CharacterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556122C8F5E49003789B7 /* CharacterPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,12 @@
 		238E78F12C83147200D04F58 /* RunUsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunUsApp.swift; sourceTree = "<group>"; };
 		238E78F52C83147300D04F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		238E78F82C83147300D04F58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		88E556042C8F208F003789B7 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		88E556062C8F20C8003789B7 /* CrewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPage.swift; sourceTree = "<group>"; };
+		88E556082C8F20E8003789B7 /* RunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningPage.swift; sourceTree = "<group>"; };
+		88E5560C2C8F213E003789B7 /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
+		88E556102C8F5CCC003789B7 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		88E556122C8F5E49003789B7 /* CharacterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +97,12 @@
 				237B430D2C8F0193002163B9 /* MapPage.swift */,
 				236343112C90386D00336D67 /* RunningMapPage.swift */,
 				236343152C9180D000336D67 /* RunningProgressPage.swift */,
+				88E556042C8F208F003789B7 /* HomePage.swift */,
+				88E556062C8F20C8003789B7 /* CrewPage.swift */,
+				88E556082C8F20E8003789B7 /* RunningPage.swift */,
+				88E5560C2C8F213E003789B7 /* MyPage.swift */,
+				88E556102C8F5CCC003789B7 /* MainPage.swift */,
+				88E556122C8F5E49003789B7 /* CharacterPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,14 +239,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E556052C8F208F003789B7 /* HomePage.swift in Sources */,
+				88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */,
 				230314EF2C89920100B299D5 /* AuthViewModel.swift in Sources */,
 				230314E92C88A48D00B299D5 /* LoginPage.swift in Sources */,
+				88E556112C8F5CCC003789B7 /* MainPage.swift in Sources */,
 				230314E52C88851100B299D5 /* FontExtension.swift in Sources */,
 				237B430E2C8F0193002163B9 /* MapPage.swift in Sources */,
 				236343142C917B3E00336D67 /* MapViewModel.swift in Sources */,
 				238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */,
 				236343122C90386D00336D67 /* RunningMapPage.swift in Sources */,
 				236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */,
+				88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */,
+				88E556132C8F5E49003789B7 /* CharacterPage.swift in Sources */,
+				88E5560D2C8F213E003789B7 /* MyPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
