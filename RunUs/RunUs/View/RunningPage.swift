@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct RunningPage: View {
-    @State var showCreateGroupRunPage = false
+    @State var showGroupRun = false
     var body: some View {
         ZStack {
             VStack {
                 Button(action: {
-                    showCreateGroupRunPage = true
-                    print("click to group run button : " , showCreateGroupRunPage)
+                    showGroupRun = true
+                    print("click to group run button : " , showGroupRun)
                 }, label: {
                     Text("같이 달리기")
                         .foregroundColor(.white)
@@ -34,7 +34,7 @@ struct RunningPage: View {
                 .cornerRadius(10)
             }
         }
-        .navigationDestination(isPresented: $showCreateGroupRunPage, destination:{ StartGroupRunPage()
+        .navigationDestination(isPresented: $showGroupRun, destination:{ StartGroupRunPage()
         })
         
     }

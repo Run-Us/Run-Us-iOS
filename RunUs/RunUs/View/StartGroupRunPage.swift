@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct StartGroupRunPage: View {
+    @State var showCreateGroupRunPage = false
     var body: some View {
         ZStack {
             VStack {
                 //                Spacer()
-                Button(action: {}, label: {
+                Button(action: {
+                    showCreateGroupRunPage = true
+                }, label: {
                     Text("그룹 생성하기")
                         .foregroundColor(.white)
                         .padding()
@@ -28,7 +31,11 @@ struct StartGroupRunPage: View {
                 .background(.blue)
                 .cornerRadius(10)
             }
+            
         }
+        .navigationDestination(isPresented: $showCreateGroupRunPage, destination:{ 
+            CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
+        })
     }
 }
 
