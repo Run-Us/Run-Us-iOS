@@ -24,6 +24,9 @@
 		238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238E78F12C83147200D04F58 /* RunUsApp.swift */; };
 		238E78F62C83147300D04F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F52C83147300D04F58 /* Assets.xcassets */; };
 		238E78F92C83147300D04F58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F82C83147300D04F58 /* Preview Assets.xcassets */; };
+		888648F22C981ECC00B040BA /* StartGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F12C981ECC00B040BA /* StartGroupRunPage.swift */; };
+		888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F42C981F7800B040BA /* CreateGroupRunPage.swift */; };
+		888648F72C981F8E00B040BA /* JoinGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F62C981F8E00B040BA /* JoinGroupRunPage.swift */; };
 		88E556052C8F208F003789B7 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556042C8F208F003789B7 /* HomePage.swift */; };
 		88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556062C8F20C8003789B7 /* CrewPage.swift */; };
 		88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556082C8F20E8003789B7 /* RunningPage.swift */; };
@@ -48,6 +51,9 @@
 		238E78F12C83147200D04F58 /* RunUsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunUsApp.swift; sourceTree = "<group>"; };
 		238E78F52C83147300D04F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		238E78F82C83147300D04F58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		888648F12C981ECC00B040BA /* StartGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGroupRunPage.swift; sourceTree = "<group>"; };
+		888648F42C981F7800B040BA /* CreateGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupRunPage.swift; sourceTree = "<group>"; };
+		888648F62C981F8E00B040BA /* JoinGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRunPage.swift; sourceTree = "<group>"; };
 		88E556042C8F208F003789B7 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		88E556062C8F20C8003789B7 /* CrewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPage.swift; sourceTree = "<group>"; };
 		88E556082C8F20E8003789B7 /* RunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningPage.swift; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 		230314E72C88A43300B299D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				888648F32C981F0700B040BA /* GroupRun */,
 				230314E82C88A48D00B299D5 /* LoginPage.swift */,
 				237B430D2C8F0193002163B9 /* MapPage.swift */,
 				236343112C90386D00336D67 /* RunningMapPage.swift */,
@@ -100,6 +107,7 @@
 				88E556042C8F208F003789B7 /* HomePage.swift */,
 				88E556062C8F20C8003789B7 /* CrewPage.swift */,
 				88E556082C8F20E8003789B7 /* RunningPage.swift */,
+				888648F12C981ECC00B040BA /* StartGroupRunPage.swift */,
 				88E5560C2C8F213E003789B7 /* MyPage.swift */,
 				88E556102C8F5CCC003789B7 /* MainPage.swift */,
 				88E556122C8F5E49003789B7 /* CharacterPage.swift */,
@@ -153,6 +161,15 @@
 				238E78F82C83147300D04F58 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		888648F32C981F0700B040BA /* GroupRun */ = {
+			isa = PBXGroup;
+			children = (
+				888648F42C981F7800B040BA /* CreateGroupRunPage.swift */,
+				888648F62C981F8E00B040BA /* JoinGroupRunPage.swift */,
+			);
+			path = GroupRun;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,14 +262,17 @@
 				230314E92C88A48D00B299D5 /* LoginPage.swift in Sources */,
 				88E556112C8F5CCC003789B7 /* MainPage.swift in Sources */,
 				230314E52C88851100B299D5 /* FontExtension.swift in Sources */,
+				888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */,
 				237B430E2C8F0193002163B9 /* MapPage.swift in Sources */,
 				236343142C917B3E00336D67 /* MapViewModel.swift in Sources */,
 				238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */,
 				236343122C90386D00336D67 /* RunningMapPage.swift in Sources */,
 				236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */,
 				88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */,
+				888648F72C981F8E00B040BA /* JoinGroupRunPage.swift in Sources */,
 				88E556132C8F5E49003789B7 /* CharacterPage.swift in Sources */,
 				88E5560D2C8F213E003789B7 /* MyPage.swift in Sources */,
+				888648F22C981ECC00B040BA /* StartGroupRunPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
