@@ -25,19 +25,7 @@ struct CreateGroupRunPage: View {
 //                참가자
                 List {
 //                    mokup
-                    HStack {
-                        Circle()
-                            .foregroundColor(.pink)
-                            .frame(width:40, height: 40)
-                        Text("조성훈")
-                            .padding()
-                        Spacer()
-                        Circle()
-                            .foregroundColor(.green)
-                            .frame(width:40, height: 40)
-                        Text("조성훈")
-                            .padding()
-                    }
+                    RunnerParticipant()
 //                    .listRowBackground(.clear)
                 }
                 .listRowSeparator(.hidden)
