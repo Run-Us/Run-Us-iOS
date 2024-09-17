@@ -10,6 +10,7 @@ import SwiftUI
 struct CreateGroupRunPage: View {
     @Binding var noticeContent: String?
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
+    @State var showStartGroupRunAlter = false
     let grouprunParticipants = ["김현재", "문다훈", "박지혜", "유가은", "이병직", "조성훈"]
     let gridLayout = [
         GridItem(.flexible()),
@@ -47,11 +48,21 @@ struct CreateGroupRunPage: View {
         }
         .navigationTitle("대기방")
         .navigationBarItems(trailing: Button(action: {
-            print("그룹런 시작하기")
+            showStartGroupRunAlter = true
         }) {
             Text("시작하기")
                 .foregroundColor(.blue)
         })
+        .alert(isPresented: $showStartGroupRunAlter) {
+            Alert(
+                title:
+                    Text("그룹 러닝을 시작할까요?"),
+                primaryButton: .default(Text("시작하기"), action: {
+                    
+                }),
+                secondaryButton: .cancel(Text("취소"))
+            )
+        }
     }
 }
 
