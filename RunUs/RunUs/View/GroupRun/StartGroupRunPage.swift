@@ -13,7 +13,6 @@ struct StartGroupRunPage: View {
     var body: some View {
         ZStack {
             VStack {
-                //                Spacer()
                 Button(action: {
                     showCreateGroupRunPage = true
                 }, label: {
