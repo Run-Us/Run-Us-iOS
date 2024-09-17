@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NoticeBar: View {
     @Binding var noticeContent: String?
-//    var noticeContent: String = ""
+
     var body: some View {
         ZStack {
             Color(.black)
@@ -28,5 +28,5 @@ struct NoticeBar: View {
 
 #Preview {
     NoticeBar(noticeContent: .constant("러너에게 아래의 인증번호를 알려주세요"))
-//    NoticeBar()
+
 }

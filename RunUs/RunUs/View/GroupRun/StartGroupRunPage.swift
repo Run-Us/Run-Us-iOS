@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StartGroupRunPage: View {
     @State var showCreateGroupRunPage = false
+    
     var body: some View {
         ZStack {
             VStack {

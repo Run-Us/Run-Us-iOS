@@ -101,15 +101,11 @@
 		230314E72C88A43300B299D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				23B708DD2C99523E006E9547 /* Onboarding */,
+				23B708DC2C995136006E9547 /* Run */,
 				888648F32C981F0700B040BA /* GroupRun */,
-				230314E82C88A48D00B299D5 /* LoginPage.swift */,
-				237B430D2C8F0193002163B9 /* MapPage.swift */,
-				236343112C90386D00336D67 /* RunningMapPage.swift */,
-				236343152C9180D000336D67 /* RunningProgressPage.swift */,
 				88E556042C8F208F003789B7 /* HomePage.swift */,
 				88E556062C8F20C8003789B7 /* CrewPage.swift */,
-				88E556082C8F20E8003789B7 /* RunningPage.swift */,
-				888648F12C981ECC00B040BA /* StartGroupRunPage.swift */,
 				88E5560C2C8F213E003789B7 /* MyPage.swift */,
 				88E556102C8F5CCC003789B7 /* MainPage.swift */,
 				88E556122C8F5E49003789B7 /* CharacterPage.swift */,
@@ -145,8 +141,9 @@
 		238E78F02C83147200D04F58 /* RunUs */ = {
 			isa = PBXGroup;
 			children = (
-				230314F82C89AD0800B299D5 /* Config.xcconfig */,
 				230314F72C89A5E200B299D5 /* Info.plist */,
+				230314F82C89AD0800B299D5 /* Config.xcconfig */,
+				23B708DE2C995264006E9547 /* Utils */,
 				230314ED2C8991ED00B299D5 /* ViewModel */,
 				230314E72C88A43300B299D5 /* View */,
 				238E78F12C83147200D04F58 /* RunUsApp.swift */,
@@ -165,12 +162,39 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		23B708DC2C995136006E9547 /* Run */ = {
+			isa = PBXGroup;
+			children = (
+				236343112C90386D00336D67 /* RunningMapPage.swift */,
+				236343152C9180D000336D67 /* RunningProgressPage.swift */,
+				88E556082C8F20E8003789B7 /* RunningPage.swift */,
+			);
+			path = Run;
+			sourceTree = "<group>";
+		};
+		23B708DD2C99523E006E9547 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				230314E82C88A48D00B299D5 /* LoginPage.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		23B708DE2C995264006E9547 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				237B430D2C8F0193002163B9 /* MapPage.swift */,
+				888648F82C9824A500B040BA /* NoticeBar.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		888648F32C981F0700B040BA /* GroupRun */ = {
 			isa = PBXGroup;
 			children = (
+				888648F12C981ECC00B040BA /* StartGroupRunPage.swift */,
 				888648F42C981F7800B040BA /* CreateGroupRunPage.swift */,
 				888648FA2C982FD500B040BA /* RunnerParticipant.swift */,
-				888648F82C9824A500B040BA /* NoticeBar.swift */,
 			);
 			path = GroupRun;
 			sourceTree = "<group>";
