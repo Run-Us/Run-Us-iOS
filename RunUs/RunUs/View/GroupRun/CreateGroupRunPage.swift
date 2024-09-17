@@ -8,31 +8,43 @@
 import SwiftUI
 
 struct CreateGroupRunPage: View {
-    let screenWidth = UIScreen.main.bounds.size.width
     @Binding var noticeContent: String?
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
+    let grouprunParticipants = ["김현재", "문다훈", "박지혜", "유가은", "이병직", "조성훈"]
+    let gridLayout = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
-        ZStack {
-            VStack {
-                // 알림창
-                noticeBar
-                    .frame(width: screenWidth, height: 40)
-                    .padding()
-                // 인증번호
-                Text("인증번호")
-                Text("6531")
-                    .font(.system(size: 82, weight: .bold))
-                // 참가자
-                List {
-                    // mokup
-                    RunnerParticipant()
-//                    .listRowBackground(.clear)
+        
+            GeometryReader { geometry in
+                ZStack {
+                    VStack {
+                        // 알림창
+                        noticeBar
+                            .frame(width: geometry.size.width)
+                        VStack {
+                            // 인증번호
+                            Text("인증번호")
+                            Text("6531")
+                                .font(.system(size: 82, weight: .bold))
+                            // 그룹런 참가자
+                            List {
+                                LazyVGrid(columns: gridLayout, spacing: 20) {
+                                    ForEach(grouprunParticipants, id: \.self) { participant in
+                                        RunnerParticipant(participantName: participant)
+                                    }
+                                }
+                            }
+                            .scrollContentBackground(.hidden)
+                        }
+                        .padding(.vertical)
+                        
+                    }
                 }
-                .listRowSeparator(.hidden)
-                
             }
-        }
+        
     }
 }
 

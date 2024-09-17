@@ -8,23 +8,29 @@
 import SwiftUI
 
 struct RunnerParticipant: View {
+    let participantName: String
+    let participantColor: Color = Color.random
     var body: some View {
         HStack {
             Circle()
-                .foregroundColor(.pink)
+                .foregroundColor(participantColor)
                 .frame(width:40, height: 40)
-            Text("조성훈")
-                .padding()
-            Spacer()
-            Circle()
-                .foregroundColor(.green)
-                .frame(width:40, height: 40)
-            Text("김현재")
+            Text(participantName)
                 .padding()
         }
     }
 }
 
+extension Color {
+    static var random: Color {
+        return Color (
+            red: .random(in: 0...1),
+            green: .random(in: 0...1),
+            blue: .random(in: 0...1)
+        )
+    }
+}
+
 #Preview {
-    RunnerParticipant()
+    RunnerParticipant(participantName: "참가자 이름")
 }
