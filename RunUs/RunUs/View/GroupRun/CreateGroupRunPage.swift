@@ -17,7 +17,7 @@ struct CreateGroupRunPage: View {
     ]
     
     var body: some View {
-        
+        NavigationView {
             GeometryReader { geometry in
                 ZStack {
                     VStack {
@@ -44,7 +44,14 @@ struct CreateGroupRunPage: View {
                     }
                 }
             }
-        
+        }
+        .navigationTitle("대기방")
+        .navigationBarItems(trailing: Button(action: {
+            print("그룹런 시작하기")
+        }) {
+            Text("시작하기")
+                .foregroundColor(.blue)
+        })
     }
 }
 
