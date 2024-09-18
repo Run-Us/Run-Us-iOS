@@ -23,7 +23,14 @@ struct Map: UIViewRepresentable {
     
     func makeUIView(context: Context) -> NMFNaverMapView {
         let map = NMFNaverMapView()
+        
+        // 사용자 위치로 지도 화면 이동
+        let cameraUpdate = NMFCameraUpdate(scrollTo: map.mapView.cameraPosition.target)
+        map.mapView.moveCamera(cameraUpdate)
+        
         map.showLocationButton = true
+        map.mapView.positionMode = .direction
+        
         return map
     }
     
