@@ -16,15 +16,29 @@ struct RunAlonePage: View {
     @State private var selectedTab: Int = 0
     
     var body: some View {
-        VStack {
-            Picker("", selection: $selectedTab) {
-                ForEach(RunningProgressStatus.allCases.indices, id: \.self) { index in
-                    Text(RunningProgressStatus.allCases[index].rawValue).tag(index)
+        GeometryReader { geometry in
+            VStack {
+                Picker("", selection: $selectedTab) {
+                    ForEach(RunningProgressStatus.allCases.indices, id: \.self) { index in
+                        Text(RunningProgressStatus.allCases[index].rawValue).tag(index)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding()
+                
+                switch (selectedTab) {
+                case 0:
+                    RunningProgressPage()
+                        .padding(.top, 50)
+                case 1:
+                    RunningMapPage()
+                default:
+                    EmptyView()
                 }
             }
-            .pickerStyle(.segmented)
+            
         }
-        .padding()
+        
     }
 }
 
