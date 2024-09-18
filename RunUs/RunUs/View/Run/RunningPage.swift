@@ -23,15 +23,13 @@ struct RunningPage: View {
                 .background(.blue)
                 .cornerRadius(10)
                 
-                Button(action: {
-                    
-                }, label: {
+                NavigationLink(destination: RunAlonePage()) {
                     Text("혼자 달리기")
                         .foregroundColor(.white)
                         .padding()
-                })
-                .background(.blue)
-                .cornerRadius(10)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
             }
         }
         .navigationDestination(isPresented: $showGroupRun, destination:{ StartGroupRunPage()
