@@ -56,6 +56,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     
     // 사용자 위치 추적 시작
     func startUpdatingLocation() {
+        isRunning = true
         locationManager.startUpdatingLocation()
     }
     
