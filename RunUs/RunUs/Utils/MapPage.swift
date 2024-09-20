@@ -25,11 +25,6 @@ struct Map: UIViewRepresentable {
     
     func makeUIView(context: Context) -> NMFNaverMapView {
         let map = NMFNaverMapView()
-        
-        // 사용자 위치로 지도 화면 이동
-        let cameraUpdate = NMFCameraUpdate(scrollTo: map.mapView.cameraPosition.target)
-        map.mapView.moveCamera(cameraUpdate)
-        
         map.showLocationButton = true
         map.mapView.positionMode = .direction
         
@@ -38,6 +33,11 @@ struct Map: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         let map = uiView.mapView
+        
+        // 사용자 위치로 지도 화면 이동
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(from: mapVM.userLocation.coordinate))
+        map.moveCamera(cameraUpdate)
+        
         addPathOverlay(map)
     }
     
