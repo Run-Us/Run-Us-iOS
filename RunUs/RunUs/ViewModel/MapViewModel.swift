@@ -7,10 +7,12 @@
 
 import CoreLocation
 import Foundation
+import NMapsMap
 
 class MapViewModel: NSObject, ObservableObject {
     private let locationManager: CLLocationManager
     @Published var userLocation: CLLocation?
+    @Published var userPath: [NMGLatLng] = []
     
     override init() {
         locationManager = CLLocationManager()
@@ -45,6 +47,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
         userLocation = newLocation
+        userPath.append(NMGLatLng(from: newLocation.coordinate))
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {

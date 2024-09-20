@@ -12,7 +12,7 @@ struct MapPage: View {
     @StateObject var mapVM: MapViewModel = MapViewModel()
     
     var body: some View {
-        Map()
+        Map(mapVM: mapVM)
             .onAppear(perform: {
                 mapVM.checkLocationPermission()
             })
@@ -20,6 +20,11 @@ struct MapPage: View {
 }
 
 struct Map: UIViewRepresentable {
+    @ObservedObject var mapVM: MapViewModel
+    
+    init(mapVM: MapViewModel) {
+        self.mapVM = mapVM
+    }
     
     func makeUIView(context: Context) -> NMFNaverMapView {
         let map = NMFNaverMapView()
@@ -35,7 +40,16 @@ struct Map: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        
+        let map = uiView.mapView
+        addPathOverlay(map)
+    }
+    
+    // 경로선 그리는 함수
+    func addPathOverlay(_ map: NMFMapView) {
+        let pathOverlay = NMFPath()
+        pathOverlay.color = .blue
+        pathOverlay.path = NMGLineString(points: mapVM.userPath)
+        pathOverlay.mapView = map
     }
 }
 
