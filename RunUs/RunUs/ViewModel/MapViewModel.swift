@@ -19,7 +19,6 @@ class MapViewModel: NSObject, ObservableObject {
         super.init()
         locationManager.delegate = self
         checkLocationPermission()
-        locationManager.startUpdatingLocation()
     }
     
     func checkLocationPermission() {
@@ -52,5 +51,15 @@ extension MapViewModel: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
         print("error: ", error.localizedDescription)
+    }
+    
+    // 사용자 위치 추적 시작
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    // 사용자 위치 추적 멈춤
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
     }
 }

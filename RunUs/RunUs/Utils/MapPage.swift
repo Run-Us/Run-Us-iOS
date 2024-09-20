@@ -9,13 +9,10 @@ import NMapsMap
 import SwiftUI
 
 struct MapPage: View {
-    @StateObject var mapVM: MapViewModel = MapViewModel()
+    @StateObject var mapVM: MapViewModel
     
     var body: some View {
         Map(mapVM: mapVM)
-            .onAppear(perform: {
-                mapVM.checkLocationPermission()
-            })
     }
 }
 
@@ -54,5 +51,5 @@ struct Map: UIViewRepresentable {
 }
 
 #Preview {
-    MapPage()
+    MapPage(mapVM: MapViewModel())
 }

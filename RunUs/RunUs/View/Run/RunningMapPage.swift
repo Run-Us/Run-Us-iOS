@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct RunningMapPage: View {
+    @StateObject var mapVM: MapViewModel
+    
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 50) {
                 ZStack(alignment: .bottom) {
-                    MapPage()
+                    MapPage(mapVM: mapVM)
                         .frame(height: geometry.size.width)
-                    Button(action: {}, label: {
+                    Button(action: {
+                        mapVM.stopUpdatingLocation()
+                    }, label: {
                         Image(systemName: "pause.circle")
                             .resizable()
                             .frame(width: 70, height: 70)
@@ -48,5 +52,5 @@ struct RunningMapPage: View {
 }
 
 #Preview {
-    RunningMapPage()
+    RunningMapPage(mapVM: MapViewModel())
 }

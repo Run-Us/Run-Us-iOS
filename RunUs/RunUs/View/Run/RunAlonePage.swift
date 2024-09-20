@@ -13,6 +13,7 @@ enum RunningProgressStatus: String, CaseIterable {
 }
 
 struct RunAlonePage: View {
+    @StateObject var mapVM: MapViewModel = MapViewModel()
     @State private var selectedTab: Int = 0
     
     var body: some View {
@@ -28,17 +29,19 @@ struct RunAlonePage: View {
                 
                 switch (selectedTab) {
                 case 0:
-                    RunningProgressPage()
+                    RunningProgressPage(mapVM: mapVM)
                         .padding(.top, 50)
                 case 1:
-                    RunningMapPage()
+                    RunningMapPage(mapVM: mapVM)
                 default:
                     EmptyView()
                 }
             }
             .navigationBarBackButtonHidden()
         }
-        
+        .onAppear {
+            mapVM.startUpdatingLocation()
+        }
     }
 }
 
