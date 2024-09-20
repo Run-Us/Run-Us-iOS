@@ -13,32 +13,27 @@ enum RunningProgressStatus: String, CaseIterable {
 }
 
 struct RunAlonePage: View {
-    @StateObject var mapVM: MapViewModel = MapViewModel()
+    @StateObject var mapVM: MapViewModel = .init()
     @State private var selectedTab: Int = 0
-    
+
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                Picker("", selection: $selectedTab) {
-                    ForEach(RunningProgressStatus.allCases.indices, id: \.self) { index in
-                        Text(RunningProgressStatus.allCases[index].rawValue).tag(index)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .padding()
-                
-                switch (selectedTab) {
-                case 0:
-                    RunningProgressPage(mapVM: mapVM, selectedTab: $selectedTab)
-                        .padding(.top, 50)
-                case 1:
-                    RunningMapPage(mapVM: mapVM)
-                default:
-                    EmptyView()
+        VStack {
+            Picker("", selection: $selectedTab) {
+                ForEach(RunningProgressStatus.allCases.indices, id: \.self) { index in
+                    Text(RunningProgressStatus.allCases[index].rawValue).tag(index)
                 }
             }
-            .navigationBarBackButtonHidden()
+            .pickerStyle(.segmented)
+            .padding()
+
+            TabView(selection: $selectedTab) {
+                RunningProgressPage(mapVM: mapVM, selectedTab: $selectedTab)
+                    .tag(0)
+                RunningMapPage(mapVM: mapVM)
+                    .tag(1)
+            }
         }
+        .navigationBarBackButtonHidden()
         .onAppear {
             mapVM.startUpdatingLocation()
         }
