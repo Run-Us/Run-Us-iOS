@@ -11,7 +11,7 @@ import NMapsMap
 
 class MapViewModel: NSObject, ObservableObject {
     private let locationManager: CLLocationManager
-    @Published var userLocation: CLLocation?
+    @Published var userLocation: CLLocation = CLLocation(latitude: 37.564214, longitude: 127.001699)
     @Published var userPath: [NMGLatLng] = []
     @Published var isRunning: Bool = false
     
