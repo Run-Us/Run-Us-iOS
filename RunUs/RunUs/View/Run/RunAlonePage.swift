@@ -29,7 +29,7 @@ struct RunAlonePage: View {
                 
                 switch (selectedTab) {
                 case 0:
-                    RunningProgressPage(mapVM: mapVM)
+                    RunningProgressPage(mapVM: mapVM, selectedTab: $selectedTab)
                         .padding(.top, 50)
                 case 1:
                     RunningMapPage(mapVM: mapVM)
