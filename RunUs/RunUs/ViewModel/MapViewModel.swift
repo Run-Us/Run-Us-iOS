@@ -8,8 +8,17 @@
 import CoreLocation
 import Foundation
 
-class MapViewModel: ObservableObject {
-    let locationManager = CLLocationManager()
+class MapViewModel: NSObject, ObservableObject {
+    private let locationManager: CLLocationManager
+    @Published var userLocation: CLLocation?
+    
+    override init() {
+        locationManager = CLLocationManager()
+        super.init()
+        locationManager.delegate = self
+        checkLocationPermission()
+        locationManager.startUpdatingLocation()
+    }
     
     func checkLocationPermission() {
         switch locationManager.authorizationStatus {
@@ -28,5 +37,17 @@ class MapViewModel: ObservableObject {
         default:
             break
         }
+    }
+}
+
+extension MapViewModel: CLLocationManagerDelegate {
+    // 사용자 위치 업데이트
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let newLocation = locations.last else { return }
+        userLocation = newLocation
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print("error: ", error.localizedDescription)
     }
 }
