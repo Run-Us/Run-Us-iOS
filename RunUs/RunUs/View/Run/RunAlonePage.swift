@@ -36,7 +36,7 @@ struct RunAlonePage: View {
                     EmptyView()
                 }
             }
-            
+            .navigationBarBackButtonHidden()
         }
         
     }
