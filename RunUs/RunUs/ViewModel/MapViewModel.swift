@@ -13,6 +13,7 @@ class MapViewModel: NSObject, ObservableObject {
     private let locationManager: CLLocationManager
     @Published var userLocation: CLLocation?
     @Published var userPath: [NMGLatLng] = []
+    @Published var isRunning: Bool = false
     
     override init() {
         locationManager = CLLocationManager()

@@ -16,15 +16,46 @@ struct RunningMapPage: View {
                 ZStack(alignment: .bottom) {
                     MapPage(mapVM: mapVM)
                         .frame(height: geometry.size.width)
-                    Button(action: {
-                        mapVM.stopUpdatingLocation()
-                    }, label: {
-                        Image(systemName: "pause.circle")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                            .foregroundStyle(.black)
-                    })
-                    .padding()
+                    
+                    // 일시정지 버튼
+                    if mapVM.isRunning {
+                        Button(action: {
+                            mapVM.stopUpdatingLocation()
+                            mapVM.isRunning = false
+                        }, label: {
+                            Image(systemName: "pause.circle")
+                                .resizable()
+                                .frame(width: 70, height: 70)
+                                .foregroundStyle(.black)
+                        })
+                        .padding()
+                    }
+                    // 계속하기&끝내기 버튼
+                    else {
+                        HStack {
+                            Spacer()
+                            Button {} label: {
+                                Text("끝내기")
+                                    .font(.body1)
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .frame(width: geometry.size.width*0.35)
+                            .background(.black)
+                            Button {
+                                mapVM.isRunning = true
+                            } label: {
+                                Text("계속하기")
+                                    .font(.body1)
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                            .frame(width: geometry.size.width*0.35)
+                            .background(.white)
+                        }
+                        .frame(height: 70)
+                        .padding()
+                    }
                 }
                 HStack {
                     VStack(spacing: 15) {
