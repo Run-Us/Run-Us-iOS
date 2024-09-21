@@ -43,7 +43,7 @@ struct StartGroupRunPage: View {
                         Text("취소")
                     })
                     Button(action: {
-                        showInputJoinCode.toggle()
+                        showJoinGroupRunPage = true
                     }, label: {
                         Text("참가하기")
                     })
@@ -53,7 +53,7 @@ struct StartGroupRunPage: View {
             Text("생성된 대기방의 인증코드를 입력해주세요")
         })
         .navigationDestination(isPresented: $showJoinGroupRunPage, destination: {
-            RunGroupPage()
+            JoinGroupRunPage(mapVM: MapViewModel())
         })
 
     }
