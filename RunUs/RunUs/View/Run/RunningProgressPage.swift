@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct RunningProgressPage: View {
+    @StateObject var mapVM: MapViewModel
+    @Binding var selectedTab: Int
+    
     var body: some View {
         VStack(spacing: 50) {
             VStack(spacing: 15) {
@@ -27,7 +30,11 @@ struct RunningProgressPage: View {
                 Text("0.4km")
                     .font(.title1)
             }
-            Button(action: {}, label: {
+            Button(action: {
+                selectedTab = 1
+                mapVM.stopUpdatingLocation()
+                mapVM.isRunning = false
+            }, label: {
                 Image(systemName: "pause.circle")
                     .resizable()
                     .frame(width: 80, height: 80)
@@ -39,5 +46,5 @@ struct RunningProgressPage: View {
 }
 
 #Preview {
-    RunningProgressPage()
+    RunningProgressPage(mapVM: MapViewModel(), selectedTab: .constant(0))
 }

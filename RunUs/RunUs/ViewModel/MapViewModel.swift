@@ -7,9 +7,20 @@
 
 import CoreLocation
 import Foundation
+import NMapsMap
 
-class MapViewModel: ObservableObject {
-    let locationManager = CLLocationManager()
+class MapViewModel: NSObject, ObservableObject {
+    private let locationManager: CLLocationManager
+    @Published var userLocation: CLLocation = CLLocation(latitude: 37.564214, longitude: 127.001699)
+    @Published var userPath: [NMGLatLng] = []
+    @Published var isRunning: Bool = false
+    
+    override init() {
+        locationManager = CLLocationManager()
+        super.init()
+        locationManager.delegate = self
+        checkLocationPermission()
+    }
     
     func checkLocationPermission() {
         switch locationManager.authorizationStatus {
@@ -28,5 +39,29 @@ class MapViewModel: ObservableObject {
         default:
             break
         }
+    }
+}
+
+extension MapViewModel: CLLocationManagerDelegate {
+    // 사용자 위치 업데이트
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let newLocation = locations.last else { return }
+        userLocation = newLocation
+        userPath.append(NMGLatLng(from: newLocation.coordinate))
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print("error: ", error.localizedDescription)
+    }
+    
+    // 사용자 위치 추적 시작
+    func startUpdatingLocation() {
+        isRunning = true
+        locationManager.startUpdatingLocation()
+    }
+    
+    // 사용자 위치 추적 멈춤
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
     }
 }
