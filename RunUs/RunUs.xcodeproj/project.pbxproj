@@ -16,6 +16,8 @@
 		230314F42C89A00B00B299D5 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 230314F32C89A00B00B299D5 /* KakaoSDKCommon */; };
 		230314F62C89A00B00B299D5 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 230314F52C89A00B00B299D5 /* KakaoSDKUser */; };
 		230315002C8A096D00B299D5 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 230314FF2C8A096D00B299D5 /* KeychainSwift */; };
+		2355F66C2C9E9CE700A65108 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355F66B2C9E9CE700A65108 /* MotionManager.swift */; };
+		2355F6712C9EA6DF00A65108 /* RunningInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355F6702C9EA6DF00A65108 /* RunningInfo.swift */; };
 		236343122C90386D00336D67 /* RunningMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236343112C90386D00336D67 /* RunningMapPage.swift */; };
 		236343142C917B3E00336D67 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236343132C917B3E00336D67 /* MapViewModel.swift */; };
 		236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236343152C9180D000336D67 /* RunningProgressPage.swift */; };
@@ -45,6 +47,8 @@
 		230314EE2C89920100B299D5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		230314F72C89A5E200B299D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		230314F82C89AD0800B299D5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		2355F66B2C9E9CE700A65108 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		2355F6702C9EA6DF00A65108 /* RunningInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningInfo.swift; sourceTree = "<group>"; };
 		236343112C90386D00336D67 /* RunningMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningMapPage.swift; sourceTree = "<group>"; };
 		236343132C917B3E00336D67 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		236343152C9180D000336D67 /* RunningProgressPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningProgressPage.swift; sourceTree = "<group>"; };
@@ -120,8 +124,17 @@
 			children = (
 				230314EE2C89920100B299D5 /* AuthViewModel.swift */,
 				236343132C917B3E00336D67 /* MapViewModel.swift */,
+				2355F66B2C9E9CE700A65108 /* MotionManager.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2355F66D2C9EA69A00A65108 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2355F6702C9EA6DF00A65108 /* RunningInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		238E78E52C83147200D04F58 = {
@@ -146,6 +159,7 @@
 				230314F72C89A5E200B299D5 /* Info.plist */,
 				230314F82C89AD0800B299D5 /* Config.xcconfig */,
 				23B708DE2C995264006E9547 /* Utils */,
+				2355F66D2C9EA69A00A65108 /* Model */,
 				230314ED2C8991ED00B299D5 /* ViewModel */,
 				230314E72C88A43300B299D5 /* View */,
 				238E78F12C83147200D04F58 /* RunUsApp.swift */,
@@ -291,12 +305,14 @@
 				230314EF2C89920100B299D5 /* AuthViewModel.swift in Sources */,
 				23A8F7952C9AA2EB00A20EC5 /* RunAlonePage.swift in Sources */,
 				230314E92C88A48D00B299D5 /* LoginPage.swift in Sources */,
+				2355F6712C9EA6DF00A65108 /* RunningInfo.swift in Sources */,
 				88E556112C8F5CCC003789B7 /* MainPage.swift in Sources */,
 				230314E52C88851100B299D5 /* FontExtension.swift in Sources */,
 				888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */,
 				237B430E2C8F0193002163B9 /* MapPage.swift in Sources */,
 				236343142C917B3E00336D67 /* MapViewModel.swift in Sources */,
 				238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */,
+				2355F66C2C9E9CE700A65108 /* MotionManager.swift in Sources */,
 				236343122C90386D00336D67 /* RunningMapPage.swift in Sources */,
 				236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */,
 				88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */,
@@ -446,6 +462,7 @@
 				INFOPLIST_FILE = RunUs/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치를 기반으로 러닝 기능을 제공하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 기반으로 러닝 기능을 제공하기 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "러닝 현황 기록을 위해 디바이스의 모션 데이터에 접근 권한이 필요합니다. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -479,6 +496,7 @@
 				INFOPLIST_FILE = RunUs/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치를 기반으로 러닝 기능을 제공하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 기반으로 러닝 기능을 제공하기 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "러닝 현황 기록을 위해 디바이스의 모션 데이터에 접근 권한이 필요합니다. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
