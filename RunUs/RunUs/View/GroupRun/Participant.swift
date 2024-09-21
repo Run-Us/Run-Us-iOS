@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunnerParticipant: View {
+struct Participant: View {
     let participantName: String
     let participantColor: Color = Color.random
     var body: some View {
@@ -32,5 +32,5 @@ extension Color {
 }
 
 #Preview {
-    RunnerParticipant(participantName: "참가자 이름")
+    Participant(participantName: "참가자 이름")
 }
