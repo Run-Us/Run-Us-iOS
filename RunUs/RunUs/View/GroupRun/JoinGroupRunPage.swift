@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct JoinGroupRunPage: View {
-    @StateObject var mapVM: MapViewModel
     @State var noticeBar = NoticeBar(noticeContent: .constant("곧 그룹 러닝이 시작됩니다!"))
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 ZStack {
-                    MapPage(mapVM: mapVM)
+                    MapPage(mapVM: .init())
                     VStack {
                         noticeBar
                             .frame(width: geometry.size.width)
@@ -30,5 +29,5 @@ struct JoinGroupRunPage: View {
 }
 
 #Preview {
-    JoinGroupRunPage(mapVM: MapViewModel())
+    JoinGroupRunPage()
 }

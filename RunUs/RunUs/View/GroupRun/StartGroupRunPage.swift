@@ -53,7 +53,7 @@ struct StartGroupRunPage: View {
             Text("생성된 대기방의 인증코드를 입력해주세요")
         })
         .navigationDestination(isPresented: $showJoinGroupRunPage, destination: {
-            JoinGroupRunPage(mapVM: MapViewModel())
+            JoinGroupRunPage()
         })
 
     }

@@ -17,6 +17,7 @@ struct Participant: View {
                 .frame(width:40, height: 40)
             Text(participantName)
                 .padding()
+                
         }
     }
 }
