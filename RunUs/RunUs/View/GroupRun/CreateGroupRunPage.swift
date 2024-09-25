@@ -11,11 +11,7 @@ struct CreateGroupRunPage: View {
     @Binding var noticeContent: String?
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
     @State var showStartGroupRunAlter = false
-    let grouprunParticipants = ["김현재", "문다훈", "박지혜", "유가은", "이병직", "조성훈"]
-    let gridLayout = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    
     
     var body: some View {
         NavigationView {
@@ -30,15 +26,7 @@ struct CreateGroupRunPage: View {
                             Text("인증번호")
                             Text("6531")
                                 .font(.system(size: 82, weight: .bold))
-                            // 그룹런 참가자
-                            List {
-                                LazyVGrid(columns: gridLayout, spacing: 20) {
-                                    ForEach(grouprunParticipants, id: \.self) { participant in
-                                        RunnerParticipant(participantName: participant)
-                                    }
-                                }
-                            }
-                            .scrollContentBackground(.hidden)
+                            ParticipantList()
                         }
                         .padding(.vertical)
                         

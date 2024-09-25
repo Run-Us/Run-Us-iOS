@@ -12,16 +12,13 @@ struct RunningPage: View {
     var body: some View {
         ZStack {
             VStack {
-                Button(action: {
-                    showGroupRun = true
-                    print("click to group run button : " , showGroupRun)
-                }, label: {
+                NavigationLink(destination: StartGroupRunPage(joinCode: ""), label: {
                     Text("같이 달리기")
                         .foregroundColor(.white)
                         .padding()
+                        .background(.blue)
+                        .cornerRadius(10)
                 })
-                .background(.blue)
-                .cornerRadius(10)
                 
                 NavigationLink(destination: RunAlonePage()) {
                     Text("혼자 달리기")
@@ -32,8 +29,6 @@ struct RunningPage: View {
                 }
             }
         }
-        .navigationDestination(isPresented: $showGroupRun, destination:{ StartGroupRunPage()
-        })
         
     }
 }
