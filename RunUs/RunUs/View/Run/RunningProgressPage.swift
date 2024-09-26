@@ -40,6 +40,7 @@ struct RunningProgressPage: View {
                 selectedTab = 1
                 mapVM.stopUpdatingLocation()
                 mapVM.isRunning = false
+                motionManager.stopRunningMotionData()
             }, label: {
                 Image(systemName: "pause.circle")
                     .resizable()

@@ -23,6 +23,7 @@ struct RunningMapPage: View {
                         Button(action: {
                             mapVM.stopUpdatingLocation()
                             mapVM.isRunning = false
+                            motionManager.stopRunningMotionData()
                         }, label: {
                             Image(systemName: "pause.circle")
                                 .resizable()

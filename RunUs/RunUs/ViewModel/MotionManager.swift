@@ -13,7 +13,7 @@ class MotionManager: ObservableObject {
     @Published var runningInfo: RunningInfo = RunningInfo()
     
     // 실시간 러닝 정보 업데이트
-    func getRealTimeRunningData() {
+    func getRealTimeMotionData() {
         
         pedometer.startUpdates(from: Date()) { [weak self] (pedometerData, error) in
             guard let pedometerData = pedometerData, error == nil else {
@@ -33,6 +33,11 @@ class MotionManager: ObservableObject {
             }
             
         }
+    }
+    
+    // 측정 stop
+    func stopRunningMotionData() {
+        pedometer.stopUpdates()
     }
     
     // 러닝 데이터 측정 가능 여부 확인

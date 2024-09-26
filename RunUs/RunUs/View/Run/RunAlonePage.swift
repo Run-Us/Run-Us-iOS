@@ -40,7 +40,7 @@ struct RunAlonePage: View {
             motionManager.checkPedometerAuthorization { isSuccess in
                 if isSuccess {
                     motionManager.runningInfo = RunningInfo(startDate: Date())
-                    motionManager.getRealTimeRunningData()
+                    motionManager.getRealTimeMotionData()
                     mapVM.startUpdatingLocation()
                 }
             }
