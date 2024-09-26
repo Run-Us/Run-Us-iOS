@@ -22,10 +22,12 @@ class MotionManager: ObservableObject {
             }
             
             DispatchQueue.main.async {
-                if  let averagePace = pedometerData.averageActivePace,
+                if  let currentPace = pedometerData.currentPace,
                     let distance = pedometerData.distance
                 {
-                    self?.runningInfo.averagePace = (averagePace.doubleValue * 1000) / 60  // 단위를 km로 변환
+                    let minPerKm = Int(currentPace.doubleValue * 1000) / 60
+                    let secPerKm = Int(currentPace.doubleValue * 1000) % 60
+                    self?.runningInfo.currentPace = "\(minPerKm)\' \(secPerKm)\'\'"
                     self?.runningInfo.distance = distance.intValue
                 }
             }

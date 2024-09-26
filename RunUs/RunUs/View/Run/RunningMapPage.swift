@@ -68,7 +68,7 @@ struct RunningMapPage: View {
                     VStack(spacing: 15) {
                         Text("평균 페이스")
                             .font(.body1)
-                        Text("\(motionManager.runningInfo.averagePace ?? 0)")
+                        Text(motionManager.runningInfo.currentPace ?? "nil")
                     }
                     .frame(width: geometry.size.width/2)
                 }

@@ -30,7 +30,7 @@ struct RunAlonePage: View {
             TabView(selection: $selectedTab) {
                 RunningProgressPage(mapVM: mapVM, motionManager: motionManager, selectedTab: $selectedTab)
                     .tag(0)
-                RunningMapPage(mapVM: mapVM)
+                RunningMapPage(mapVM: mapVM, motionManager: motionManager)
                     .tag(1)
             }
         }
