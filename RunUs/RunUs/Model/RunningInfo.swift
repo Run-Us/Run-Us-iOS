@@ -8,8 +8,8 @@
 import Foundation
 
 struct RunningInfo {
-    let startDate: Date
-    var endDate: Date
+    var startDate: Date?
+    var endDate: Date?
     var averagePace: Double?
     var distance: Int?
 }

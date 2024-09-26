@@ -36,8 +36,14 @@ struct RunAlonePage: View {
         }
         .navigationBarBackButtonHidden()
         .onAppear {
-            mapVM.startUpdatingLocation()
-            motionManager.getRealTimeRunningData()
+            // 권한이 모두 허용됐을 경우에만 측정 시작
+            motionManager.checkPedometerAuthorization { isSuccess in
+                if isSuccess {
+                    motionManager.runningInfo = RunningInfo(startDate: Date())
+                    motionManager.getRealTimeRunningData()
+                    mapVM.startUpdatingLocation()
+                }
+            }
         }
     }
 }

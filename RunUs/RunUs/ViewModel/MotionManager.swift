@@ -10,11 +10,7 @@ import Foundation
 
 class MotionManager: ObservableObject {
     let pedometer = CMPedometer()
-    @Published var runningInfo: RunningInfo
-    
-    init() {
-        runningInfo = RunningInfo(startDate: Date(), endDate: Date())
-    }
+    @Published var runningInfo: RunningInfo = RunningInfo()
     
     // 실시간 러닝 정보 업데이트
     func getRealTimeRunningData() {

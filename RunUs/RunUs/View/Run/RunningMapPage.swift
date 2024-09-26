@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
+    @StateObject var motionManager: MotionManager
     
     var body: some View {
         GeometryReader { geometry in
@@ -67,14 +68,18 @@ struct RunningMapPage: View {
                     VStack(spacing: 15) {
                         Text("평균 페이스")
                             .font(.body1)
-                        Text("-:--")
+                        Text("\(motionManager.runningInfo.averagePace ?? 0)")
                     }
                     .frame(width: geometry.size.width/2)
                 }
                 VStack(spacing: 15) {
                     Text("거리")
                         .font(.body1)
-                    Text("0.4km")
+                    if let distance = motionManager.runningInfo.distance {
+                        Text(distance >= 1000 ? "\(distance/1000)km" : "\(distance)m")
+                    } else {
+                        Text("0m")
+                    }
                 }
             }
             .font(.title1)
@@ -83,5 +88,5 @@ struct RunningMapPage: View {
 }
 
 #Preview {
-    RunningMapPage(mapVM: MapViewModel())
+    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager())
 }
