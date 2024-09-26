@@ -16,6 +16,7 @@ class MotionManager: ObservableObject {
     func getRealTimeMotionData() {
         
         pedometer.startUpdates(from: Date()) { [weak self] (pedometerData, error) in
+            print("start")
             guard let pedometerData = pedometerData, error == nil else {
                 print("data is nil")
                 return
@@ -29,6 +30,9 @@ class MotionManager: ObservableObject {
                     let secPerKm = Int(currentPace.doubleValue * 1000) % 60
                     self?.runningInfo.currentPace = "\(minPerKm)\' \(secPerKm)\'\'"
                     self?.runningInfo.distance = distance.intValue
+                    
+                    let timeInterval = Int(pedometerData.endDate.timeIntervalSince(pedometerData.startDate))
+                    self?.runningInfo.runningTime = "\(timeInterval/60):\(timeInterval%60)"
                 }
             }
             

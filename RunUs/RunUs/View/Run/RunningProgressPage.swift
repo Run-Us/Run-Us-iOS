@@ -16,7 +16,7 @@ struct RunningProgressPage: View {
         VStack(spacing: 50) {
             VStack(spacing: 15) {
                 Text("시간")
-                Text("00:00")
+                Text(motionManager.runningInfo.runningTime ?? "00:00")
                     .font(.title1)
             }
             Divider()

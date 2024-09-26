@@ -10,6 +10,7 @@ import Foundation
 struct RunningInfo {
     var startDate: Date?
     var endDate: Date?
+    var runningTime: String?
     var currentPace: String?
     var distance: Int?
 }

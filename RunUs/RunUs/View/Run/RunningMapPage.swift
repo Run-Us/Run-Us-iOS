@@ -63,7 +63,7 @@ struct RunningMapPage: View {
                     VStack(spacing: 15) {
                         Text("시간")
                             .font(.body1)
-                        Text("00:01")
+                        Text(motionManager.runningInfo.runningTime ?? "00:00")
                     }
                     .frame(width: geometry.size.width/2)
                     VStack(spacing: 15) {
