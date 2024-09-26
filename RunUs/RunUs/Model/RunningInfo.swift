@@ -9,7 +9,7 @@ import Foundation
 
 struct RunningInfo {
     let startDate: Date
-    let endDate: Date
-    let averagePace: NSNumber?
-    let distance: NSNumber?
+    var endDate: Date
+    var averagePace: Double?
+    var distance: Int?
 }
