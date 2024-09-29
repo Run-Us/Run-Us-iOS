@@ -30,7 +30,13 @@
 		888648F22C981ECC00B040BA /* StartGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F12C981ECC00B040BA /* StartGroupRunPage.swift */; };
 		888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F42C981F7800B040BA /* CreateGroupRunPage.swift */; };
 		888648F92C9824A500B040BA /* NoticeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F82C9824A500B040BA /* NoticeBar.swift */; };
-		888648FB2C982FD500B040BA /* RunnerParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648FA2C982FD500B040BA /* RunnerParticipant.swift */; };
+		888648FB2C982FD500B040BA /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648FA2C982FD500B040BA /* Participant.swift */; };
+		88D3BF0B2C9F68E5009E4365 /* RunGroupPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF0A2C9F68D5009E4365 /* RunGroupPage.swift */; };
+		88D3BF0D2C9F6B35009E4365 /* JoinGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF0C2C9F6B35009E4365 /* JoinGroupRunPage.swift */; };
+		88D3BF0F2C9F6C42009E4365 /* ParticipantList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF0E2C9F6C42009E4365 /* ParticipantList.swift */; };
+		88D3BF112C9F7540009E4365 /* RunningParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF102C9F7540009E4365 /* RunningParticipant.swift */; };
+		88D3BF142C9F790C009E4365 /* ParticipantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF132C9F7903009E4365 /* ParticipantModel.swift */; };
+		88D3BF1A2C9F7C3D009E4365 /* RunningGroupMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF192C9F7C3D009E4365 /* RunningGroupMapPage.swift */; };
 		88E556052C8F208F003789B7 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556042C8F208F003789B7 /* HomePage.swift */; };
 		88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556062C8F20C8003789B7 /* CrewPage.swift */; };
 		88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556082C8F20E8003789B7 /* RunningPage.swift */; };
@@ -61,7 +67,13 @@
 		888648F12C981ECC00B040BA /* StartGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGroupRunPage.swift; sourceTree = "<group>"; };
 		888648F42C981F7800B040BA /* CreateGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupRunPage.swift; sourceTree = "<group>"; };
 		888648F82C9824A500B040BA /* NoticeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBar.swift; sourceTree = "<group>"; };
-		888648FA2C982FD500B040BA /* RunnerParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerParticipant.swift; sourceTree = "<group>"; };
+		888648FA2C982FD500B040BA /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		88D3BF0A2C9F68D5009E4365 /* RunGroupPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunGroupPage.swift; sourceTree = "<group>"; };
+		88D3BF0C2C9F6B35009E4365 /* JoinGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRunPage.swift; sourceTree = "<group>"; };
+		88D3BF0E2C9F6C42009E4365 /* ParticipantList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantList.swift; sourceTree = "<group>"; };
+		88D3BF102C9F7540009E4365 /* RunningParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningParticipant.swift; sourceTree = "<group>"; };
+		88D3BF132C9F7903009E4365 /* ParticipantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantModel.swift; sourceTree = "<group>"; };
+		88D3BF192C9F7C3D009E4365 /* RunningGroupMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningGroupMapPage.swift; sourceTree = "<group>"; };
 		88E556042C8F208F003789B7 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		88E556062C8F20C8003789B7 /* CrewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPage.swift; sourceTree = "<group>"; };
 		88E556082C8F20E8003789B7 /* RunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningPage.swift; sourceTree = "<group>"; };
@@ -158,6 +170,7 @@
 			children = (
 				230314F72C89A5E200B299D5 /* Info.plist */,
 				230314F82C89AD0800B299D5 /* Config.xcconfig */,
+				88D3BF122C9F78F3009E4365 /* Model */,
 				23B708DE2C995264006E9547 /* Utils */,
 				2355F66D2C9EA69A00A65108 /* Model */,
 				230314ED2C8991ED00B299D5 /* ViewModel */,
@@ -209,11 +222,24 @@
 		888648F32C981F0700B040BA /* GroupRun */ = {
 			isa = PBXGroup;
 			children = (
+				88D3BF0A2C9F68D5009E4365 /* RunGroupPage.swift */,
 				888648F12C981ECC00B040BA /* StartGroupRunPage.swift */,
 				888648F42C981F7800B040BA /* CreateGroupRunPage.swift */,
-				888648FA2C982FD500B040BA /* RunnerParticipant.swift */,
+				888648FA2C982FD500B040BA /* Participant.swift */,
+				88D3BF0C2C9F6B35009E4365 /* JoinGroupRunPage.swift */,
+				88D3BF0E2C9F6C42009E4365 /* ParticipantList.swift */,
+				88D3BF102C9F7540009E4365 /* RunningParticipant.swift */,
+				88D3BF192C9F7C3D009E4365 /* RunningGroupMapPage.swift */,
 			);
 			path = GroupRun;
+			sourceTree = "<group>";
+		};
+		88D3BF122C9F78F3009E4365 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88D3BF132C9F7903009E4365 /* ParticipantModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,25 +327,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				88E556052C8F208F003789B7 /* HomePage.swift in Sources */,
+				88D3BF1A2C9F7C3D009E4365 /* RunningGroupMapPage.swift in Sources */,
 				88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */,
 				230314EF2C89920100B299D5 /* AuthViewModel.swift in Sources */,
+				88D3BF0F2C9F6C42009E4365 /* ParticipantList.swift in Sources */,
 				23A8F7952C9AA2EB00A20EC5 /* RunAlonePage.swift in Sources */,
 				230314E92C88A48D00B299D5 /* LoginPage.swift in Sources */,
 				2355F6712C9EA6DF00A65108 /* RunningInfo.swift in Sources */,
 				88E556112C8F5CCC003789B7 /* MainPage.swift in Sources */,
 				230314E52C88851100B299D5 /* FontExtension.swift in Sources */,
 				888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */,
+				88D3BF142C9F790C009E4365 /* ParticipantModel.swift in Sources */,
 				237B430E2C8F0193002163B9 /* MapPage.swift in Sources */,
 				236343142C917B3E00336D67 /* MapViewModel.swift in Sources */,
+				88D3BF112C9F7540009E4365 /* RunningParticipant.swift in Sources */,
 				238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */,
 				2355F66C2C9E9CE700A65108 /* MotionManager.swift in Sources */,
 				236343122C90386D00336D67 /* RunningMapPage.swift in Sources */,
 				236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */,
+				88D3BF0B2C9F68E5009E4365 /* RunGroupPage.swift in Sources */,
 				88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */,
 				888648F92C9824A500B040BA /* NoticeBar.swift in Sources */,
 				88E556132C8F5E49003789B7 /* CharacterPage.swift in Sources */,
 				88E5560D2C8F213E003789B7 /* MyPage.swift in Sources */,
-				888648FB2C982FD500B040BA /* RunnerParticipant.swift in Sources */,
+				888648FB2C982FD500B040BA /* Participant.swift in Sources */,
+				88D3BF0D2C9F6B35009E4365 /* JoinGroupRunPage.swift in Sources */,
 				888648F22C981ECC00B040BA /* StartGroupRunPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
