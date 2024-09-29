@@ -27,9 +27,9 @@ struct RunGroupPage: View {
             .padding()
 
             TabView(selection: $selectedTab) {
-                RunningProgressPage(mapVM: mapVM, selectedTab: $selectedTab)
+                RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
                     .tag(0)
-                RunningMapPage(mapVM: mapVM)
+                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager)
                     .tag(1)
                 RunningGroupMapPage(mapVM: mapVM)
                     .tag(2)
