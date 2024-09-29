@@ -13,13 +13,15 @@ struct MainPage: View {
     var body: some View {
         NavigationStack {
             TabView {
-
                 RunningPage()
                     .tabItem {
                         Image(systemName: "figure.run")
                         Text("Run")
                     }
-                
+                MyPage()
+                    .tabItem {
+                        Label("My", systemImage: "person.circle")
+                    }
             }
         }
         
