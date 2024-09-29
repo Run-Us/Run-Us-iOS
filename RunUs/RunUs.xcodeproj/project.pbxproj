@@ -37,6 +37,7 @@
 		88D3BF112C9F7540009E4365 /* RunningParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF102C9F7540009E4365 /* RunningParticipant.swift */; };
 		88D3BF142C9F790C009E4365 /* ParticipantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF132C9F7903009E4365 /* ParticipantModel.swift */; };
 		88D3BF1A2C9F7C3D009E4365 /* RunningGroupMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF192C9F7C3D009E4365 /* RunningGroupMapPage.swift */; };
+		88D3BF212CA95FB4009E4365 /* WebSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D3BF202CA95FB4009E4365 /* WebSocketService.swift */; };
 		88E556052C8F208F003789B7 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556042C8F208F003789B7 /* HomePage.swift */; };
 		88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556062C8F20C8003789B7 /* CrewPage.swift */; };
 		88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556082C8F20E8003789B7 /* RunningPage.swift */; };
@@ -74,6 +75,7 @@
 		88D3BF102C9F7540009E4365 /* RunningParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningParticipant.swift; sourceTree = "<group>"; };
 		88D3BF132C9F7903009E4365 /* ParticipantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantModel.swift; sourceTree = "<group>"; };
 		88D3BF192C9F7C3D009E4365 /* RunningGroupMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningGroupMapPage.swift; sourceTree = "<group>"; };
+		88D3BF202CA95FB4009E4365 /* WebSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketService.swift; sourceTree = "<group>"; };
 		88E556042C8F208F003789B7 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		88E556062C8F20C8003789B7 /* CrewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPage.swift; sourceTree = "<group>"; };
 		88E556082C8F20E8003789B7 /* RunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningPage.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				237B430D2C8F0193002163B9 /* MapPage.swift */,
 				888648F82C9824A500B040BA /* NoticeBar.swift */,
+				88D3BF202CA95FB4009E4365 /* WebSocketService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				230314F02C89A00B00B299D5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				230314FE2C8A096D00B299D5 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				237B430A2C8EFFF1002163B9 /* XCRemoteSwiftPackageReference "Naver-Map-iOS-SPM" */,
+				88D3BF222CA96B0E009E4365 /* XCRemoteSwiftPackageReference "StompClientLib" */,
 			);
 			productRefGroup = 238E78EF2C83147200D04F58 /* Products */;
 			projectDirPath = "";
@@ -343,6 +347,7 @@
 				88D3BF112C9F7540009E4365 /* RunningParticipant.swift in Sources */,
 				238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */,
 				2355F66C2C9E9CE700A65108 /* MotionManager.swift in Sources */,
+				88D3BF212CA95FB4009E4365 /* WebSocketService.swift in Sources */,
 				236343122C90386D00336D67 /* RunningMapPage.swift in Sources */,
 				236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */,
 				88D3BF0B2C9F68E5009E4365 /* RunGroupPage.swift in Sources */,
@@ -594,6 +599,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.1.0;
+			};
+		};
+		88D3BF222CA96B0E009E4365 /* XCRemoteSwiftPackageReference "StompClientLib" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WrathChaos/StompClientLib.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
