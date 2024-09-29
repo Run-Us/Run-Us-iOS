@@ -19,12 +19,14 @@ class AuthViewModel: ObservableObject {
             UserApi.shared.loginWithKakaoTalk { oauthToken, error in
                 if let error = error {
                     print(error)
+                    completion(false)
                 } else {
-                    print("카카오톡 로그인 success")
-
                     // idToken 저장
-                    self.keychain.set(oauthToken?.idToken ?? "", forKey: "idToken")
-                    completion(true)
+                    if let idToken = oauthToken?.idToken {
+                        self.keychain.set(idToken, forKey: "idToken")
+                        UserDefaults.standard.set(idToken, forKey: "idToken")   // 기기에 저장 (자동로그인)
+                        completion(true)
+                    }
                 }
             }
         } else {
@@ -32,14 +34,26 @@ class AuthViewModel: ObservableObject {
             UserApi.shared.loginWithKakaoAccount { oauthToken, error in
                 if let error = error {
                     print(error)
+                    completion(false)
                 } else {
-                    print("카카오계정 로그인 success")
-                    
                     // idToken 저장
-                    self.keychain.set(oauthToken?.idToken ?? "", forKey: "idToken")
-                    completion(true)
+                    if let idToken = oauthToken?.idToken {
+                        self.keychain.set(idToken, forKey: "idToken")
+                        UserDefaults.standard.set(idToken, forKey: "idToken")   // 기기에 저장 (자동로그인)
+                        completion(true)
+                    }
                 }
             }
         }
+    }
+    
+    // 로그인된 토큰이 존재하는지 확인
+    func checkTokenExists() -> Bool {
+        if let idToken = UserDefaults.standard.string(forKey: "idToken") {
+            // TODO: 서버 API 연결
+            
+            return true
+        }
+        return false
     }
 }
