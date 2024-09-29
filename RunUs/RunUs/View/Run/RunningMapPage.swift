@@ -45,6 +45,7 @@ struct RunningMapPage: View {
                             .background(.black)
                             Button {
                                 mapVM.isRunning = true
+                                mapVM.startUpdatingLocation()
                             } label: {
                                 Text("계속하기")
                                     .font(.body1)
