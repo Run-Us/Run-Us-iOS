@@ -11,7 +11,6 @@ import KakaoSDKAuth
 
 @main
 struct RunUsApp: App {
-    @StateObject var authVM: AuthViewModel = AuthViewModel()
     
     init() {
         // kakao sdk 초기화
@@ -21,17 +20,12 @@ struct RunUsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            // token이 있으면 바로 MainPage로 이동
-            if authVM.checkTokenExists() {
-                MainPage()
-            } else {
-                LoginPage()
-                    .onOpenURL(perform: { url in
-                        if AuthApi.isKakaoTalkLoginUrl(url) {
-                            _ = AuthController.handleOpenUrl(url: url)
-                        }
-                    })
-            }
+            LoginPage()
+                .onOpenURL(perform: { url in
+                    if AuthApi.isKakaoTalkLoginUrl(url) {
+                        _ = AuthController.handleOpenUrl(url: url)
+                    }
+                })
         }
     }
 }
