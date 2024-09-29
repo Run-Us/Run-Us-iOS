@@ -14,7 +14,6 @@ enum RunningProgressStatus: String, CaseIterable {
 
 struct RunAlonePage: View {
     @StateObject var mapVM: MapViewModel = .init()
-    @StateObject var motionManager: MotionManager = MotionManager()
     @State private var selectedTab: Int = 0
 
     var body: some View {
@@ -28,19 +27,18 @@ struct RunAlonePage: View {
             .padding()
 
             TabView(selection: $selectedTab) {
-                RunningProgressPage(mapVM: mapVM, motionManager: motionManager, selectedTab: $selectedTab)
+                RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
                     .tag(0)
-                RunningMapPage(mapVM: mapVM, motionManager: motionManager)
+                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager)
                     .tag(1)
             }
         }
         .navigationBarBackButtonHidden()
         .onAppear {
             // 권한이 모두 허용됐을 경우에만 측정 시작
-            motionManager.checkPedometerAuthorization { isSuccess in
+            mapVM.motionManager.checkPedometerAuthorization { isSuccess in
                 if isSuccess {
-                    motionManager.runningInfo = RunningInfo(startDate: Date())
-                    motionManager.getRealTimeMotionData()
+                    mapVM.motionManager.runningInfo = RunningInfo(startDate: Date())
                     mapVM.startUpdatingLocation()
                 }
             }

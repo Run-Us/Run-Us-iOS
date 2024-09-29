@@ -23,7 +23,6 @@ struct RunningMapPage: View {
                         Button(action: {
                             mapVM.stopUpdatingLocation()
                             mapVM.isRunning = false
-                            motionManager.stopRunningMotionData()
                         }, label: {
                             Image(systemName: "pause.circle")
                                 .resizable()
@@ -69,7 +68,7 @@ struct RunningMapPage: View {
                     VStack(spacing: 15) {
                         Text("평균 페이스")
                             .font(.body1)
-                        Text(motionManager.runningInfo.currentPace ?? "nil")
+                        Text(motionManager.runningInfo.currentPace ?? "-' --''")
                     }
                     .frame(width: geometry.size.width/2)
                 }

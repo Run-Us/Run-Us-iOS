@@ -8,15 +8,18 @@
 import CoreLocation
 import Foundation
 import NMapsMap
+import SwiftUI
 
 class MapViewModel: NSObject, ObservableObject {
     private let locationManager: CLLocationManager
+    @ObservedObject var motionManager: MotionManager
     @Published var userLocation: CLLocation = CLLocation(latitude: 37.564214, longitude: 127.001699)
     @Published var userPath: [NMGLatLng] = []
     @Published var isRunning: Bool = false
     
     override init() {
         locationManager = CLLocationManager()
+        motionManager = MotionManager()
         super.init()
         locationManager.delegate = self
         checkLocationPermission()
@@ -58,10 +61,12 @@ extension MapViewModel: CLLocationManagerDelegate {
     func startUpdatingLocation() {
         isRunning = true
         locationManager.startUpdatingLocation()
+        motionManager.getRealTimeMotionData()
     }
     
     // 사용자 위치 추적 멈춤
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+        motionManager.stopRunningMotionData()
     }
 }
