@@ -11,8 +11,8 @@ struct CreateGroupRunPage: View {
     @Binding var noticeContent: String?
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
     @State var showStartGroupRunAlter = false
-    
-    
+
+    @StateObject private var webSocketService = WebSocketService()
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -27,6 +27,11 @@ struct CreateGroupRunPage: View {
                             Text("6531")
                                 .font(.system(size: 82, weight: .bold))
                             ParticipantList()
+                            Button(action: {
+                                webSocketService.disconnect()
+                            }) {
+                                Text("DisConnect")
+                            }
                         }
                         .padding(.vertical)
                         
@@ -37,6 +42,8 @@ struct CreateGroupRunPage: View {
         .navigationTitle("대기방")
         .navigationBarItems(trailing: Button(action: {
             showStartGroupRunAlter = true
+            webSocketService.connect()
+            print("button tap to connect")
         }) {
             Text("시작하기")
                 .foregroundColor(.blue)

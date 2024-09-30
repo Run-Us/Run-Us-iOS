@@ -11,6 +11,7 @@ import Combine
 
 class WebSocketService: ObservableObject, SwiftStompDelegate {
     private var swiftStomp: SwiftStomp?
+    let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
     
     // Published properties to expose to your views or other components
@@ -19,19 +20,25 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     @Published var errors = [String]()
 
     // URL and initialization
-    init(urlString: String) {
-        guard let url = URL(string: urlString) else {
+    init() {
+        guard let url = URL(string: "ws://" + WebSocketURL!) else {
             print("Invalid URL string.")
             return
         }
-        swiftStomp = SwiftStomp(host: url)
+        let headers = [
+            "accept-version": "1.2,1.1,1.0",
+            "heart-beat": "10000,10000",
+            "passcode": "9481",
+            "user-id": "0HE7XYW46MWKV"
+        ]
+        swiftStomp = SwiftStomp(host: url, headers: headers)
         swiftStomp?.delegate = self
         swiftStomp?.autoReconnect = true
     }
     
     // Connect to the WebSocket server
     func connect() {
-        swiftStomp?.connect()
+        swiftStomp?.connect(acceptVersion: "1.2,1.1,1.0")
     }
     
     // Disconnect from the WebSocket server
@@ -56,7 +63,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         isConnected = true
         print("Connected with type: \(connectType)")
         // Subscribe to topics or perform actions after connection is established
-        subscribe(topic: "/topic/greetings")
+        subscribe(topic: "/user/queue/logs")
     }
 
     func onDisconnect(swiftStomp: SwiftStomp, disconnectType: StompDisconnectType) {
