@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JoinGroupRunPage: View {
     @State var noticeBar = NoticeBar(noticeContent: .constant("곧 그룹 러닝이 시작됩니다!"))
-    
+    @StateObject var participationService = ParticipationService()
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -22,7 +22,18 @@ struct JoinGroupRunPage: View {
                         Spacer()
                     }
                 }
-                ParticipantList()
+                if participationService.participantNames.isEmpty {
+                    Text("참가자 목록을 불러오는 중...")
+                        .onAppear {
+                            participationService.getParticipantList { success in
+                                if !success {
+                                    print("참가자 정보 불러오기 실패")
+                                }
+                            }
+                        }
+                } else {
+                    ParticipantList(grouprunParticipants: participationService.participantNames)
+                }
             }
         }
     }

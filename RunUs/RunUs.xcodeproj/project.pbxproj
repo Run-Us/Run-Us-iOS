@@ -246,13 +246,13 @@
 			isa = PBXGroup;
 			children = (
 				88D3BF0A2C9F68D5009E4365 /* RunGroupPage.swift */,
+				88D3BF192C9F7C3D009E4365 /* RunningGroupMapPage.swift */,
 				888648F12C981ECC00B040BA /* StartGroupRunPage.swift */,
 				888648F42C981F7800B040BA /* CreateGroupRunPage.swift */,
 				888648FA2C982FD500B040BA /* Participant.swift */,
 				88D3BF0C2C9F6B35009E4365 /* JoinGroupRunPage.swift */,
 				88D3BF0E2C9F6C42009E4365 /* ParticipantList.swift */,
 				88D3BF102C9F7540009E4365 /* RunningParticipant.swift */,
-				88D3BF192C9F7C3D009E4365 /* RunningGroupMapPage.swift */,
 			);
 			path = GroupRun;
 			sourceTree = "<group>";

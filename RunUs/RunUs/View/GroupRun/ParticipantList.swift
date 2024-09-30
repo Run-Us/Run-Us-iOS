@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ParticipantList: View {
-    let grouprunParticipants = ["김현재", "문다훈", "박지혜", "유가은", "이병직", "조성훈"]
+    var grouprunParticipants: [String]
     let gridLayout = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -26,6 +26,3 @@ struct ParticipantList: View {
     }
 }
 
-#Preview {
-    ParticipantList()
-}

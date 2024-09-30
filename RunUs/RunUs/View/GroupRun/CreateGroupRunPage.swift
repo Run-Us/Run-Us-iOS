@@ -14,6 +14,7 @@ struct CreateGroupRunPage: View {
     @StateObject private var webSocketService = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "", passcode: "")
     @ObservedObject var runningSession: RunningSessionService
     @State var startGroupRun = false
+    @StateObject var participationService = ParticipationService()
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -27,8 +28,19 @@ struct CreateGroupRunPage: View {
                             Text("인증번호")
                             Text( runningSession.latestSessionResponse?.payload.passcode ?? "error")
                                 .font(.system(size: 82, weight: .bold))
-                            ParticipantList()
-
+                            if participationService.participantNames.isEmpty {
+                                Text("참가자 목록을 불러오는 중...")
+                                    .onAppear {
+                                        participationService.getParticipantList { success in
+                                            if !success {
+                                                print("참가자 정보 불러오기 실패")
+                                            }
+                                        }
+                                    }
+                            } else {
+                                ParticipantList(grouprunParticipants: participationService.participantNames)
+                            }
+                            
                         }
                         .padding(.vertical)
                         
@@ -54,7 +66,6 @@ struct CreateGroupRunPage: View {
                     Text("그룹 러닝을 시작할까요?"),
                 primaryButton: .default(Text("시작하기"), action: {
                     webSocketService.connect(runningId: runningSession.latestSessionResponse?.payload.runningKey ?? "error")
-                    print(webSocketService.$messages)
                     startGroupRun = true
                 }),
                 secondaryButton: .cancel(Text("취소"))
