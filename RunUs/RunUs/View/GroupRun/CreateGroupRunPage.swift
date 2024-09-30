@@ -62,5 +62,5 @@ struct CreateGroupRunPage: View {
 }
 
 #Preview {
-    CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
+    CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"), runningSession: RunningSessionService())
 }

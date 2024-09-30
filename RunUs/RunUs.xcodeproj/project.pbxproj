@@ -27,6 +27,8 @@
 		238E78F62C83147300D04F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F52C83147300D04F58 /* Assets.xcassets */; };
 		238E78F92C83147300D04F58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F82C83147300D04F58 /* Preview Assets.xcassets */; };
 		23A8F7952C9AA2EB00A20EC5 /* RunAlonePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */; };
+		887940EE2CAAFEC80018C035 /* RunningSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887940ED2CAAFEC80018C035 /* RunningSessionService.swift */; };
+		887940F02CAAFEF80018C035 /* RunningSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887940EF2CAAFEF80018C035 /* RunningSession.swift */; };
 		888648F22C981ECC00B040BA /* StartGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F12C981ECC00B040BA /* StartGroupRunPage.swift */; };
 		888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F42C981F7800B040BA /* CreateGroupRunPage.swift */; };
 		888648F92C9824A500B040BA /* NoticeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888648F82C9824A500B040BA /* NoticeBar.swift */; };
@@ -66,6 +68,8 @@
 		238E78F52C83147300D04F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		238E78F82C83147300D04F58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAlonePage.swift; sourceTree = "<group>"; };
+		887940ED2CAAFEC80018C035 /* RunningSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSessionService.swift; sourceTree = "<group>"; };
+		887940EF2CAAFEF80018C035 /* RunningSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSession.swift; sourceTree = "<group>"; };
 		888648F12C981ECC00B040BA /* StartGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGroupRunPage.swift; sourceTree = "<group>"; };
 		888648F42C981F7800B040BA /* CreateGroupRunPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupRunPage.swift; sourceTree = "<group>"; };
 		888648F82C9824A500B040BA /* NoticeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBar.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 		23B708DE2C995264006E9547 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				887940ED2CAAFEC80018C035 /* RunningSessionService.swift */,
 				237B430D2C8F0193002163B9 /* MapPage.swift */,
 				888648F82C9824A500B040BA /* NoticeBar.swift */,
 				88D3BF202CA95FB4009E4365 /* WebSocketService.swift */,
@@ -243,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				88D3BF132C9F7903009E4365 /* ParticipantModel.swift */,
+				887940EF2CAAFEF80018C035 /* RunningSession.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,12 +351,14 @@
 				230314E52C88851100B299D5 /* FontExtension.swift in Sources */,
 				888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */,
 				88D3BF142C9F790C009E4365 /* ParticipantModel.swift in Sources */,
+				887940F02CAAFEF80018C035 /* RunningSession.swift in Sources */,
 				237B430E2C8F0193002163B9 /* MapPage.swift in Sources */,
 				236343142C917B3E00336D67 /* MapViewModel.swift in Sources */,
 				88D3BF112C9F7540009E4365 /* RunningParticipant.swift in Sources */,
 				238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */,
 				2355F66C2C9E9CE700A65108 /* MotionManager.swift in Sources */,
 				88D3BF212CA95FB4009E4365 /* WebSocketService.swift in Sources */,
+				887940EE2CAAFEC80018C035 /* RunningSessionService.swift in Sources */,
 				236343122C90386D00336D67 /* RunningMapPage.swift in Sources */,
 				236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */,
 				88D3BF0B2C9F68E5009E4365 /* RunGroupPage.swift in Sources */,
