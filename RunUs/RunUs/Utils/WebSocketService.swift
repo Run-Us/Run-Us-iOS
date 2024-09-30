@@ -18,7 +18,6 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     @Published var isConnected = false
     @Published var messages = [String]()
     @Published var errors = [String]()
-
     // URL and initialization
     init() {
         guard let url = URL(string: "ws://" + WebSocketURL!) else {
@@ -29,7 +28,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "accept-version": "1.2,1.1,1.0",
             "heart-beat": "10000,10000",
             "passcode": "9481",
-            "user-id": "0HE7XYW46MWKV"
+            "user-id": "0HE8QVGSM5CQR"
         ]
         swiftStomp = SwiftStomp(host: url, headers: headers)
         swiftStomp?.delegate = self
@@ -55,6 +54,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     // Send a message to a destination
     func sendMessage(body: String, destination: String) {
         let receiptId = "msg-\(Int.random(in: 0..<1000))"
+        
         swiftStomp?.send(body: body, to: destination, receiptId: receiptId, headers: [:])
     }
 
@@ -63,7 +63,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         isConnected = true
         print("Connected with type: \(connectType)")
         // Subscribe to topics or perform actions after connection is established
-        subscribe(topic: "/user/queue/logs")
+        subscribe(topic: "/topics/runnings/0HE8T7ARG5CQK")
     }
 
     func onDisconnect(swiftStomp: SwiftStomp, disconnectType: StompDisconnectType) {
