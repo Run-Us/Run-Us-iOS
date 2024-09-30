@@ -15,7 +15,7 @@ class RunningSessionService: ObservableObject {
     let baseUrl = "http://\(Bundle.main.infoDictionary?["BASE_URL"] ?? "nil baseUrl")"
     let idToken = UserDefaults.standard.integer(forKey: "idToken")
     @Published var latestSessionResponse: RunningSessionResponse?
-//    @Published var runningKey: String?
+
     func createRunningSession(currentLatitude: Double, currentLongitude: Double) {
         let url = URL(string: "\(baseUrl)/runnings")!
         let headers = [
@@ -51,7 +51,7 @@ class RunningSessionService: ObservableObject {
                     
                     let response = try JSONDecoder().decode(RunningSessionResponse.self, from: data)
                     DispatchQueue.main.async {
-//                        self.runningKey = response.payload.runningKey
+                        print("runningKey" + response.payload.runningKey)
                         self.latestSessionResponse = response
                     }
                     print("Response success: \(response.success), message: \(response.message)")

@@ -14,7 +14,8 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     var runningSessionService: RunningSessionService?
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
-    let user_id = "0HEATRDT8ECQA"
+    var runningSessionInfo: String?
+    let user_id = "0HEB8NZ1GSWQW"
     // Published properties to expose to your views or other components
     @Published var isConnected = false
     @Published var messages = [String]()
@@ -34,12 +35,13 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         swiftStomp = SwiftStomp(host: url, headers: headers)
         swiftStomp?.delegate = self
         swiftStomp?.autoReconnect = true
+
     }
     
     // Connect to the WebSocket server
-    func connect() {
+    func connect(runningId: String) {
+        runningSessionInfo = runningId
         swiftStomp?.connect(acceptVersion: "1.2,1.1,1.0")
-        
     }
     
     // Disconnect from the WebSocket server
@@ -65,8 +67,10 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         isConnected = true
         print("Connected with type: \(connectType)")
         // Subscribe to topics or perform actions after connection is established
-        if let runningId = runningSessionService?.latestSessionResponse?.payload.runningKey {
+        print("runningKey : \(runningSessionInfo)")
+        if let runningId = runningSessionInfo {
             subscribe(topic: "/topics/runnings/\(runningId)")
+            print("subscribe is started..")
         }
     }
 

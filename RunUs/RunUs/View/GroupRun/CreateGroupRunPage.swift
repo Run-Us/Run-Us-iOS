@@ -13,6 +13,7 @@ struct CreateGroupRunPage: View {
     @State var showStartGroupRunAlter = false
     @StateObject private var webSocketService = WebSocketService()
     @ObservedObject var runningSession: RunningSessionService
+    @State var startGroupRun = false
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -24,7 +25,7 @@ struct CreateGroupRunPage: View {
                         VStack {
                             // 인증번호
                             Text("인증번호")
-                            Text( runningSession.latestSessionResponse?.payload.passcode ?? "empty")
+                            Text( runningSession.latestSessionResponse?.payload.passcode ?? "error")
                                 .font(.system(size: 82, weight: .bold))
                             ParticipantList()
 
@@ -52,12 +53,16 @@ struct CreateGroupRunPage: View {
                 title:
                     Text("그룹 러닝을 시작할까요?"),
                 primaryButton: .default(Text("시작하기"), action: {
-                    webSocketService.connect()
-                    
+                    webSocketService.connect(runningId: runningSession.latestSessionResponse?.payload.runningKey ?? "error")
+                    print(webSocketService.$messages)
+                    startGroupRun = true
                 }),
                 secondaryButton: .cancel(Text("취소"))
             )
         }
+        .navigationDestination(isPresented: $startGroupRun, destination:{
+            RunGroupPage()
+        })
     }
 }
 
