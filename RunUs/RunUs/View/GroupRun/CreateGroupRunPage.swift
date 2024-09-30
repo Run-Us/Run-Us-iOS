@@ -53,7 +53,7 @@ struct CreateGroupRunPage: View {
                     Text("그룹 러닝을 시작할까요?"),
                 primaryButton: .default(Text("시작하기"), action: {
                     webSocketService.connect()
-                    webSocketService.sendMessage(body: <#T##String#>, destination: <#T##String#>)
+                    
                 }),
                 secondaryButton: .cancel(Text("취소"))
             )
@@ -62,5 +62,5 @@ struct CreateGroupRunPage: View {
 }
 
 #Preview {
-    CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"), runningSession: RunningSessionService())
+    CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
 }
