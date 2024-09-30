@@ -14,7 +14,7 @@ struct StartGroupRunPage: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요")), label: {
+                NavigationLink(destination: CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"), runningSession: RunningSessionService()), label: {
                     Text("그룹 생성하기")
                         .foregroundColor(.white)
                         .padding()
@@ -57,6 +57,7 @@ struct StartGroupRunPage: View {
         })
 
     }
+        
 }
 
 #Preview {
