@@ -11,9 +11,10 @@ import Combine
 
 class WebSocketService: ObservableObject, SwiftStompDelegate {
     private var swiftStomp: SwiftStomp?
+    var runningSessionService: RunningSessionService?
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
-    
+    let user_id = "0HEATRDT8ECQA"
     // Published properties to expose to your views or other components
     @Published var isConnected = false
     @Published var messages = [String]()
@@ -27,8 +28,8 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         let headers = [
             "accept-version": "1.2,1.1,1.0",
             "heart-beat": "10000,10000",
-            "passcode": "9481",
-            "user-id": "0HE8QVGSM5CQR"
+            "passcode": "9X8S",
+            "user-id": user_id
         ]
         swiftStomp = SwiftStomp(host: url, headers: headers)
         swiftStomp?.delegate = self
@@ -38,6 +39,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     // Connect to the WebSocket server
     func connect() {
         swiftStomp?.connect(acceptVersion: "1.2,1.1,1.0")
+        
     }
     
     // Disconnect from the WebSocket server
@@ -63,7 +65,9 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         isConnected = true
         print("Connected with type: \(connectType)")
         // Subscribe to topics or perform actions after connection is established
-        subscribe(topic: "/topics/runnings/0HE8T7ARG5CQK")
+        if let runningId = runningSessionService?.latestSessionResponse?.payload.runningKey {
+            subscribe(topic: "/topics/runnings/\(runningId)")
+        }
     }
 
     func onDisconnect(swiftStomp: SwiftStomp, disconnectType: StompDisconnectType) {
