@@ -11,6 +11,8 @@ struct JoinPage: View {
     @State private var nickname: String = ""
     @State private var email: String = ""
     @State var joinSuccess: Bool = false
+    @ObservedObject var joinService: JoinService
+    let userInfo = UserDefaults.standard
     var body: some View {
         NavigationView {
             Form {
@@ -28,9 +30,12 @@ struct JoinPage: View {
                 Section {
                     Button(action: {
                         print("닉네임 - \(nickname) : 이메일 - \(email)")
-                        joinSuccess = true
+                        joinService.joinMembership(inputNickName: nickname, inputEmail: email) { success in
+                            userInfo.set(joinService.joinMemberInfo?.publicId, forKey: "userId")
+                            joinSuccess = success
+                        }
                     }, label: {
-                            Text("저장")
+                        Text("저장")
                     })
                     .disabled(nickname.isEmpty || email.isEmpty)
                     
@@ -45,5 +50,5 @@ struct JoinPage: View {
 }
 
 #Preview {
-    JoinPage()
+    JoinPage(joinService: JoinService())
 }

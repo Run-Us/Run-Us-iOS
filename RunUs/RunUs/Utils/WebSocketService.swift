@@ -15,13 +15,13 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
     var runningSessionInfo: String?
-    let user_id = "0HEB8NZ1GSWQW"
+//    let user_id = "0HEBKB2R620FW"
     // Published properties to expose to your views or other components
     @Published var isConnected = false
     @Published var messages = [String]()
     @Published var errors = [String]()
     // URL and initialization
-    init() {
+    init(userId: String, passcode: String) {
         guard let url = URL(string: "ws://" + WebSocketURL!) else {
             print("Invalid URL string.")
             return
@@ -29,8 +29,8 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         let headers = [
             "accept-version": "1.2,1.1,1.0",
             "heart-beat": "10000,10000",
-            "passcode": "9X8S",
-            "user-id": user_id
+            "passcode": passcode,
+            "user-id": userId
         ]
         swiftStomp = SwiftStomp(host: url, headers: headers)
         swiftStomp?.delegate = self

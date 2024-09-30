@@ -11,7 +11,7 @@ struct CreateGroupRunPage: View {
     @Binding var noticeContent: String?
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
     @State var showStartGroupRunAlter = false
-    @StateObject private var webSocketService = WebSocketService()
+    @StateObject private var webSocketService = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "", passcode: "")
     @ObservedObject var runningSession: RunningSessionService
     @State var startGroupRun = false
     var body: some View {
