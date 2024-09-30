@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct MainPage: View {
-    @State var showCreateGroupRunPage = false
-    @State var showJoinGroupRunPage = false
     var body: some View {
         NavigationStack {
             TabView {
@@ -19,7 +17,11 @@ struct MainPage: View {
                         Image(systemName: "figure.run")
                         Text("Run")
                     }
-                
+                RunningPage()
+                    .tabItem {
+                        Image(systemName: "figure.run")
+                        Text("Run")
+                    }
             }
         }
         
