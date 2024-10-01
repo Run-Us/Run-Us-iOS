@@ -29,7 +29,6 @@ struct RunningPage: View {
                 }
             }
         }
-        
     }
 }
 

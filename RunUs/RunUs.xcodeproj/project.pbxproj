@@ -16,6 +16,7 @@
 		230314F42C89A00B00B299D5 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 230314F32C89A00B00B299D5 /* KakaoSDKCommon */; };
 		230314F62C89A00B00B299D5 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 230314F52C89A00B00B299D5 /* KakaoSDKUser */; };
 		230315002C8A096D00B299D5 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 230314FF2C8A096D00B299D5 /* KeychainSwift */; };
+		233ED1CA2CA93D49001EF0BC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233ED1C92CA93D49001EF0BC /* AuthService.swift */; };
 		2355F66C2C9E9CE700A65108 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355F66B2C9E9CE700A65108 /* MotionManager.swift */; };
 		2355F6712C9EA6DF00A65108 /* RunningInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355F6702C9EA6DF00A65108 /* RunningInfo.swift */; };
 		236343122C90386D00336D67 /* RunningMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236343112C90386D00336D67 /* RunningMapPage.swift */; };
@@ -61,6 +62,7 @@
 		230314EE2C89920100B299D5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		230314F72C89A5E200B299D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		230314F82C89AD0800B299D5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		233ED1C92CA93D49001EF0BC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2355F66B2C9E9CE700A65108 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		2355F6702C9EA6DF00A65108 /* RunningInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningInfo.swift; sourceTree = "<group>"; };
 		236343112C90386D00336D67 /* RunningMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningMapPage.swift; sourceTree = "<group>"; };
@@ -157,15 +159,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		2355F66D2C9EA69A00A65108 /* Model */ = {
+		233ED1C82CA93D38001EF0BC /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				887940F72CAB2EB20018C035 /* MemberInfo.swift */,
 				2355F6702C9EA6DF00A65108 /* RunningInfo.swift */,
 				887940FF2CAB36D70018C035 /* ParticipantInfo.swift */,
 				887941012CAB374D0018C035 /* RunningSessionInfo.swift */,
+				233ED1C92CA93D49001EF0BC /* AuthService.swift */,
 			);
-			path = Model;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		238E78E52C83147200D04F58 = {
@@ -190,7 +193,7 @@
 				230314F72C89A5E200B299D5 /* Info.plist */,
 				230314F82C89AD0800B299D5 /* Config.xcconfig */,
 				23B708DE2C995264006E9547 /* Utils */,
-				2355F66D2C9EA69A00A65108 /* Model */,
+				233ED1C82CA93D38001EF0BC /* Service */,
 				230314ED2C8991ED00B299D5 /* ViewModel */,
 				230314E72C88A43300B299D5 /* View */,
 				238E78F12C83147200D04F58 /* RunUsApp.swift */,
@@ -255,6 +258,16 @@
 				88D3BF102C9F7540009E4365 /* RunningParticipant.swift */,
 			);
 			path = GroupRun;
+			sourceTree = "<group>";
+		};
+
+		88D3BF122C9F78F3009E4365 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88D3BF132C9F7903009E4365 /* ParticipantModel.swift */,
+				2355F6702C9EA6DF00A65108 /* RunningInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +390,7 @@
 				888648FB2C982FD500B040BA /* Participant.swift in Sources */,
 				88D3BF0D2C9F6B35009E4365 /* JoinGroupRunPage.swift in Sources */,
 				888648F22C981ECC00B040BA /* StartGroupRunPage.swift in Sources */,
+				233ED1CA2CA93D49001EF0BC /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

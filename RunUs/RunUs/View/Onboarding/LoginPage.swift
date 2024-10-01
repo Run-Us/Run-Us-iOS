@@ -33,6 +33,11 @@ struct LoginPage: View {
                 }
             }
             .padding(.horizontal, 20)
+            .onAppear {
+                if authVM.checkTokenExists() {
+                    loginSuccess = true
+                }
+            }
         }
     }
 }

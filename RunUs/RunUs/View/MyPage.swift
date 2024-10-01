@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct MyPage: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text("This is MyPage")
+        VStack {
+            Button(action: {
+                UserDefaults.standard.removeObject(forKey: "idToken")
+                dismiss()
+            }, label: {
+                Text("로그아웃")
+                    .foregroundColor(.white)
+                    .padding()
+            })
+            .background(.blue)
+            .cornerRadius(10)
+        }
     }
 }
 

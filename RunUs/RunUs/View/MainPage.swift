@@ -11,16 +11,14 @@ struct MainPage: View {
     var body: some View {
         NavigationStack {
             TabView {
-
                 RunningPage()
                     .tabItem {
                         Image(systemName: "figure.run")
                         Text("Run")
                     }
-                RunningPage()
+                MyPage()
                     .tabItem {
-                        Image(systemName: "figure.run")
-                        Text("Run")
+                        Label("My", systemImage: "person.circle")
                     }
             }
         }
