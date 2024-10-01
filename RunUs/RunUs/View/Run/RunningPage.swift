@@ -12,7 +12,7 @@ struct RunningPage: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: StartGroupRunPage(joinCode: ""), label: {
+                NavigationLink(destination: StartGroupRunPage(joinCode: "", runningSession: RunningSessionService()), label: {
                     Text("같이 달리기")
                         .foregroundColor(.white)
                         .padding()

@@ -10,6 +10,7 @@ import SwiftUI
 struct JoinGroupRunPage: View {
     @State var noticeBar = NoticeBar(noticeContent: .constant("곧 그룹 러닝이 시작됩니다!"))
     @StateObject var participationService = ParticipationService()
+    @ObservedObject var RunningSession: RunningSessionService
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -25,7 +26,7 @@ struct JoinGroupRunPage: View {
                 if participationService.participantNames.isEmpty {
                     Text("참가자 목록을 불러오는 중...")
                         .onAppear {
-                            participationService.getParticipantList { success in
+                            participationService.getParticipantList(runningId: RunningSession.latestSessionResponse?.payload.runningKey ?? "") { success in
                                 if !success {
                                     print("참가자 정보 불러오기 실패")
                                 }
@@ -40,5 +41,5 @@ struct JoinGroupRunPage: View {
 }
 
 #Preview {
-    JoinGroupRunPage()
+    JoinGroupRunPage(RunningSession: RunningSessionService())
 }

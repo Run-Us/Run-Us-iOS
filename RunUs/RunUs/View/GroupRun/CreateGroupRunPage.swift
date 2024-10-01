@@ -31,7 +31,8 @@ struct CreateGroupRunPage: View {
                             if participationService.participantNames.isEmpty {
                                 Text("참가자 목록을 불러오는 중...")
                                     .onAppear {
-                                        participationService.getParticipantList { success in
+                                        print("getParticipantList || runningId: \(runningSession.latestSessionResponse?.payload.runningKey ?? "empty")")
+                                        participationService.getParticipantList(runningId: runningSession.latestSessionResponse?.payload.runningKey ?? "") { success in
                                             if !success {
                                                 print("참가자 정보 불러오기 실패")
                                             }
@@ -46,16 +47,11 @@ struct CreateGroupRunPage: View {
                         
                     }
                 }
-                .onAppear {
-                    runningSession.createRunningSession(currentLatitude: 0, currentLongitude: 0)
-                }
             }
         }
         .navigationTitle("대기방")
         .navigationBarItems(trailing: Button(action: {
             showStartGroupRunAlter = true
-            
-            print("button tap to connect")
         }) {
             Text("시작하기")
                 .foregroundColor(.blue)
@@ -65,6 +61,7 @@ struct CreateGroupRunPage: View {
                 title:
                     Text("그룹 러닝을 시작할까요?"),
                 primaryButton: .default(Text("시작하기"), action: {
+                    print("Try WebSocket Connect || runningId: \(runningSession.latestSessionResponse?.payload.runningKey ?? "error")")
                     webSocketService.connect(runningId: runningSession.latestSessionResponse?.payload.runningKey ?? "error")
                     startGroupRun = true
                 }),
