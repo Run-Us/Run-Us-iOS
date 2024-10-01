@@ -29,7 +29,7 @@ struct LoginPage: View {
                         .aspectRatio(contentMode: .fit)
                 })
                 .fullScreenCover(isPresented: $loginSuccess) {
-                    MainPage()
+                    JoinPage(joinService: JoinService())
                 }
             }
             .padding(.horizontal, 20)
