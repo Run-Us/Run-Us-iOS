@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct HomePage: View {
+struct HomeTab: View {
     var body: some View {
         Text("This is HomePage")
     }
 }
 
 #Preview {
-    HomePage()
+    HomeTab()
 }
