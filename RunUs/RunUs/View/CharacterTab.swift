@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct CharacterPage: View {
+struct CharacterTab: View {
     var body: some View {
         Text("This is CharacterPage")
     }
 }
 
 #Preview {
-    CharacterPage()
+    CharacterTab()
 }
