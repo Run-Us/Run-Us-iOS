@@ -51,7 +51,7 @@
 		88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556082C8F20E8003789B7 /* RunningPage.swift */; };
 		88E5560D2C8F213E003789B7 /* MyTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5560C2C8F213E003789B7 /* MyTab.swift */; };
 		88E556112C8F5CCC003789B7 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556102C8F5CCC003789B7 /* TabBar.swift */; };
-		88E556132C8F5E49003789B7 /* CharacterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556122C8F5E49003789B7 /* CharacterPage.swift */; };
+		88E556132C8F5E49003789B7 /* CharacterTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556122C8F5E49003789B7 /* CharacterTab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,7 +96,7 @@
 		88E556082C8F20E8003789B7 /* RunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningPage.swift; sourceTree = "<group>"; };
 		88E5560C2C8F213E003789B7 /* MyTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTab.swift; sourceTree = "<group>"; };
 		88E556102C8F5CCC003789B7 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		88E556122C8F5E49003789B7 /* CharacterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPage.swift; sourceTree = "<group>"; };
+		88E556122C8F5E49003789B7 /* CharacterTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTab.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +144,7 @@
 				88E556062C8F20C8003789B7 /* CrewTab.swift */,
 				88E5560C2C8F213E003789B7 /* MyTab.swift */,
 				88E556102C8F5CCC003789B7 /* TabBar.swift */,
-				88E556122C8F5E49003789B7 /* CharacterPage.swift */,
+				88E556122C8F5E49003789B7 /* CharacterTab.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,6 +253,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		887DAB582CAD8D320028516D /* Participants */ = {
+			isa = PBXGroup;
+			children = (
+				88D3BF102C9F7540009E4365 /* RunningParticipant.swift */,
+				888648FA2C982FD500B040BA /* Participant.swift */,
+				88D3BF0E2C9F6C42009E4365 /* ParticipantList.swift */,
+			);
+			path = Participants;
+			sourceTree = "<group>";
+		};
 		888648F32C981F0700B040BA /* GroupRun */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,9 +271,7 @@
 				888648F12C981ECC00B040BA /* StartGroupRunPage.swift */,
 				888648F42C981F7800B040BA /* CreateGroupRunPage.swift */,
 				88D3BF0C2C9F6B35009E4365 /* JoinGroupRunPage.swift */,
-				888648FA2C982FD500B040BA /* Participant.swift */,
-				88D3BF0E2C9F6C42009E4365 /* ParticipantList.swift */,
-				88D3BF102C9F7540009E4365 /* RunningParticipant.swift */,
+				887DAB582CAD8D320028516D /* Participants */,
 			);
 			path = GroupRun;
 			sourceTree = "<group>";
@@ -383,7 +391,7 @@
 				88E556072C8F20C8003789B7 /* CrewTab.swift in Sources */,
 				888648F92C9824A500B040BA /* NoticeBar.swift in Sources */,
 				887940FE2CAB35DB0018C035 /* ParticipationService.swift in Sources */,
-				88E556132C8F5E49003789B7 /* CharacterPage.swift in Sources */,
+				88E556132C8F5E49003789B7 /* CharacterTab.swift in Sources */,
 				88E5560D2C8F213E003789B7 /* MyTab.swift in Sources */,
 				888648FB2C982FD500B040BA /* Participant.swift in Sources */,
 				88D3BF0D2C9F6B35009E4365 /* JoinGroupRunPage.swift in Sources */,
