@@ -11,6 +11,7 @@ struct RunningPage: View {
     @State var showRunAlonePage = false
     @ObservedObject var runningSession: RunningSessionService = RunningSessionService()
     @StateObject var mapVM: MapViewModel = .init()
+    var webSocketService = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "")
     var body: some View {
         ZStack {
             VStack {
@@ -25,10 +26,8 @@ struct RunningPage: View {
                 Button(action: {
                     runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
                         if success {
-                            let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId"),
-                                                    "runningId": result?.payload.runningKey,
-                                                    "runningKey": result?.payload.runningKey]
-                            WebSocketService.shared.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
+                            print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
+                            WebSocketService.shared.connect(runningId: result?.payload.runningKey ?? "error")
                             showRunAlonePage = true
                         } else {
                             print("createRunningSession || error")

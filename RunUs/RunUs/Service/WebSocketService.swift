@@ -81,7 +81,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             
             if let runningId = runningSessionInfo {
                 subscribe(topic: "/topics/runnings/\(runningId)")
-                print("subscribe is started..")
+                print("subscribe is started.. || runningId: \(runningId)")
             }
         }
     }

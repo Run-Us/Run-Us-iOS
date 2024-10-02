@@ -44,7 +44,7 @@ struct JoinPage: View {
             .navigationBarTitle("정보 입력")
         }
         .fullScreenCover(isPresented: $joinSuccess) {
-            MainPage()
+            TabBar()
         }
     }
 }

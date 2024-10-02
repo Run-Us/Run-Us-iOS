@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainPage: View {
+struct TabBar: View {
     var body: some View {
         NavigationStack {
             TabView {
@@ -24,5 +24,5 @@ struct MainPage: View {
 }
 
 #Preview {
-    MainPage()
+    TabBar()
 }

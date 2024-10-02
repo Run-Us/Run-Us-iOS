@@ -50,7 +50,7 @@
 		88E556072C8F20C8003789B7 /* CrewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556062C8F20C8003789B7 /* CrewPage.swift */; };
 		88E556092C8F20E8003789B7 /* RunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556082C8F20E8003789B7 /* RunningPage.swift */; };
 		88E5560D2C8F213E003789B7 /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5560C2C8F213E003789B7 /* MyPage.swift */; };
-		88E556112C8F5CCC003789B7 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556102C8F5CCC003789B7 /* MainPage.swift */; };
+		88E556112C8F5CCC003789B7 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556102C8F5CCC003789B7 /* TabBar.swift */; };
 		88E556132C8F5E49003789B7 /* CharacterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E556122C8F5E49003789B7 /* CharacterPage.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +95,7 @@
 		88E556062C8F20C8003789B7 /* CrewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPage.swift; sourceTree = "<group>"; };
 		88E556082C8F20E8003789B7 /* RunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningPage.swift; sourceTree = "<group>"; };
 		88E5560C2C8F213E003789B7 /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
-		88E556102C8F5CCC003789B7 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		88E556102C8F5CCC003789B7 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		88E556122C8F5E49003789B7 /* CharacterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +143,7 @@
 				88E556042C8F208F003789B7 /* HomePage.swift */,
 				88E556062C8F20C8003789B7 /* CrewPage.swift */,
 				88E5560C2C8F213E003789B7 /* MyPage.swift */,
-				88E556102C8F5CCC003789B7 /* MainPage.swift */,
+				88E556102C8F5CCC003789B7 /* TabBar.swift */,
 				88E556122C8F5E49003789B7 /* CharacterPage.swift */,
 			);
 			path = View;
@@ -365,7 +365,7 @@
 				233ED1FE2CABA0E7001EF0BC /* ParticipantInfo.swift in Sources */,
 				233ED1FF2CABA0E7001EF0BC /* MemberInfo.swift in Sources */,
 				233ED2002CABA0E7001EF0BC /* RunningInfo.swift in Sources */,
-				88E556112C8F5CCC003789B7 /* MainPage.swift in Sources */,
+				88E556112C8F5CCC003789B7 /* TabBar.swift in Sources */,
 				230314E52C88851100B299D5 /* FontExtension.swift in Sources */,
 				888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */,
 				887940F62CAB2D680018C035 /* JoinService.swift in Sources */,
