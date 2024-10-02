@@ -10,18 +10,19 @@ import SwiftStomp
 import Combine
 
 class WebSocketService: ObservableObject, SwiftStompDelegate {
+    static let shared = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "")
     private var swiftStomp: SwiftStomp?
     var runningSessionService: RunningSessionService?
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
     var runningSessionInfo: String?
-    //    let user_id = "0HEBKB2R620FW"
     // Published properties to expose to your views or other components
     @Published var isConnected = false
     @Published var messages = [String]()
     @Published var errors = [String]()
+    
     // URL and initialization
-    init(userId: String, passcode: String) {
+    init(userId: String, passcode: String = "") {
         guard let url = URL(string: "ws://" + WebSocketURL!) else {
             print("Invalid URL string.")
             return
@@ -56,10 +57,16 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     }
     
     // Send a message to a destination
-    func sendMessage(body: String, destination: String) {
+    func sendMessage(body: [String : Any], destination: String) {
         let receiptId = "msg-\(Int.random(in: 0..<1000))"
-        
-        swiftStomp?.send(body: body, to: destination, receiptId: receiptId, headers: [:])
+        print("webSockeet || sendMessage || destination - \(destination)  body - \(body)")
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
+            let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+            swiftStomp?.send(body: jsonString, to: destination, receiptId: receiptId, headers: ["Content-Type": "application/json"])
+        } catch {
+            print("Error encoding JSON: \(error)")
+        }
     }
     
     // MARK: - SwiftStompDelegate Methods

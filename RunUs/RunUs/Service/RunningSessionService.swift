@@ -16,7 +16,7 @@ class RunningSessionService: ObservableObject {
     let idToken = UserDefaults.standard.integer(forKey: "idToken")
     @Published var latestSessionResponse: RunningSessionResponse?
 
-    func createRunningSession(currentLatitude: Double, currentLongitude: Double, completion: @escaping (Bool) -> Void) {
+    func createRunningSession(currentLatitude: Double, currentLongitude: Double, completion: @escaping (Bool, RunningSessionResponse?) -> Void) {
         let url = URL(string: "\(baseUrl)/runnings")!
         let headers = [
             "Content-Type": "application/json"
@@ -37,14 +37,14 @@ class RunningSessionService: ObservableObject {
             request.httpBody = jsonData
         } catch {
             print("Error encoding JSON: \(error)")
-            completion(false)
+            completion(false, latestSessionResponse)
             return
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 print("Network request failed: \(error?.localizedDescription ?? "No error info")")
-                completion(false)
+                completion(false, self.latestSessionResponse)
                 return
             }
             
@@ -52,18 +52,17 @@ class RunningSessionService: ObservableObject {
                 do {
                     let response = try JSONDecoder().decode(RunningSessionResponse.self, from: data)
                     DispatchQueue.main.async {
-                        print("createRunningSession || runningKey : " + response.payload.runningKey)
+                        print("createRunningSession || Response success: \(response.success)|| runningKey : " + response.payload.runningKey)
                         self.latestSessionResponse = response
+                        completion(true, response)
                     }
-                    print("createRunningSession || Response success: \(response.success)")
-                    completion(true)
                 } catch {
                     print("Failed to decode JSON response: \(error)")
-                    completion(false)
+                    completion(false, self.latestSessionResponse)
                 }
             } else {
                 print("HTTP Status Code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
-                completion(false)
+                completion(false, self.latestSessionResponse)
             }
         }.resume()
     }

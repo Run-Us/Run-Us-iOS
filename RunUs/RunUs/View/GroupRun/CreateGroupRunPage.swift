@@ -11,7 +11,7 @@ struct CreateGroupRunPage: View {
     @Binding var noticeContent: String?
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
     @State var showStartGroupRunAlter = false
-    @StateObject private var webSocketService = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "", passcode: "")
+    
     @ObservedObject var runningSession: RunningSessionService
     @State var startGroupRun = false
     @StateObject var participationService = ParticipationService()
@@ -29,15 +29,7 @@ struct CreateGroupRunPage: View {
                             Text( runningSession.latestSessionResponse?.payload.passcode ?? "error")
                                 .font(.system(size: 82, weight: .bold))
                             if participationService.participantNames.isEmpty {
-                                Text("참가자 목록을 불러오는 중...")
-                                    .onAppear {
-                                        print("getParticipantList || runningId: \(runningSession.latestSessionResponse?.payload.runningKey ?? "empty")")
-                                        participationService.getParticipantList(runningId: runningSession.latestSessionResponse?.payload.runningKey ?? "") { success in
-                                            if !success {
-                                                print("참가자 정보 불러오기 실패")
-                                            }
-                                        }
-                                    }
+                                EmptyView()
                             } else {
                                 ParticipantList(grouprunParticipants: participationService.participantNames)
                             }
@@ -46,6 +38,17 @@ struct CreateGroupRunPage: View {
                         .padding(.vertical)
                         
                     }
+                }
+            }
+        }
+        .onAppear {
+            print("getParticipantList || runningId: \(runningSession.latestSessionResponse?.payload.runningKey ?? "empty")")
+            participationService.getParticipantList(runningId: runningSession.latestSessionResponse?.payload.runningKey ?? "") { success in
+                if !success {
+                    print("참가자 정보 불러오기 실패")
+                }
+                else {
+                    print("getParticipantList || response: \(success)")
                 }
             }
         }
@@ -61,8 +64,10 @@ struct CreateGroupRunPage: View {
                 title:
                     Text("그룹 러닝을 시작할까요?"),
                 primaryButton: .default(Text("시작하기"), action: {
-                    print("Try WebSocket Connect || runningId: \(runningSession.latestSessionResponse?.payload.runningKey ?? "error")")
-                    webSocketService.connect(runningId: runningSession.latestSessionResponse?.payload.runningKey ?? "error")
+                    let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+                                            "runningId": runningSession.latestSessionResponse?.payload.runningKey ?? "",
+                                            "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""]
+                    WebSocketService.shared.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                     startGroupRun = true
                 }),
                 secondaryButton: .cancel(Text("취소"))

@@ -11,15 +11,17 @@ struct StartGroupRunPage: View {
     @State var showInputJoinCode = false
     @State var showJoinGroupRunPage = false
     @State var showCreateGroupRunPage = false
-    @State var joinCode: String
+    @State var joinCode: String = ""
     @ObservedObject var runningSession: RunningSessionService
     var body: some View {
         ZStack {
             VStack {
                 // Create Group Button
                 Button(action: {
-                    runningSession.createRunningSession(currentLatitude: 0, currentLongitude: 0){ success in
+                    runningSession.createRunningSession(currentLatitude: 0, currentLongitude: 0){ success, result in
                         if success {
+                            print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
+                            WebSocketService.shared.connect(runningId: result?.payload.runningKey ?? "error")
                             showCreateGroupRunPage = true
                         } else {
                             print("createRunningSession || error")
@@ -75,5 +77,5 @@ struct StartGroupRunPage: View {
 }
 
 #Preview {
-    StartGroupRunPage(joinCode: "", runningSession: RunningSessionService())
+    StartGroupRunPage(runningSession: RunningSessionService())
 }

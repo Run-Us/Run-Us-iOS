@@ -10,6 +10,7 @@ import SwiftUI
 struct RunningProgressPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
+    
     @Binding var selectedTab: Int
     
     var body: some View {
@@ -52,5 +53,5 @@ struct RunningProgressPage: View {
 }
 
 #Preview {
-    RunningProgressPage(mapVM: MapViewModel(), motionManager: MotionManager(), selectedTab: .constant(0))
+    RunningProgressPage(mapVM: MapViewModel(), motionManager: MotionManager() ,selectedTab: .constant(0))
 }
