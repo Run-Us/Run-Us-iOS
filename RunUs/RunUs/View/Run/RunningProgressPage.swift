@@ -29,10 +29,10 @@ struct RunningProgressPage: View {
             VStack(spacing: 15) {
                 Text("거리")
                 if let distance = motionManager.runningInfo.distance {
-                    Text(distance >= 1000 ? "\(distance/1000)km" : "\(distance)m")
+                    Text("\(distance, specifier: "%.2f")km")
                         .font(.title1)
                 } else {
-                    Text("0m")
+                    Text("0km")
                         .font(.title1)
                 }
             }

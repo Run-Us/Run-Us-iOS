@@ -78,9 +78,9 @@ struct RunningMapPage: View {
                     Text("거리")
                         .font(.body1)
                     if let distance = motionManager.runningInfo.distance {
-                        Text(distance >= 1000 ? "\(distance/1000)km" : "\(distance)m")
+                        Text("\(distance, specifier: "%.2f")km")
                     } else {
-                        Text("0m")
+                        Text("0km")
                     }
                 }
             }
