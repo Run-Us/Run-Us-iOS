@@ -22,7 +22,7 @@ struct RunningProgressPage: View {
             Divider()
             VStack(spacing: 15) {
                 Text("평균 페이스")
-                Text(motionManager.runningInfo.currentPace ?? "-' --''")
+                Text(motionManager.runningInfo.averagePace ?? "-' --''")
                     .font(.title1)
             }
             Divider()
