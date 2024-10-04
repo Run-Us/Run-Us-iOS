@@ -14,6 +14,7 @@ struct MyPage: View {
         VStack {
             Button(action: {
                 UserDefaults.standard.removeObject(forKey: "idToken")
+                UserDefaults.standard.removeObject(forKey: "userId")
                 dismiss()
             }, label: {
                 Text("로그아웃")
