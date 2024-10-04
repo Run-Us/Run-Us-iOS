@@ -14,8 +14,8 @@ class MotionManager: ObservableObject {
     @Published var runningInfo: RunningInfo = RunningInfo()
     private var secondsElapsed = 0  // 경과한 시간 저장
     
-    // 실시간 러닝 정보 업데이트
-    func getRealTimeMotionData() {
+    // 실시간 러닝 정보 수집 시작 
+    func startUpdatesMotion() {
         
         // Timer를 사용하여 1초마다 업데이트
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [weak self] _ in
@@ -24,28 +24,32 @@ class MotionManager: ObservableObject {
             // 시간 업데이트
             getRunningTime()
             
-            pedometer.startUpdates(from: Date()) { (pedometerData, error) in
-                
+            guard let startDate = runningInfo.startDate else { return }
+            
+            pedometer.startUpdates(from: startDate) { (pedometerData, error) in
+
                 guard let pedometerData = pedometerData, error == nil else {
                     print("data is nil")
                     return
                 }
                 
-                // 페이스, 거리 업데이트
                 DispatchQueue.main.async {
-                    if  let currentPace = pedometerData.currentPace,
-                        let distance = pedometerData.distance
-                    {
-                        let minPerKm = Int(currentPace.doubleValue * 1000) / 60
-                        let secPerKm = Int(currentPace.doubleValue * 1000) % 60
-                        self.runningInfo.currentPace = "\(minPerKm)\' \(secPerKm)\'\'"
-                        self.runningInfo.distance = distance.intValue
-                    }
+                    self.getMotionData(data: pedometerData)
                 }
-                
             }
         })
-        
+    }
+    
+    // update motion data
+    func getMotionData(data: CMPedometerData) {
+        if  let averagePace = data.averageActivePace,
+            let distance = data.distance
+        {
+            let minPerKm = Int(averagePace.doubleValue * 1000) / 60
+            let secPerKm = Int(averagePace.doubleValue * 1000) % 60
+            self.runningInfo.averagePace = "\(minPerKm)\' \(secPerKm)\'\'"
+            self.runningInfo.distance = distance.doubleValue / 1000
+        }
     }
     
     // 러닝 시간 받아오기

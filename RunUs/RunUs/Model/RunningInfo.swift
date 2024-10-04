@@ -11,6 +11,6 @@ struct RunningInfo {
     var startDate: Date?
     var endDate: Date?
     var runningTime: String?
-    var currentPace: String?
-    var distance: Int?
+    var averagePace: String?
+    var distance: Double?
 }

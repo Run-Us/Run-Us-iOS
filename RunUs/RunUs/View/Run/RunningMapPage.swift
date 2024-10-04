@@ -70,7 +70,7 @@ struct RunningMapPage: View {
                     VStack(spacing: 15) {
                         Text("평균 페이스")
                             .font(.body1)
-                        Text(motionManager.runningInfo.currentPace ?? "-' --''")
+                        Text(motionManager.runningInfo.averagePace ?? "-' --''")
                     }
                     .frame(width: geometry.size.width/2)
                 }
@@ -78,9 +78,9 @@ struct RunningMapPage: View {
                     Text("거리")
                         .font(.body1)
                     if let distance = motionManager.runningInfo.distance {
-                        Text(distance >= 1000 ? "\(distance/1000)km" : "\(distance)m")
+                        Text("\(distance, specifier: "%.2f")km")
                     } else {
-                        Text("0m")
+                        Text("0.00km")
                     }
                 }
             }
