@@ -80,7 +80,7 @@ struct RunningMapPage: View {
                     if let distance = motionManager.runningInfo.distance {
                         Text("\(distance, specifier: "%.2f")km")
                     } else {
-                        Text("0km")
+                        Text("0.00km")
                     }
                 }
             }

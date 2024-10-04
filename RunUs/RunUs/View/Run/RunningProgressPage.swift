@@ -32,7 +32,7 @@ struct RunningProgressPage: View {
                     Text("\(distance, specifier: "%.2f")km")
                         .font(.title1)
                 } else {
-                    Text("0km")
+                    Text("0.00km")
                         .font(.title1)
                 }
             }
