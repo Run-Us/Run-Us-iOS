@@ -11,7 +11,7 @@ struct RunningPage: View {
     @State var showRunAlonePage = false
     @ObservedObject var runningSession: RunningSessionService = RunningSessionService()
     @StateObject var mapVM: MapViewModel = .init()
-    var webSocketService = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "")
+    
     var body: some View {
         ZStack {
             VStack {
