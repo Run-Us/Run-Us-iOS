@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct JoinPage: View {
+    @Environment(\.dismiss) var dismiss
     @State private var nickname: String = ""
     @State private var email: String = ""
-    @State var joinSuccess: Bool = false
-    @ObservedObject var joinService: JoinService
+    @Binding var loginSuccess: Bool
+    @ObservedObject var joinService: JoinService = JoinService()
     let userInfo = UserDefaults.standard
+    
     var body: some View {
         NavigationView {
             Form {
@@ -31,8 +33,11 @@ struct JoinPage: View {
                     Button(action: {
                         print("닉네임 - \(nickname) : 이메일 - \(email)")
                         joinService.joinMembership(inputNickName: nickname, inputEmail: email) { success in
-                            userInfo.set(joinService.joinMemberInfo?.publicId, forKey: "userId")
-                            joinSuccess = success
+                            if success {
+                                userInfo.set(joinService.joinMemberInfo?.publicId, forKey: "userId")
+                                loginSuccess = true
+                                dismiss()
+                            }
                         }
                     }, label: {
                         Text("저장")
@@ -43,12 +48,9 @@ struct JoinPage: View {
             }
             .navigationBarTitle("정보 입력")
         }
-        .fullScreenCover(isPresented: $joinSuccess) {
-            MainPage()
-        }
     }
 }
 
 #Preview {
-    JoinPage(joinService: JoinService())
+    JoinPage(loginSuccess: .constant(false))
 }

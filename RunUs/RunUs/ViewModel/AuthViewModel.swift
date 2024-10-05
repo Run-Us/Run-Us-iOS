@@ -56,4 +56,12 @@ class AuthViewModel: ObservableObject {
         }
         return false
     }
+    
+    // 저장된 userId 존재 여부 확인
+    func checkUserIdExists() -> Bool {
+        if let userId = UserDefaults.standard.string(forKey: "userId") {
+            return true
+        }
+        return false
+    }
 }
