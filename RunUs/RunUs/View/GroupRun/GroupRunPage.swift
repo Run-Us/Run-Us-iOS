@@ -12,7 +12,7 @@ enum RunningGroupProgressStatus: String, CaseIterable {
     case map = "지도"
     case group = "그룹원"
 }
-struct RunGroupPage: View {
+struct GroupRunPage: View {
     @StateObject var mapVM: MapViewModel = .init()
     @State private var selectedTab: Int = 0
     var body: some View {
@@ -30,7 +30,7 @@ struct RunGroupPage: View {
                     .tag(0)
                 RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager)
                     .tag(1)
-                RunningGroupMapPage(mapVM: mapVM)
+                GroupRunMapPage(mapVM: mapVM)
                     .tag(2)
             }
         }
@@ -49,5 +49,5 @@ struct RunGroupPage: View {
 }
 
 #Preview {
-    RunGroupPage()
+    GroupRunPage()
 }

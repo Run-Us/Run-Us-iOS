@@ -74,7 +74,7 @@ struct CreateGroupRunPage: View {
             )
         }
         .navigationDestination(isPresented: $startGroupRun, destination:{
-            RunGroupPage()
+            GroupRunPage()
         })
     }
 }

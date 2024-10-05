@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ParticipantModel: Identifiable {
+struct Participant: Identifiable {
     let id = UUID()
     let name: String
     let distance: Double
