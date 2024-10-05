@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RunningGroupMapPage: View {
     @StateObject var mapVM: MapViewModel
-    
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 50) {

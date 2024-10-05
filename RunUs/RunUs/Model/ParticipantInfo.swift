@@ -18,7 +18,7 @@ struct ParticipationResponse: Codable {
     let success: Bool
     let message: String
     let code: String
-    let payload: [ParticipantInfo]
+    let payload: [ParticipantInfo]?
 }
 
 struct ParticipantInfo: Codable {

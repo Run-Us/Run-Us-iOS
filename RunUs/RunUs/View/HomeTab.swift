@@ -1,5 +1,5 @@
 //
-//  CrewPage.swift
+//  HomePage.swift
 //  RunUs
 //
 //  Created by byeoungjik on 9/9/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct CrewPage: View {
+struct HomeTab: View {
     var body: some View {
-        Text("This is CrewPage")
+        Text("This is HomePage")
     }
 }
 
 #Preview {
-    CrewPage()
+    HomeTab()
 }

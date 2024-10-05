@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainPage: View {
+struct TabBar: View {
     var body: some View {
         NavigationStack {
             TabView {
@@ -15,10 +15,6 @@ struct MainPage: View {
                     .tabItem {
                         Image(systemName: "figure.run")
                         Text("Run")
-                    }
-                MyPage()
-                    .tabItem {
-                        Label("My", systemImage: "person.circle")
                     }
             }
         }
@@ -28,5 +24,5 @@ struct MainPage: View {
 }
 
 #Preview {
-    MainPage()
+    TabBar()
 }

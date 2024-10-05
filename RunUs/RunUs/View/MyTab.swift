@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyPage: View {
+struct MyTab: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -28,5 +28,5 @@ struct MyPage: View {
 }
 
 #Preview {
-    MyPage()
+    MyTab()
 }
