@@ -10,12 +10,12 @@ import SwiftStomp
 import Combine
 
 class WebSocketService: ObservableObject, SwiftStompDelegate {
-    static let shared = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "")
+    static let sharedSocket = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "")
     private var swiftStomp: SwiftStomp?
     var runningSessionService: RunningSessionService?
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
-    var runningSessionInfo: String?
+    var runningSessionInfo: RunningSessionInfo?
 
     // Published properties to expose to your views or other components
     @Published var isConnected = false
@@ -41,8 +41,8 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     }
     
     // Connect to the WebSocket server
-    func connect(runningId: String) {
-        runningSessionInfo = runningId
+    func connect(runningSessionInfo: RunningSessionInfo?) {
+        self.runningSessionInfo = runningSessionInfo
         swiftStomp?.connect(acceptVersion: "1.2,1.1,1.0")
     }
     

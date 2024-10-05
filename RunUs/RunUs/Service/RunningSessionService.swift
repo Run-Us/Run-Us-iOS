@@ -23,9 +23,9 @@ class RunningSessionService: ObservableObject {
         ]
         
         let sessionData = RunningSession(
-            constraints: Constraints(maxParticipantCount: 0, minPace: 0),
-            description: Description(title: "", desc: "", distance: "", runningTime: ""),
-            startLocation: StartLocation(latitude: currentLatitude, longitude: currentLongitude)
+            constraints: RunningSessionConstraints(maxParticipantCount: 0, minPace: 0),
+            description: RunningSessionDescription(title: "", desc: "", distance: "", runningTime: ""),
+            startLocation: UserLocation(latitude: currentLatitude, longitude: currentLongitude)
         )
         
         var request = URLRequest(url: url)

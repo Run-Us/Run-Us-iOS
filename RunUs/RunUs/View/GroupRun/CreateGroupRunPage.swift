@@ -67,7 +67,7 @@ struct CreateGroupRunPage: View {
                     let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
                                             "runningId": runningSession.latestSessionResponse?.payload.runningKey ?? "",
                                             "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""]
-                    WebSocketService.shared.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
+                    WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                     startGroupRun = true
                 }),
                 secondaryButton: .cancel(Text("취소"))

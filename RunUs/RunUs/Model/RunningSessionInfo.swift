@@ -11,32 +11,32 @@ struct RunningSessionResponse: Codable {
     let success: Bool
     let message: String
     let code: String
-    let payload: RunningKey
+    let payload: RunningSessionInfo
 }
-struct RunningKey: Codable {
+struct RunningSessionInfo: Codable {
     let runningKey: String
     let passcode: String
 }
 
 struct RunningSession: Codable {
-    var constraints: Constraints
-    var description: Description
-    var startLocation: StartLocation
+    var constraints: RunningSessionConstraints
+    var description: RunningSessionDescription
+    var startLocation: UserLocation
 }
 
-struct Constraints: Codable {
+struct RunningSessionConstraints: Codable {
     var maxParticipantCount: Int
     var minPace: Int
 }
 
-struct Description: Codable {
+struct RunningSessionDescription: Codable {
     var title: String
     var desc: String
     var distance: String
     var runningTime: String
 }
 
-struct StartLocation: Codable {
+struct UserLocation: Codable {
     var latitude: Double
     var longitude: Double
 }

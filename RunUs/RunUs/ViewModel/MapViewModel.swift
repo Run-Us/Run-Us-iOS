@@ -77,6 +77,6 @@ extension MapViewModel: CLLocationManagerDelegate {
                                  "latitude": currentUserLocation.coordinate.latitude,
                                  "longitude": currentUserLocation.coordinate.longitude,
                                  "count": 25] as [String : Any]
-        WebSocketService.shared.sendMessage(body: runningUpdateInfo, destination: "/app/users/runnings/location")
+        WebSocketService.sharedSocket.sendMessage(body: runningUpdateInfo, destination: "/app/users/runnings/location")
     }
 }

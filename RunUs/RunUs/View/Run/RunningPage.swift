@@ -27,7 +27,7 @@ struct RunningPage: View {
                     runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
                         if success {
                             print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
-                            WebSocketService.shared.connect(runningId: result?.payload.runningKey ?? "error")
+                            WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
                             showRunAlonePage = true
                         } else {
                             print("createRunningSession || error")

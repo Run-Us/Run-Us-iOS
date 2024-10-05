@@ -48,7 +48,7 @@ struct RunAlonePage: View {
                                             "runningId": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? "",
                                             "runningKey": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? ""]
                     
-                    WebSocketService.shared.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
+                    WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                 }
             }
             

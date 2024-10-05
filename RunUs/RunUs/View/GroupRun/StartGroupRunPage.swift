@@ -21,7 +21,7 @@ struct StartGroupRunPage: View {
                     runningSession.createRunningSession(currentLatitude: 0, currentLongitude: 0){ success, result in
                         if success {
                             print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
-                            WebSocketService.shared.connect(runningId: result?.payload.runningKey ?? "error")
+                            WebSocketService.sharedSocket.connect(runningSessionInfo:  result?.payload)
                             showCreateGroupRunPage = true
                         } else {
                             print("createRunningSession || error")
