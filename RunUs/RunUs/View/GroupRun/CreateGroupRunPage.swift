@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct CreateGroupRunPage: View {
-    @Binding var noticeContent: String?
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
-    @State var showStartGroupRunAlter = false
-    
     @ObservedObject var runningSession: RunningSessionService
-    @State var startGroupRun = false
     @StateObject var participationService = ParticipationService()
+    @State var showStartGroupRunAlter = false
+    @State var startGroupRun = false
+    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -26,7 +25,7 @@ struct CreateGroupRunPage: View {
                         VStack {
                             // 인증번호
                             Text("인증번호")
-                            Text( runningSession.latestSessionResponse?.payload.passcode ?? "error")
+                            Text(runningSession.latestSessionResponse?.payload.passcode ?? "error")
                                 .font(.system(size: 82, weight: .bold))
                             if participationService.participantNames.isEmpty {
                                 EmptyView()
@@ -66,7 +65,8 @@ struct CreateGroupRunPage: View {
                 primaryButton: .default(Text("시작하기"), action: {
                     let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
                                             "runningId": runningSession.latestSessionResponse?.payload.runningKey ?? "",
-                                            "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""]
+                                            "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""
+                    ]
                     WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                     startGroupRun = true
                 }),
@@ -80,5 +80,5 @@ struct CreateGroupRunPage: View {
 }
 
 #Preview {
-    CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"), runningSession: RunningSessionService())
+    CreateGroupRunPage(runningSession: RunningSessionService())
 }

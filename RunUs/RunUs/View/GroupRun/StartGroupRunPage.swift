@@ -13,15 +13,17 @@ struct StartGroupRunPage: View {
     @State var showCreateGroupRunPage = false
     @State var joinCode: String = ""
     @ObservedObject var runningSession: RunningSessionService
+    @StateObject var mapVM: MapViewModel
     var body: some View {
         ZStack {
             VStack {
                 // Create Group Button
                 Button(action: {
-                    runningSession.createRunningSession(currentLatitude: 0, currentLongitude: 0){ success, result in
+                    runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
                         if success {
                             print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
-                            WebSocketService.sharedSocket.connect(runningSessionInfo:  result?.payload)
+                            UserDefaults.standard.set(result?.payload.runningKey, forKey: "runningId")
+                            WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
                             showCreateGroupRunPage = true
                         } else {
                             print("createRunningSession || error")
@@ -35,7 +37,7 @@ struct StartGroupRunPage: View {
                         .cornerRadius(10)
                 })
                 .navigationDestination(isPresented: $showCreateGroupRunPage, destination: {
-                    CreateGroupRunPage(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"), runningSession: runningSession )
+                    CreateGroupRunPage(runningSession: runningSession )
                 })
                 // Join Group Button
                 Button(action: {
@@ -77,5 +79,5 @@ struct StartGroupRunPage: View {
 }
 
 #Preview {
-    StartGroupRunPage(runningSession: RunningSessionService())
+    StartGroupRunPage(runningSession: RunningSessionService(), mapVM: MapViewModel())
 }

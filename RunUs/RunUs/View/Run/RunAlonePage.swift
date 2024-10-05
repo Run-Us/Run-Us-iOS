@@ -44,11 +44,11 @@ struct RunAlonePage: View {
                     mapVM.startUpdatingLocation()
                     
                     // Start to connect as webSocket
-                    let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
-                                            "runningId": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? "",
-                                            "runningKey": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? ""]
-                    
-                    WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
+//                    let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+//                                            "runningId": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? "",
+//                                            "runningKey": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? ""]
+//                    
+//                    WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                 }
             }
             
