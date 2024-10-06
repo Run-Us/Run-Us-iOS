@@ -33,7 +33,7 @@ struct FinishRunningPage: View {
                     showShareRecordPage = true
                 } label: {
                     Text("다음")
-                        .font(.system(size: 20, weight: .semibold))
+                        .font(.system(size: 18, weight: .semibold))
                         .foregroundStyle(.white)
                         .frame(width: geometry.size.width - 40)
                         .padding(.vertical, 15)

@@ -15,29 +15,42 @@ struct ShareRunningRecordPage: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 20) {
-                HStack {
-                    Text("피드에 저장하기")
-                        .font(.system(size: 25, weight: .bold))
-                    Spacer()
+            VStack {
+                VStack(spacing: 20) {
+                    HStack {
+                        Text("피드에 저장하기")
+                            .font(.system(size: 25, weight: .bold))
+                        Spacer()
+                    }
+                    HStack {
+                        Text("나의 기록을 저장하고, 크루에 공유해보세요!")
+                        Spacer()
+                    }
+                    
+                    MapPage(mapVM: mapVM)
+                        .frame(height: max(geometry.size.width - 20, 0))
+                    
+                    VStack(spacing: 15) {
+                        inputContents(title: "제목", contents: "힘차게 모닝런", text: $runningTitle)
+                        Divider()
+                        inputContents(title: "설명", contents: "오늘의 러닝에 대해 적어주세요", text: $runningContents)
+                    }
+                    .padding()
+                    
                 }
-                HStack {
-                    Text("나의 기록을 저장하고, 크루에 공유해보세요!")
-                    Spacer()
-                }
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 30)
                 
-                MapPage(mapVM: mapVM)
-                    .frame(height: max(geometry.size.width - 20, 0))
-                
-                VStack(spacing: 15) {
-                    inputContents(title: "제목", contents: "힘차게 모닝런", text: $runningTitle)
-                    Divider()
-                    inputContents(title: "설명", contents: "오늘의 러닝에 대해 적어주세요", text: $runningContents)
+                Button { } label: {
+                    Text("피드에 글 올리기")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundStyle(.white)
+                        .frame(width: max(geometry.size.width - 40, 0))
+                        .padding(.vertical, 15)
+                        .background(.black)
                 }
-                .padding()
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 50)
             }
             .frame(width: max(geometry.size.width - 20, 0))
-            .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 30)
         }
         .navigationBarBackButtonHidden()
         .onTapGesture {
