@@ -57,7 +57,7 @@ struct RunAlonePage: View {
                 
             }
             .navigationDestination(isPresented: $showFinishPage) {
-                FinishRunningPage(runningInfo: mapVM.motionManager.runningInfo)
+                FinishRunningPage(mapVM: mapVM)
             }
         }
     }

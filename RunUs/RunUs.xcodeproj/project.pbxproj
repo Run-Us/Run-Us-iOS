@@ -31,6 +31,7 @@
 		238E78F62C83147300D04F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F52C83147300D04F58 /* Assets.xcassets */; };
 		238E78F92C83147300D04F58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F82C83147300D04F58 /* Preview Assets.xcassets */; };
 		2398F4942CB29B11001D922B /* FinishRunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2398F4932CB29B11001D922B /* FinishRunningPage.swift */; };
+		2398F4962CB2B968001D922B /* ShareRunningRecordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2398F4952CB2B968001D922B /* ShareRunningRecordPage.swift */; };
 		23A8F7952C9AA2EB00A20EC5 /* RunAlonePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */; };
 		887940EE2CAAFEC80018C035 /* RunningSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887940ED2CAAFEC80018C035 /* RunningSessionService.swift */; };
 		887940F42CAB2AD30018C035 /* JoinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887940F32CAB2AD30018C035 /* JoinPage.swift */; };
@@ -78,6 +79,7 @@
 		238E78F52C83147300D04F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		238E78F82C83147300D04F58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2398F4932CB29B11001D922B /* FinishRunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRunningPage.swift; sourceTree = "<group>"; };
+		2398F4952CB2B968001D922B /* ShareRunningRecordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRunningRecordPage.swift; sourceTree = "<group>"; };
 		23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAlonePage.swift; sourceTree = "<group>"; };
 		887940ED2CAAFEC80018C035 /* RunningSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSessionService.swift; sourceTree = "<group>"; };
 		887940F32CAB2AD30018C035 /* JoinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPage.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				88E556082C8F20E8003789B7 /* RunningPage.swift */,
 				23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */,
 				2398F4932CB29B11001D922B /* FinishRunningPage.swift */,
+				2398F4952CB2B968001D922B /* ShareRunningRecordPage.swift */,
 			);
 			path = Run;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				888648F92C9824A500B040BA /* NoticeBar.swift in Sources */,
 				887940FE2CAB35DB0018C035 /* ParticipationService.swift in Sources */,
 				88E556132C8F5E49003789B7 /* CharacterTab.swift in Sources */,
+				2398F4962CB2B968001D922B /* ShareRunningRecordPage.swift in Sources */,
 				88E5560D2C8F213E003789B7 /* MyTab.swift in Sources */,
 				888648FB2C982FD500B040BA /* ParticipantProfile.swift in Sources */,
 				88D3BF0D2C9F6B35009E4365 /* JoinGroupRunPage.swift in Sources */,
