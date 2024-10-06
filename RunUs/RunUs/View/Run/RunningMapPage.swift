@@ -10,6 +10,7 @@ import SwiftUI
 struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
+    @State private var showStopAlert: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -35,7 +36,9 @@ struct RunningMapPage: View {
                     else {
                         HStack {
                             Spacer()
-                            Button {} label: {
+                            Button {
+                                showStopAlert = true
+                            } label: {
                                 Text("끝내기")
                                     .font(.body1)
                                     .foregroundColor(.white)
@@ -43,6 +46,20 @@ struct RunningMapPage: View {
                             .padding()
                             .frame(width: geometry.size.width*0.35)
                             .background(.black)
+                            .alert("러닝을 종료할까요?", isPresented: $showStopAlert) {
+                                HStack {
+                                    Button(action: {}, label: {
+                                        Text("취소")
+                                    })
+                                    Button(action: {
+                                        // TODO: 러닝 종료
+                                        
+                                    }, label: {
+                                        Text("끝내기")
+                                    })
+                                }
+                            }
+                            
                             Button {
                                 mapVM.isRunning = true
                                 mapVM.startUpdatingLocation()
