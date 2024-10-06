@@ -16,11 +16,13 @@ struct TabBar: View {
                         Image(systemName: "figure.run")
                         Text("Run")
                     }
+                MyTab()
+                    .tabItem {
+                        Label("My", systemImage: "person.circle")
+                    }
             }
         }
-        
     }
-    
 }
 
 #Preview {
