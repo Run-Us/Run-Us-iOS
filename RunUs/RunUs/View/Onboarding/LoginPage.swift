@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginPage: View {
     @StateObject var authVM: AuthViewModel = AuthViewModel()
     @State private var loginSuccess: Bool = false
+    @State private var showJoinPage: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -21,18 +22,26 @@ struct LoginPage: View {
                     .lineSpacing(0.8)
                 Button(action: {
                     authVM.kakaoLogin { isSuccess in
-                        loginSuccess = isSuccess
+                        showJoinPage = isSuccess
                     }
                 }, label: {
                     Image("kakao_login_button")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 })
-                .fullScreenCover(isPresented: $loginSuccess) {
-                    MainPage()
+                .fullScreenCover(isPresented: $showJoinPage) {
+                    JoinPage(loginSuccess: $loginSuccess)
                 }
             }
             .padding(.horizontal, 20)
+            .onAppear {
+                if authVM.checkUserIdExists() {
+                    loginSuccess = true
+                }
+            }
+            .fullScreenCover(isPresented: $loginSuccess) {
+                MainPage()
+            }
         }
     }
 }

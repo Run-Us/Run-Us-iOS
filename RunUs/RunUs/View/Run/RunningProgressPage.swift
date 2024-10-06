@@ -9,26 +9,32 @@ import SwiftUI
 
 struct RunningProgressPage: View {
     @StateObject var mapVM: MapViewModel
+    @StateObject var motionManager: MotionManager
     @Binding var selectedTab: Int
     
     var body: some View {
         VStack(spacing: 50) {
             VStack(spacing: 15) {
                 Text("시간")
-                Text("00:00")
+                Text(motionManager.runningInfo.runningTime ?? "00:00")
                     .font(.title1)
             }
             Divider()
             VStack(spacing: 15) {
                 Text("평균 페이스")
-                Text("-:--")
+                Text(motionManager.runningInfo.averagePace ?? "-' --''")
                     .font(.title1)
             }
             Divider()
             VStack(spacing: 15) {
                 Text("거리")
-                Text("0.4km")
-                    .font(.title1)
+                if let distance = motionManager.runningInfo.distance {
+                    Text("\(distance, specifier: "%.2f")km")
+                        .font(.title1)
+                } else {
+                    Text("0.00km")
+                        .font(.title1)
+                }
             }
             Button(action: {
                 selectedTab = 1
@@ -46,5 +52,5 @@ struct RunningProgressPage: View {
 }
 
 #Preview {
-    RunningProgressPage(mapVM: MapViewModel(), selectedTab: .constant(0))
+    RunningProgressPage(mapVM: MapViewModel(), motionManager: MotionManager(), selectedTab: .constant(0))
 }

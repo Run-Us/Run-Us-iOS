@@ -15,7 +15,7 @@ enum RunningProgressStatus: String, CaseIterable {
 struct RunAlonePage: View {
     @StateObject var mapVM: MapViewModel = .init()
     @State private var selectedTab: Int = 0
-    
+
     var body: some View {
         VStack {
             Picker("", selection: $selectedTab) {
@@ -25,17 +25,23 @@ struct RunAlonePage: View {
             }
             .pickerStyle(.segmented)
             .padding()
-            
+
             TabView(selection: $selectedTab) {
-                RunningProgressPage(mapVM: mapVM, selectedTab: $selectedTab)
+                RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
                     .tag(0)
-                RunningMapPage(mapVM: mapVM)
+                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager)
                     .tag(1)
             }
         }
         .navigationBarBackButtonHidden()
         .onAppear {
-            mapVM.startUpdatingLocation()
+            // 권한이 모두 허용됐을 경우에만 측정 시작
+            mapVM.motionManager.checkPedometerAuthorization { isSuccess in
+                if isSuccess {
+                    mapVM.motionManager.runningInfo = RunningInfo(startDate: Date())
+                    mapVM.startUpdatingLocation()
+                }
+            }
         }
     }
 }
