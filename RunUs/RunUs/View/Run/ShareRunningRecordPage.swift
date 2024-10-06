@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShareRunningRecordPage: View {
     @StateObject var mapVM: MapViewModel
+    @FocusState private var isTextFieldFocused: Bool
     @State private var runningTitle: String = ""
     @State private var runningContents: String = ""
     
@@ -39,6 +40,9 @@ struct ShareRunningRecordPage: View {
             .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 30)
         }
         .navigationBarBackButtonHidden()
+        .onTapGesture {
+            isTextFieldFocused = false
+        }
     }
     
     
@@ -49,12 +53,12 @@ struct ShareRunningRecordPage: View {
                 .font(.system(size: 17))
             TextField(contents, text: text)
                 .font(.system(size: 15))
+                .focused($isTextFieldFocused)
                 .onAppear {
                     // text clear button
                     UITextField.appearance().clearButtonMode = .whileEditing
                 }
         }
-        
     }
 }
 
