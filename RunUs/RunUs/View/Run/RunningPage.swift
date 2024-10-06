@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct RunningPage: View {
-    @State var showGroupRun = false
+    @State var showRunAlonePage = false
+    @ObservedObject var runningSession: RunningSessionService = RunningSessionService()
+    @StateObject var mapVM: MapViewModel = .init()
+    
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: StartGroupRunPage(joinCode: ""), label: {
+                NavigationLink(destination: StartGroupRunPage(joinCode: "", runningSession: RunningSessionService()), label: {
                     Text("같이 달리기")
                         .foregroundColor(.white)
                         .padding()
@@ -20,15 +23,28 @@ struct RunningPage: View {
                         .cornerRadius(10)
                 })
                 
-                NavigationLink(destination: RunAlonePage()) {
+                Button(action: {
+                    runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
+                        if success {
+                            print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
+                            WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
+                            showRunAlonePage = true
+                        } else {
+                            print("createRunningSession || error")
+                        }
+                    }
+                }, label: {
                     Text("혼자 달리기")
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.blue)
                         .cornerRadius(10)
-                }
+                })
             }
         }
+        .navigationDestination(isPresented: $showRunAlonePage, destination: {
+            RunAlonePage(mapVM: mapVM, runningSessionAlone: runningSession)
+        })
     }
 }
 

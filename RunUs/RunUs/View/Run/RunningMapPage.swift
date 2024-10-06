@@ -10,7 +10,6 @@ import SwiftUI
 struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
-
     
     var body: some View {
         GeometryReader { geometry in

@@ -13,7 +13,8 @@ enum RunningProgressStatus: String, CaseIterable {
 }
 
 struct RunAlonePage: View {
-    @StateObject var mapVM: MapViewModel = .init()
+    @StateObject var mapVM: MapViewModel
+    @StateObject var runningSessionAlone: RunningSessionService
     @State private var selectedTab: Int = 0
 
     var body: some View {
@@ -35,17 +36,26 @@ struct RunAlonePage: View {
         }
         .navigationBarBackButtonHidden()
         .onAppear {
+            
             // 권한이 모두 허용됐을 경우에만 측정 시작
             mapVM.motionManager.checkPedometerAuthorization { isSuccess in
                 if isSuccess {
                     mapVM.motionManager.runningInfo = RunningInfo(startDate: Date())
                     mapVM.startUpdatingLocation()
+                    
+                    // Start to connect as webSocket
+                    let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+                                            "runningId": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? "",
+                                            "runningKey": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? ""]
+                    
+                    WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                 }
             }
+            
         }
     }
 }
 
 #Preview {
-    RunAlonePage()
+    RunAlonePage(mapVM: MapViewModel(), runningSessionAlone: RunningSessionService())
 }

@@ -17,8 +17,8 @@ class ParticipationService: ObservableObject {
     let keychain = KeychainSwift()
     
     
-    func getParticipantList(completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "\(baseUrl)/auth/login") else {
+    func getParticipantList(runningId: String, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "\(baseUrl)/runnings/\(runningId)/participants") else {
             completion(false)
             return
         }
@@ -39,10 +39,11 @@ class ParticipationService: ObservableObject {
                 let decodedResponse = try JSONDecoder().decode(ParticipationResponse.self, from: data)
                 DispatchQueue.main.async {
                     if decodedResponse.success {
+                        print("getParticipantList || Response success: \(decodedResponse.success)")
                         self.participantInfo = decodedResponse
                         print("========== Participants List ==========")
-                        print(self.participantInfo)
-                        self.participantNames = decodedResponse.payload.map { $0.name }
+                        self.participantNames = decodedResponse.payload?.map { $0.name } ?? []
+                        print("getParticipantList || \(self.participantNames)")
                         completion(true)
                     } else {
                         completion(false)

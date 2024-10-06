@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct RunningParticipant: View {
-    let grouprunParticipants: [ParticipantModel] = [
-        ParticipantModel(name: "김현재", distance: 6.1, pace: 5.2),
-        ParticipantModel(name: "문다훈", distance: 6.5, pace: 5.0),
-        ParticipantModel(name: "박지혜", distance: 6.1, pace: 5.1),
-        ParticipantModel(name: "유가은", distance: 6.1, pace: 5.3),
-        ParticipantModel(name: "이병직", distance: 6.1, pace: 5.4),
-        ParticipantModel(name: "조성훈", distance: 6.1, pace: 5.2)
+    let grouprunParticipants: [Participant] = [
+        Participant(name: "김현재", distance: 6.1, pace: 5.2),
+        Participant(name: "문다훈", distance: 6.5, pace: 5.0),
+        Participant(name: "박지혜", distance: 6.1, pace: 5.1),
+        Participant(name: "유가은", distance: 6.1, pace: 5.3),
+        Participant(name: "이병직", distance: 6.1, pace: 5.4),
+        Participant(name: "조성훈", distance: 6.1, pace: 5.2)
         ]
     
     var body: some View {
@@ -22,7 +22,7 @@ struct RunningParticipant: View {
             List {
                 ForEach(grouprunParticipants, id: \.self.id) { participant in
                     HStack(spacing: 20) {
-                        Participant(participantName: participant.name)
+                        ParticipantProfile(participantName: participant.name)
                             
                         VStack {
                             Text("\(participant.distance, specifier: "%.1f")")

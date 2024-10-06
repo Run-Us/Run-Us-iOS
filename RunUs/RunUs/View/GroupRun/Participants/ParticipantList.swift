@@ -18,7 +18,7 @@ struct ParticipantList: View {
         List {
             LazyVGrid(columns: gridLayout, spacing: 20) {
                 ForEach(grouprunParticipants, id: \.self) { participant in
-                   Participant(participantName: participant)
+                   ParticipantProfile(participantName: participant)
                 }
             }
         }

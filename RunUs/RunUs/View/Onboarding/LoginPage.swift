@@ -40,7 +40,7 @@ struct LoginPage: View {
                 }
             }
             .fullScreenCover(isPresented: $loginSuccess) {
-                MainPage()
+                TabBar()
             }
         }
     }

@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct RunningGroupMapPage: View {
+struct GroupRunMapPage: View {
     @StateObject var mapVM: MapViewModel
-    
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 50) {
@@ -21,5 +20,5 @@ struct RunningGroupMapPage: View {
 }
 
 #Preview {
-    RunningGroupMapPage(mapVM: MapViewModel())
+    GroupRunMapPage(mapVM: MapViewModel())
 }

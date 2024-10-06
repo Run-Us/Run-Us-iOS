@@ -10,19 +10,20 @@ import SwiftStomp
 import Combine
 
 class WebSocketService: ObservableObject, SwiftStompDelegate {
+    static let sharedSocket = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "")
     private var swiftStomp: SwiftStomp?
     var runningSessionService: RunningSessionService?
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
-    var runningSessionInfo: String?
-    
+    var runningSessionInfo: RunningSessionInfo?
+
     // Published properties to expose to your views or other components
     @Published var isConnected = false
     @Published var messages = [String]()
     @Published var errors = [String]()
     
     // URL and initialization
-    init(userId: String, passcode: String) {
+    init(userId: String, passcode: String = "") {
         guard let url = URL(string: "ws://" + WebSocketURL!) else {
             print("Invalid URL string.")
             return
@@ -36,12 +37,12 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         swiftStomp = SwiftStomp(host: url, headers: headers)
         swiftStomp?.delegate = self
         swiftStomp?.autoReconnect = true
-        print("webSocket instance is created")
+        print("\(userId) : webSocket instance is created")
     }
     
     // Connect to the WebSocket server
-    func connect(runningId: String) {
-        runningSessionInfo = runningId
+    func connect(runningSessionInfo: RunningSessionInfo?) {
+        self.runningSessionInfo = runningSessionInfo
         swiftStomp?.connect(acceptVersion: "1.2,1.1,1.0")
     }
     
@@ -53,29 +54,42 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     
     // Subscribe to a topic
     func subscribe(topic: String) {
-        swiftStomp?.subscribe(to: topic, mode: .clientIndividual)
+        guard let id = UserDefaults.standard.string(forKey: "userId") else {
+            print("invalid userId")
+            return
+        }
+        let subscribeHeader:[String: String] = [
+            "id": id
+        ]
+        swiftStomp?.subscribe(to: topic, mode: .clientIndividual, headers: subscribeHeader)
     }
     
     // Send a message to a destination
-    func sendMessage(body: String, destination: String) {
+    func sendMessage(body: [String : Any], destination: String) {
         let receiptId = "msg-\(Int.random(in: 0..<1000))"
-        
-        swiftStomp?.send(body: body, to: destination, receiptId: receiptId, headers: [:])
+        print("webSockeet || sendMessage || destination - \(destination)  body - \(body)")
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
+            let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+            swiftStomp?.send(body: jsonString, to: destination, receiptId: receiptId, headers: ["Content-Type": "application/json"])
+        } catch {
+            print("Error encoding JSON: \(error)")
+        }
     }
     
     // MARK: - SwiftStompDelegate Methods
     func onConnect(swiftStomp: SwiftStomp, connectType: StompConnectType) {
-        isConnected = true
         print("Connected with type: \(connectType)")
         
         // Subscribe to topics or perform actions after connection is established
         
         if connectType == .toStomp {
             print("Connection is fully established with STOMP protocol.")
+            isConnected = true
             
-            if let runningId = runningSessionInfo {
-                subscribe(topic: "/topics/runnings/\(runningId)")
-                print("subscribe is started..")
+            if let runningId = runningSessionInfo?.runningKey {
+                subscribe(topic: "/topic/runnings/\(runningId)")
+                print("subscribe is started.. || runningId: \(runningId)")
             }
         }
     }
