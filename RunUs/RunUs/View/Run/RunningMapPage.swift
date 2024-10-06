@@ -11,7 +11,7 @@ struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
     @State private var showStopAlert: Bool = false
-    @State private var showFinishPage: Bool = false
+    @Binding var showFinishPage: Bool
     
     var body: some View {
         GeometryReader { geometry in
@@ -60,9 +60,6 @@ struct RunningMapPage: View {
                                     }, label: {
                                         Text("끝내기")
                                     })
-                                    .navigationDestination(isPresented: $showFinishPage) {
-                                        FinishRunningPage(runningInfo: motionManager.runningInfo)
-                                    }
                                 }
                             }
                             
@@ -111,5 +108,5 @@ struct RunningMapPage: View {
 }
 
 #Preview {
-    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager())
+    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), showFinishPage: .constant(false))
 }
