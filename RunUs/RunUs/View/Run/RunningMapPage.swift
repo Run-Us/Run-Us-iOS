@@ -11,6 +11,7 @@ struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
     @State private var showStopAlert: Bool = false
+    @State private var showFinishPage: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -23,7 +24,6 @@ struct RunningMapPage: View {
                     if mapVM.isRunning {
                         Button(action: {
                             mapVM.stopUpdatingLocation()
-                            mapVM.isRunning = false
                         }, label: {
                             Image(systemName: "pause.circle")
                                 .resizable()
@@ -38,6 +38,7 @@ struct RunningMapPage: View {
                             Spacer()
                             Button {
                                 showStopAlert = true
+                                mapVM.stopUpdatingLocation()
                             } label: {
                                 Text("끝내기")
                                     .font(.body1)
@@ -48,20 +49,24 @@ struct RunningMapPage: View {
                             .background(.black)
                             .alert("러닝을 종료할까요?", isPresented: $showStopAlert) {
                                 HStack {
-                                    Button(action: {}, label: {
+                                    Button(action: {
+                                        mapVM.startUpdatingLocation()
+                                    }, label: {
                                         Text("취소")
                                     })
                                     Button(action: {
-                                        // TODO: 러닝 종료
-                                        
+                                        mapVM.stopUpdatingLocation()
+                                        showFinishPage = true
                                     }, label: {
                                         Text("끝내기")
                                     })
+                                    .navigationDestination(isPresented: $showFinishPage) {
+                                        FinishRunningPage(runningInfo: motionManager.runningInfo)
+                                    }
                                 }
                             }
                             
                             Button {
-                                mapVM.isRunning = true
                                 mapVM.startUpdatingLocation()
                             } label: {
                                 Text("계속하기")

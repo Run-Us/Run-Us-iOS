@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct FinishRunningPage: View {
+    var runningInfo: RunningInfo
     
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 30) {
                 Text("수고하셨습니다")
                     .font(.system(size: 30, weight: .bold))
-                runInfoText(type: "시간", info: "")
-                runInfoText(type: "거리", info: "")
-                runInfoText(type: "평균 페이스", info: "")
-                
+                runInfoText(type: "시간", info: runningInfo.runningTime ?? "0:00")
+                runInfoText(type: "거리", info: String(format: "%.2fkm", runningInfo.distance ?? 0.0))
+                runInfoText(type: "평균 페이스", info: runningInfo.averagePace ?? "-' --''")
             }
             .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 50)
             
@@ -50,5 +50,5 @@ struct FinishRunningPage: View {
 }
 
 #Preview {
-    FinishRunningPage()
+    FinishRunningPage(runningInfo: RunningInfo())
 }

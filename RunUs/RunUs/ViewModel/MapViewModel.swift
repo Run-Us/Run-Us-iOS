@@ -68,6 +68,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     
     // 사용자 위치 추적 멈춤
     func stopUpdatingLocation() {
+        isRunning = false
         locationManager.stopUpdatingLocation()
         motionManager.stopRunningMotionData()
     }
