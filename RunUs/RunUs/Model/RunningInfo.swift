@@ -27,3 +27,11 @@ struct Location: Codable {
     var x: Double
     var y: Double
 }
+
+struct RunningUpdateInfo: Codable {
+    var runningId: String
+    var userId: String
+    var latitude: Double
+    var longitude: Double
+    var count: Int
+}

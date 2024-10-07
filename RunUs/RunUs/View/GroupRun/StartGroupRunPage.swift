@@ -48,10 +48,13 @@ struct StartGroupRunPage: View {
             VStack {
                 TextField("인증코드", text: $joinCode)
                 HStack {
-                    Button(action: {}, label: {
+                    Button(action: {
+                        
+                    }, label: {
                         Text("취소")
                     })
                     Button(action: {
+                        joinGroup()
                         showJoinGroupRunPage = true
                     }, label: {
                         Text("참가하기")
@@ -78,6 +81,9 @@ struct StartGroupRunPage: View {
                 print("createRunningSession || error")
             }
         }
+    }
+    func joinGroup() {
+        WebSocketService.sharedSocket.connect(runningSessionInfo: nil, passcode: joinCode)
     }
         
 }
