@@ -42,13 +42,6 @@ struct RunAlonePage: View {
                 if isSuccess {
                     mapVM.motionManager.runningInfo = RunningInfo(startDate: Date())
                     mapVM.startUpdatingLocation()
-                    
-                    // Start to connect as webSocket
-                    let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
-                                            "runningId": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? "",
-                                            "runningKey": runningSessionAlone.latestSessionResponse?.payload.runningKey ?? ""]
-                    
-                    WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                 }
             }
             
