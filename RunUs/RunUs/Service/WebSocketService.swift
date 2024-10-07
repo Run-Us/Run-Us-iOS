@@ -65,15 +65,15 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     }
     
     // Send a message to a destination
-    func sendMessage(body: [String : Any], destination: String) {
+    func sendMessage(body: [String : String], destination: String) {
         let receiptId = "msg-\(Int.random(in: 0..<1000))"
-        print("webSockeet || sendMessage || destination - \(destination)  body - \(body)")
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
-            let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
-            swiftStomp?.send(body: jsonString, to: destination, receiptId: receiptId, headers: ["Content-Type": "application/json"])
+            let sendData = try JSONEncoder().encode(body)
+            swiftStomp?.send(body: sendData, to: destination, receiptId: receiptId, headers: ["Content-Type": "application/json"])
+            
         } catch {
             print("Error encoding JSON: \(error)")
+            return
         }
     }
     
@@ -100,12 +100,24 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     }
     
     func onMessageReceived(swiftStomp: SwiftStomp, message: Any?, messageId: String, destination: String, headers: [String : String]) {
-        if let textMessage = message as? String {
-            messages.append("\(Date().formatted()) [id: \(messageId), at: \(destination)]: \(textMessage)")
+        guard let messageData = message as? String else {
+            print("Received non-string message")
+            return
         }
-        print("Message received at \(destination): \(message ?? "No content")")
+        
+        guard let jsonData = messageData.data(using: .utf8) else {
+            print("Error: Cannot create Data from messageData")
+            return
+        }
+        
+        do {
+            let decodedMessage = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+            messages.append("\(decodedMessage.code) [id: \(messageId), at: \(destination)]: \(decodedMessage.message)")
+            print("Message received at \(destination): \(decodedMessage.message)")
+        } catch {
+            print("Decoding error: \(error)")
+        }
     }
-    
     func onReceipt(swiftStomp: SwiftStomp, receiptId: String) {
         print("Receipt received: \(receiptId)")
     }
