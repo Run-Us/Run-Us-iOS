@@ -41,7 +41,6 @@ struct RunningProgressPage: View {
                 selectedTab = 1
                 WebSocketService.sharedSocket.sendMessagePause()
                 mapVM.stopUpdatingLocation()
-                mapVM.isRunning = false
             }, label: {
                 Image(systemName: "pause.circle")
                     .resizable()

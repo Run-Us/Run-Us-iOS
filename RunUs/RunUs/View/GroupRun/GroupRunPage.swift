@@ -15,6 +15,8 @@ enum RunningGroupProgressStatus: String, CaseIterable {
 struct GroupRunPage: View {
     @StateObject var mapVM: MapViewModel = .init()
     @State private var selectedTab: Int = 0
+    @State private var showFinishPage: Bool = false
+    
     var body: some View {
         VStack {
             Picker("", selection: $selectedTab) {
@@ -28,9 +30,9 @@ struct GroupRunPage: View {
             TabView(selection: $selectedTab) {
                 RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
                     .tag(0)
-                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager)
+                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
                     .tag(1)
-                GroupRunMapPage(mapVM: mapVM)
+                GroupRunMapPage(mapVM: mapVM, showFinishPage: $showFinishPage)
                     .tag(2)
             }
         }
@@ -44,6 +46,9 @@ struct GroupRunPage: View {
                     
                 }
             }
+        }
+        .navigationDestination(isPresented: $showFinishPage) {
+            FinishRunningPage(mapVM: mapVM)
         }
     }
 }

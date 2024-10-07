@@ -10,6 +10,8 @@ import SwiftUI
 struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
+    @State private var showStopAlert: Bool = false
+    @Binding var showFinishPage: Bool
     
     var body: some View {
         GeometryReader { geometry in
@@ -22,7 +24,6 @@ struct RunningMapPage: View {
                     if mapVM.isRunning {
                         Button(action: {
                             mapVM.stopUpdatingLocation()
-                            mapVM.isRunning = false
                         }, label: {
                             Image(systemName: "pause.circle")
                                 .resizable()
@@ -35,7 +36,10 @@ struct RunningMapPage: View {
                     else {
                         HStack {
                             Spacer()
-                            Button {} label: {
+                            Button {
+                                showStopAlert = true
+                                mapVM.stopUpdatingLocation()
+                            } label: {
                                 Text("끝내기")
                                     .font(.body1)
                                     .foregroundColor(.white)
@@ -43,8 +47,23 @@ struct RunningMapPage: View {
                             .padding()
                             .frame(width: geometry.size.width*0.35)
                             .background(.black)
+                            .alert("러닝을 종료할까요?", isPresented: $showStopAlert) {
+                                HStack {
+                                    Button(action: {
+                                        mapVM.startUpdatingLocation()
+                                    }, label: {
+                                        Text("취소")
+                                    })
+                                    Button(action: {
+                                        mapVM.stopUpdatingLocation()
+                                        showFinishPage = true
+                                    }, label: {
+                                        Text("끝내기")
+                                    })
+                                }
+                            }
+                            
                             Button {
-                                mapVM.isRunning = true
                                 mapVM.startUpdatingLocation()
                             } label: {
                                 Text("계속하기")
@@ -89,5 +108,5 @@ struct RunningMapPage: View {
 }
 
 #Preview {
-    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager())
+    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), showFinishPage: .constant(false))
 }
