@@ -21,6 +21,7 @@ struct TabBar: View {
                         Label("My", systemImage: "person.circle")
                     }
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }

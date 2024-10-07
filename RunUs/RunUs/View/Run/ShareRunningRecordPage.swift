@@ -12,6 +12,7 @@ struct ShareRunningRecordPage: View {
     @FocusState private var isTextFieldFocused: Bool
     @State private var runningTitle: String = ""
     @State private var runningContents: String = ""
+    @State private var showNextPage: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -40,7 +41,9 @@ struct ShareRunningRecordPage: View {
                 }
                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 30)
                 
-                Button { } label: {
+                Button {
+                    showNextPage = true
+                } label: {
                     Text("피드에 글 올리기")
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundStyle(.white)
@@ -55,6 +58,9 @@ struct ShareRunningRecordPage: View {
         .navigationBarBackButtonHidden()
         .onTapGesture {
             isTextFieldFocused = false
+        }
+        .navigationDestination(isPresented: $showNextPage) {
+            TabBar()
         }
     }
     
