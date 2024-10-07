@@ -8,6 +8,7 @@
 import Foundation
 import SwiftStomp
 import Combine
+import CoreLocation
 
 class WebSocketService: ObservableObject, SwiftStompDelegate {
     static let sharedSocket = WebSocketService(userId: UserDefaults.standard.string(forKey: "userId") ?? "")
@@ -16,7 +17,8 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
     private var subscriptions = Set<AnyCancellable>()
     var runningSessionInfo: RunningSessionInfo?
-
+    var count: Int = 0
+    
     // Published properties to expose to your views or other components
     @Published var isConnected = false
     @Published var messages = [String]()
@@ -125,6 +127,18 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     func onError(swiftStomp: SwiftStomp, briefDescription: String, fullDescription: String?, receiptId: String?, type: StompErrorType) {
         errors.append("\(briefDescription), Detailed: \(fullDescription ?? "No details provided")")
         print("Error: \(briefDescription)")
+    }
+    
+    func sendMessageLocationUpdate(currentUserLocation: CLLocation) {
+        count += 1
+        let runningUpdateInfo = [
+            "runningId": UserDefaults.standard.string(forKey: "runningId") ?? "",
+            "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+            "latitude": String(currentUserLocation.coordinate.latitude),
+            "longitude": String(currentUserLocation.coordinate.longitude),
+            "count": String(self.count)] as [String : String]
+        print("webSockeet || sendMessage || UPDATELOCATION || \(self.count)|| (\(currentUserLocation.coordinate.latitude), \(currentUserLocation.coordinate.longitude))")
+        WebSocketService.sharedSocket.sendMessage(body: runningUpdateInfo, destination: "/app/users/runnings/location")
     }
 }
 
