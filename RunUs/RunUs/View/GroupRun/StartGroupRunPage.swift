@@ -19,16 +19,7 @@ struct StartGroupRunPage: View {
             VStack {
                 // Create Group Button
                 Button(action: {
-                    runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
-                        if success {
-                            print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
-                            UserDefaults.standard.set(result?.payload.runningKey, forKey: "runningId")
-                            WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
-                            showCreateGroupRunPage = true
-                        } else {
-                            print("createRunningSession || error")
-                        }
-                    }
+                    createGroup()
                 }, label: {
                     Text("그룹 생성하기")
                         .foregroundColor(.white)
@@ -74,6 +65,19 @@ struct StartGroupRunPage: View {
             JoinGroupRunPage(RunningSession: runningSession)
         })
 
+    }
+    
+    func createGroup() {
+        runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
+            if success {
+                print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
+                UserDefaults.standard.set(result?.payload.runningKey, forKey: "runningId")
+                WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
+                showCreateGroupRunPage = true
+            } else {
+                print("createRunningSession || error")
+            }
+        }
     }
         
 }

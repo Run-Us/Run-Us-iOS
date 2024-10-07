@@ -60,12 +60,12 @@ struct CreateGroupRunPage: View {
         })
         .alert(isPresented: $showStartGroupRunAlter) {
             Alert(
-                title:
-                    Text("그룹 러닝을 시작할까요?"),
+                title: Text("그룹 러닝을 시작할까요?"),
                 primaryButton: .default(Text("시작하기"), action: {
-                    let startRunningInfo = ["userId": UserDefaults.standard.string(forKey: "userId") ?? "",
-                                            "runningId": runningSession.latestSessionResponse?.payload.runningKey ?? "",
-                                            "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""
+                    let startRunningInfo = [
+                        "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+                        "runningId": runningSession.latestSessionResponse?.payload.runningKey ?? "",
+                        "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""
                     ]
                     WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
                     startGroupRun = true
