@@ -9,17 +9,19 @@ import SwiftUI
 
 struct RunningPage: View {
     @State var showRunAlonePage = false
+    @State var showStartGroupRunPage = false
+    @State var passcode: String? = ""
     @ObservedObject var runningSession: RunningSessionService = RunningSessionService()
     @StateObject var mapVM: MapViewModel = .init()
     
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: StartGroupRunPage(joinCode: "", runningSession: RunningSessionService()), label: {
+                NavigationLink(destination: StartGroupRunPage(runningSession: self.runningSession, mapVM: self.mapVM), label: {
                     Text("같이 달리기")
                         .foregroundColor(.white)
                         .padding()
-                        .background(.blue)
+                        .background(Color.blue)
                         .cornerRadius(10)
                 })
                 
@@ -40,11 +42,11 @@ struct RunningPage: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 })
+                .navigationDestination(isPresented: $showRunAlonePage, destination: {
+                    RunAlonePage(mapVM: mapVM, runningSessionAlone: runningSession)
+                })
             }
         }
-        .navigationDestination(isPresented: $showRunAlonePage, destination: {
-            RunAlonePage(mapVM: mapVM, runningSessionAlone: runningSession)
-        })
     }
 }
 

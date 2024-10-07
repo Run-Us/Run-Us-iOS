@@ -17,6 +17,7 @@ class MapViewModel: NSObject, ObservableObject {
     @Published var userPath: [NMGLatLng] = []
     @Published var isRunning: Bool = false
     
+    
     override init() {
         locationManager = CLLocationManager()
         motionManager = MotionManager()
@@ -51,8 +52,7 @@ extension MapViewModel: CLLocationManagerDelegate {
         guard let newLocation = locations.last else { return }
         userLocation = newLocation
         userPath.append(NMGLatLng(from: newLocation.coordinate))
-        print("sendMessageLocationUpdate || userLocation || latitude - \(userLocation.coordinate.latitude) longitude - \(userLocation.coordinate.longitude)")
-        sendMessageLocationUpdate(currentUserLocation: userLocation)
+        WebSocketService.sharedSocket.sendMessageLocationUpdate(currentUserLocation: userLocation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
@@ -72,12 +72,5 @@ extension MapViewModel: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         motionManager.stopRunningMotionData()
     }
-    func sendMessageLocationUpdate(currentUserLocation: CLLocation) {
-        let runningUpdateInfo = ["runningId": "0HE8SSBQ05CK9",
-                                 "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
-                                 "latitude": currentUserLocation.coordinate.latitude,
-                                 "longitude": currentUserLocation.coordinate.longitude,
-                                 "count": 25] as [String : Any]
-        WebSocketService.sharedSocket.sendMessage(body: runningUpdateInfo, destination: "/app/users/runnings/location")
-    }
+    
 }
