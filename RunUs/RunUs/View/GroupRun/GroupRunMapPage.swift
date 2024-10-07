@@ -9,17 +9,14 @@ import SwiftUI
 
 struct GroupRunMapPage: View {
     @StateObject var mapVM: MapViewModel
+    @Binding var showFinishPage: Bool
     
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 50) {
-                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: .constant(false))
+                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
                 RunningParticipant()
             }
         }
     }
-}
-
-#Preview {
-    GroupRunMapPage(mapVM: MapViewModel())
 }
