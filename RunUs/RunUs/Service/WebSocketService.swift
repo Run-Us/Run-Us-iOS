@@ -43,7 +43,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     }
     
     // Connect to the WebSocket server
-    func connect(runningSessionInfo: RunningSessionInfo?) {
+    func connect(runningSessionInfo: RunningSessionInfo?, passcode: String = "") {
         self.runningSessionInfo = runningSessionInfo
         swiftStomp?.connect(acceptVersion: "1.2,1.1,1.0")
     }
@@ -67,16 +67,9 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     }
     
     // Send a message to a destination
-    func sendMessage(body: [String : String], destination: String) {
+    func sendMessage(body: [String : String?], destination: String) {
         let receiptId = "msg-\(Int.random(in: 0..<1000))"
-        do {
-            let sendData = try JSONEncoder().encode(body)
-            swiftStomp?.send(body: sendData, to: destination, receiptId: receiptId, headers: ["Content-Type": "application/json"])
-            
-        } catch {
-            print("Error encoding JSON: \(error)")
-            return
-        }
+        swiftStomp?.send(body: body, to: destination, receiptId: receiptId, headers: ["Content-Type": "application/json"])
     }
     
     // MARK: - SwiftStompDelegate Methods
@@ -120,6 +113,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             print("Decoding error: \(error)")
         }
     }
+    
     func onReceipt(swiftStomp: SwiftStomp, receiptId: String) {
         print("Receipt received: \(receiptId)")
     }
@@ -130,15 +124,33 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     }
     
     func sendMessageLocationUpdate(currentUserLocation: CLLocation) {
+        let receiptId = "msg-\(Int.random(in: 0..<1000))"
         count += 1
-        let runningUpdateInfo = [
-            "runningId": UserDefaults.standard.string(forKey: "runningId") ?? "",
-            "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
-            "latitude": String(currentUserLocation.coordinate.latitude),
-            "longitude": String(currentUserLocation.coordinate.longitude),
-            "count": String(self.count)] as [String : String]
-        print("webSockeet || sendMessage || UPDATELOCATION || \(self.count)|| (\(currentUserLocation.coordinate.latitude), \(currentUserLocation.coordinate.longitude))")
-        WebSocketService.sharedSocket.sendMessage(body: runningUpdateInfo, destination: "/app/users/runnings/location")
+        let runningUpdateInfo = RunningUpdateInfo (
+            runningId: UserDefaults.standard.string(forKey: "runningId") ?? "",
+            userId: UserDefaults.standard.string(forKey: "userId") ?? "",
+            latitude: currentUserLocation.coordinate.latitude,
+            longitude: currentUserLocation.coordinate.longitude,
+            count: self.count)
+        print("\(self.count) : webSockeet || sendMessage || UPDATELOCATION || \(receiptId)|| (\(currentUserLocation.coordinate.latitude), \(currentUserLocation.coordinate.longitude))")
+        
+            self.swiftStomp?.send(body: runningUpdateInfo, to: "/app/users/runnings/location", receiptId: receiptId, headers: ["content-type": "application/json"])
+    }
+    
+    func sendMessagePause() {
+        let pauseInfo = [
+            "userId": UserDefaults.standard.string(forKey: "userId"),
+            "runningId": runningSessionInfo?.runningKey
+        ]
+        WebSocketService.sharedSocket.sendMessage(body: pauseInfo, destination: "/app/users/runnings/pause")
+    }
+    
+    func sendMessageStop() {
+        let stopInfo = [
+            "userId": UserDefaults.standard.string(forKey: "userId"),
+            "runningId": runningSessionInfo?.runningKey
+        ]
+        WebSocketService.sharedSocket.sendMessage(body: stopInfo, destination: "/app/hello")
     }
 }
 
