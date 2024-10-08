@@ -39,6 +39,7 @@ struct RunningMapPage: View {
                             Button {
                                 showStopAlert = true
                                 mapVM.stopUpdatingLocation()
+                                WebSocketService.sharedSocket.sendMessageStop()
                             } label: {
                                 Text("끝내기")
                                     .font(.body1)
@@ -65,6 +66,7 @@ struct RunningMapPage: View {
                             
                             Button {
                                 mapVM.startUpdatingLocation()
+                                WebSocketService.sharedSocket.sendMessageResume()
                             } label: {
                                 Text("계속하기")
                                     .font(.body1)

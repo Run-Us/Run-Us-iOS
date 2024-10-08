@@ -106,11 +106,13 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         }
         
         do {
-            let decodedMessage = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+            let decodedMessage = try JSONDecoder().decode(LocationUpdateResponse.self, from: jsonData)
             messages.append("\(decodedMessage.code) [id: \(messageId), at: \(destination)]: \(decodedMessage.message)")
             print("Message received at \(destination): \(decodedMessage.message)")
         } catch {
+            
             print("Decoding error: \(error)")
+            
         }
     }
     
@@ -132,9 +134,9 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             latitude: currentUserLocation.coordinate.latitude,
             longitude: currentUserLocation.coordinate.longitude,
             count: self.count)
-        print("\(self.count) : webSockeet || sendMessage || UPDATELOCATION || \(receiptId)|| (\(currentUserLocation.coordinate.latitude), \(currentUserLocation.coordinate.longitude))")
+        print("\(self.count) : webSocket || sendMessage || UPDATELOCATION || \(receiptId)|| (\(currentUserLocation.coordinate.latitude), \(currentUserLocation.coordinate.longitude))")
         
-            self.swiftStomp?.send(body: runningUpdateInfo, to: "/app/users/runnings/location", receiptId: receiptId, headers: ["content-type": "application/json"])
+        self.swiftStomp?.send(body: runningUpdateInfo, to: "/app/users/runnings/location", receiptId: receiptId, headers: ["content-type": "application/json"])
     }
     
     func sendMessagePause() {
@@ -142,6 +144,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "userId": UserDefaults.standard.string(forKey: "userId"),
             "runningId": runningSessionInfo?.runningKey
         ]
+        print("webSockeet || sendMessage || Pause || \(pauseInfo)")
         WebSocketService.sharedSocket.sendMessage(body: pauseInfo, destination: "/app/users/runnings/pause")
     }
     
@@ -150,7 +153,17 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "userId": UserDefaults.standard.string(forKey: "userId"),
             "runningId": runningSessionInfo?.runningKey
         ]
+        print("webSockeet || sendMessage || Stop || \(stopInfo)")
         WebSocketService.sharedSocket.sendMessage(body: stopInfo, destination: "/app/hello")
+    }
+    
+    func sendMessageResume() {
+        let resumeInfo = [
+            "userId": UserDefaults.standard.string(forKey: "userId"),
+            "runningId": runningSessionInfo?.runningKey
+        ]
+        print("webSockeet || sendMessage || Stop || \(resumeInfo)")
+        WebSocketService.sharedSocket.sendMessage(body: resumeInfo, destination: "/app/users/runnings/resume")
     }
 }
 
