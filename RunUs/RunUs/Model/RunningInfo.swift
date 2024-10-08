@@ -19,7 +19,7 @@ struct LocationResponse: Codable {
     var success: Bool
     var message: String
     var code: String
-    var payload: UserLocation
+    var payload: UserLocation?
 }
 
 struct Location: Codable {
@@ -28,11 +28,18 @@ struct Location: Codable {
     var y: Double
 }
 
+struct LocationUpdateResponse: Codable {
+    var success: Bool
+    var message: String
+    var code: String
+    var payload: Location?
+}
+
 struct RunningUpdateInfo: Codable {
     var runningId: String
     var userId: String
-    var latitude: Double
-    var longitude: Double
+    var latitude: Double?
+    var longitude: Double?
     var count: Int
 }
 

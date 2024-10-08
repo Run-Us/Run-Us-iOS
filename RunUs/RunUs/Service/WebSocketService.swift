@@ -108,11 +108,13 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         }
         
         do {
-            let decodedMessage = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+            let decodedMessage = try JSONDecoder().decode(LocationUpdateResponse.self, from: jsonData)
             messages.append("\(decodedMessage.code) [id: \(messageId), at: \(destination)]: \(decodedMessage.message)")
             print("Message received at \(destination): \(decodedMessage.message)")
         } catch {
+            
             print("Decoding error: \(error)")
+            
         }
     }
     
@@ -155,6 +157,8 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "userId": userId,
             "runningId": runningSessionInfo?.runningKey
         ]
+
+        print("webSockeet || sendMessage || Pause || \(pauseInfo)")
         sendMessage(body: pauseInfo, destination: "/app/users/runnings/pause")
     }
     
@@ -163,6 +167,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "userId": userId,
             "runningId": runningSessionInfo?.runningKey
         ]
+      print("webSockeet || sendMessage || Stop || \(stopInfo)")
         sendMessage(body: stopInfo, destination: "/app/hello")
     }
     
@@ -176,6 +181,15 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         )
         
         swiftStomp?.send(body: aggregateInfo, to: "/app/users/runnings/aggregate", receiptId: receiptId, headers: ["Content-Type": "application/json"])
+    }
+    
+    func sendMessageResume() {
+        let resumeInfo = [
+            "userId": UserDefaults.standard.string(forKey: "userId"),
+            "runningId": runningSessionInfo?.runningKey
+        ]
+        print("webSockeet || sendMessage || Stop || \(resumeInfo)")
+        WebSocketService.sharedSocket.sendMessage(body: resumeInfo, destination: "/app/users/runnings/resume")
     }
 }
 
