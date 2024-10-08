@@ -167,7 +167,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "userId": userId,
             "runningId": runningSessionInfo?.runningKey
         ]
-      print("webSockeet || sendMessage || Stop || \(stopInfo)")
+        print("webSockeet || sendMessage || Stop || \(stopInfo)")
         sendMessage(body: stopInfo, destination: "/app/hello")
     }
     
@@ -179,7 +179,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             runningId: runningSessionInfo?.runningKey ?? "runningKey is nil",
             dataList: aggregateInfo
         )
-        
+        print("webSockeet || sendMessage || Aggregate || \(aggregateInfo)")
         swiftStomp?.send(body: aggregateInfo, to: "/app/users/runnings/aggregate", receiptId: receiptId, headers: ["Content-Type": "application/json"])
     }
     
@@ -189,7 +189,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "runningId": runningSessionInfo?.runningKey
         ]
         print("webSockeet || sendMessage || Stop || \(resumeInfo)")
-        WebSocketService.sharedSocket.sendMessage(body: resumeInfo, destination: "/app/users/runnings/resume")
+        sendMessage(body: resumeInfo, destination: "/app/users/runnings/resume")
     }
 }
 
