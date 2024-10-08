@@ -18,7 +18,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     let userId = UserDefaults.standard.string(forKey: "userId") ?? "userId is nil"
     private var subscriptions = Set<AnyCancellable>()
     var runningSessionInfo: RunningSessionInfo?
-    var aggregateInfo: [LocationWithCount] = []
+    var locationList: [LocationWithCount] = []
     var count: Int = 0
     
     // Published properties to expose to your views or other components
@@ -139,7 +139,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             count: self.count)
         
         // aggregate에 보낼 dataList 갱신
-        aggregateInfo.append(
+        locationList.append(
             LocationWithCount(
                 latitude: currentUserLocation.coordinate.latitude,
                 longitude: currentUserLocation.coordinate.longitude,
@@ -177,7 +177,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
         let aggregateInfo = AggregateInfo(
             userId: userId,
             runningId: runningSessionInfo?.runningKey ?? "runningKey is nil",
-            dataList: aggregateInfo
+            dataList: locationList
         )
         print("webSockeet || sendMessage || Aggregate || \(aggregateInfo)")
         swiftStomp?.send(body: aggregateInfo, to: "/app/users/runnings/aggregate", receiptId: receiptId, headers: ["Content-Type": "application/json"])
