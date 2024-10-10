@@ -16,9 +16,7 @@ struct LoginPage: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 24) {
                 Text("Run with Us!")
-                    .font(.title1)
                 Text("모든 러너가 즐겁게 성장하며\n함께 달릴 수 있는 러닝 크루 플랫폼")
-                    .font(.body1)
                     .lineSpacing(0.8)
                 Button(action: {
                     authVM.kakaoLogin { isSuccess in

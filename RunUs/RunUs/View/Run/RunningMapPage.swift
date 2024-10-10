@@ -42,7 +42,6 @@ struct RunningMapPage: View {
                                 WebSocketService.sharedSocket.sendMessageStop()
                             } label: {
                                 Text("끝내기")
-                                    .font(.body1)
                                     .foregroundColor(.white)
                             }
                             .padding()
@@ -70,7 +69,6 @@ struct RunningMapPage: View {
                                 WebSocketService.sharedSocket.sendMessageResume()
                             } label: {
                                 Text("계속하기")
-                                    .font(.body1)
                                     .foregroundColor(.black)
                             }
                             .padding()
@@ -84,20 +82,17 @@ struct RunningMapPage: View {
                 HStack {
                     VStack(spacing: 15) {
                         Text("시간")
-                            .font(.body1)
                         Text(motionManager.runningInfo.runningTime ?? "00:00")
                     }
                     .frame(width: geometry.size.width/2)
                     VStack(spacing: 15) {
                         Text("평균 페이스")
-                            .font(.body1)
                         Text(motionManager.runningInfo.averagePace ?? "-' --''")
                     }
                     .frame(width: geometry.size.width/2)
                 }
                 VStack(spacing: 15) {
                     Text("거리")
-                        .font(.body1)
                     if let distance = motionManager.runningInfo.distance {
                         Text("\(distance, specifier: "%.2f")km")
                     } else {
@@ -105,7 +100,6 @@ struct RunningMapPage: View {
                     }
                 }
             }
-            .font(.title1)
         }
     }
 }
