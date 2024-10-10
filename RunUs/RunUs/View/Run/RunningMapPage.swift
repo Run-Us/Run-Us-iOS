@@ -57,6 +57,7 @@ struct RunningMapPage: View {
                                     })
                                     Button(action: {
                                         mapVM.stopUpdatingLocation()
+                                        WebSocketService.sharedSocket.sendMessageAggregate()
                                         showFinishPage = true
                                     }, label: {
                                         Text("끝내기")

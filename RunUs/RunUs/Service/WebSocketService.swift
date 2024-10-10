@@ -15,8 +15,10 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     private var swiftStomp: SwiftStomp?
     var runningSessionService: RunningSessionService?
     let WebSocketURL = Bundle.main.object(forInfoDictionaryKey: "WEBSOCKET_URL") as? String
+    let userId = UserDefaults.standard.string(forKey: "userId") ?? "userId is nil"
     private var subscriptions = Set<AnyCancellable>()
     var runningSessionInfo: RunningSessionInfo?
+    var locationList: [LocationWithCount] = []
     var count: Int = 0
     
     // Published properties to expose to your views or other components
@@ -128,33 +130,57 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
     func sendMessageLocationUpdate(currentUserLocation: CLLocation) {
         let receiptId = "msg-\(Int.random(in: 0..<1000))"
         count += 1
+        
         let runningUpdateInfo = RunningUpdateInfo (
             runningId: UserDefaults.standard.string(forKey: "runningId") ?? "",
-            userId: UserDefaults.standard.string(forKey: "userId") ?? "",
+            userId: userId,
             latitude: currentUserLocation.coordinate.latitude,
             longitude: currentUserLocation.coordinate.longitude,
             count: self.count)
-        print("\(self.count) : webSocket || sendMessage || UPDATELOCATION || \(receiptId)|| (\(currentUserLocation.coordinate.latitude), \(currentUserLocation.coordinate.longitude))")
+        
+        // aggregate에 보낼 dataList 갱신
+        locationList.append(
+            LocationWithCount(
+                latitude: currentUserLocation.coordinate.latitude,
+                longitude: currentUserLocation.coordinate.longitude,
+                count: count
+            )
+        )
+        
+        print("\(self.count) : webSockeet || sendMessage || UPDATELOCATION || \(receiptId)|| (\(currentUserLocation.coordinate.latitude), \(currentUserLocation.coordinate.longitude))")
         
         self.swiftStomp?.send(body: runningUpdateInfo, to: "/app/users/runnings/location", receiptId: receiptId, headers: ["content-type": "application/json"])
     }
     
     func sendMessagePause() {
         let pauseInfo = [
-            "userId": UserDefaults.standard.string(forKey: "userId"),
+            "userId": userId,
             "runningId": runningSessionInfo?.runningKey
         ]
+
         print("webSockeet || sendMessage || Pause || \(pauseInfo)")
-        WebSocketService.sharedSocket.sendMessage(body: pauseInfo, destination: "/app/users/runnings/pause")
+        sendMessage(body: pauseInfo, destination: "/app/users/runnings/pause")
     }
     
     func sendMessageStop() {
         let stopInfo = [
-            "userId": UserDefaults.standard.string(forKey: "userId"),
+            "userId": userId,
             "runningId": runningSessionInfo?.runningKey
         ]
         print("webSockeet || sendMessage || Stop || \(stopInfo)")
-        WebSocketService.sharedSocket.sendMessage(body: stopInfo, destination: "/app/hello")
+        sendMessage(body: stopInfo, destination: "/app/hello")
+    }
+    
+    func sendMessageAggregate() {
+        let receiptId = "msg-\(Int.random(in: 0..<1000))"
+        
+        let aggregateInfo = AggregateInfo(
+            userId: userId,
+            runningId: runningSessionInfo?.runningKey ?? "runningKey is nil",
+            dataList: locationList
+        )
+        print("webSockeet || sendMessage || Aggregate || \(aggregateInfo)")
+        swiftStomp?.send(body: aggregateInfo, to: "/app/users/runnings/aggregate", receiptId: receiptId, headers: ["Content-Type": "application/json"])
     }
     
     func sendMessageResume() {
@@ -163,7 +189,7 @@ class WebSocketService: ObservableObject, SwiftStompDelegate {
             "runningId": runningSessionInfo?.runningKey
         ]
         print("webSockeet || sendMessage || Stop || \(resumeInfo)")
-        WebSocketService.sharedSocket.sendMessage(body: resumeInfo, destination: "/app/users/runnings/resume")
+        sendMessage(body: resumeInfo, destination: "/app/users/runnings/resume")
     }
 }
 

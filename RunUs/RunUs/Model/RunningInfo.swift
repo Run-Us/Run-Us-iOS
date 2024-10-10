@@ -42,3 +42,15 @@ struct RunningUpdateInfo: Codable {
     var longitude: Double?
     var count: Int
 }
+
+struct AggregateInfo: Codable {
+    var userId: String
+    var runningId: String
+    var dataList: [LocationWithCount]
+}
+
+struct LocationWithCount: Codable {
+    var latitude: Double
+    var longitude: Double
+    var count: Int
+}
