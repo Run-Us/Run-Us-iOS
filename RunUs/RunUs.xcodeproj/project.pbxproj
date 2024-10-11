@@ -38,6 +38,7 @@
 		2398F4B12CB8303E001D922B /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4AC2CB8303E001D922B /* Pretendard-Medium.ttf */; };
 		2398F4B22CB8303E001D922B /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4AB2CB8303E001D922B /* Pretendard-Bold.ttf */; };
 		23A8F7952C9AA2EB00A20EC5 /* RunAlonePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */; };
+		8837640D2CB98A3C0046EC7B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837640C2CB98A360046EC7B /* SplashView.swift */; };
 		887940EE2CAAFEC80018C035 /* RunningSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887940ED2CAAFEC80018C035 /* RunningSessionService.swift */; };
 		887940F42CAB2AD30018C035 /* JoinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887940F32CAB2AD30018C035 /* JoinPage.swift */; };
 		887940F62CAB2D680018C035 /* JoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887940F52CAB2D680018C035 /* JoinService.swift */; };
@@ -91,6 +92,7 @@
 		2398F4AD2CB8303E001D922B /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		2398F4AE2CB8303E001D922B /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
 		23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAlonePage.swift; sourceTree = "<group>"; };
+		8837640C2CB98A360046EC7B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		887940ED2CAAFEC80018C035 /* RunningSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSessionService.swift; sourceTree = "<group>"; };
 		887940F32CAB2AD30018C035 /* JoinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPage.swift; sourceTree = "<group>"; };
 		887940F52CAB2D680018C035 /* JoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinService.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				23B708DC2C995136006E9547 /* Run */,
 				888648F32C981F0700B040BA /* GroupRun */,
 				88E556042C8F208F003789B7 /* HomeTab.swift */,
+				8837640C2CB98A360046EC7B /* SplashView.swift */,
 				88E556062C8F20C8003789B7 /* CrewTab.swift */,
 				88E5560C2C8F213E003789B7 /* MyTab.swift */,
 				88E556102C8F5CCC003789B7 /* TabBar.swift */,
@@ -401,6 +404,7 @@
 				233ED2002CABA0E7001EF0BC /* RunningInfo.swift in Sources */,
 				88E556112C8F5CCC003789B7 /* TabBar.swift in Sources */,
 				230314E52C88851100B299D5 /* FontExtension.swift in Sources */,
+				8837640D2CB98A3C0046EC7B /* SplashView.swift in Sources */,
 				888648F52C981F7800B040BA /* CreateGroupRunPage.swift in Sources */,
 				887940F62CAB2D680018C035 /* JoinService.swift in Sources */,
 				237B430E2C8F0193002163B9 /* MapPage.swift in Sources */,

@@ -11,6 +11,7 @@ import KakaoSDKAuth
 
 @main
 struct RunUsApp: App {
+    @State var isLaunching: Bool = false
     
     init() {
         // kakao sdk 초기화
@@ -20,12 +21,25 @@ struct RunUsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginPage()
-                .onOpenURL(perform: { url in
-                    if AuthApi.isKakaoTalkLoginUrl(url) {
-                        _ = AuthController.handleOpenUrl(url: url)
+            if isLaunching {
+                LoginPage()
+                    .onOpenURL(perform: { url in
+                        if AuthApi.isKakaoTalkLoginUrl(url) {
+                            _ = AuthController.handleOpenUrl(url: url)
+                        }
+                    })
+            }
+            else {
+                SplashView()
+                    .onAppear{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            withAnimation {
+                                isLaunching = true
+                            }
+                        }
                     }
-                })
+            }
+            
         }
     }
 }
