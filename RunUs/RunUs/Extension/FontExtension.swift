@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 enum FontName {
-    static let paperlogyBold = "Paperlogy-Bold"
-    static let paperlogySemiBold = "Papaerlogy-SemiBold"
-    static let paperlogyMedium = "Paperlogy-Medium"
-    static let PretendardBold = "Pretendard-Bold"
+    static let paperlogyBold = "Paperlogy-7Bold"
+    static let paperlogySemiBold = "Paperlogy-6SemiBold"
+    static let paperlogyMedium = "Paperlogy-5Medium"
+    static let pretendardBold = "Pretendard-Bold"
     static let pretendardSemiBold = "Pretendard-SemiBold"
     static let pretendardMedium = "Pretendard-Medium"
     static let pretendardRegular = "Pretendard-Regular"
@@ -35,13 +35,13 @@ extension Font {
     static let title5_medium: Font = .custom(FontName.paperlogyMedium, size: 16)
     
     // body
-    static let body1_bold: Font = .custom(FontName.PretendardBold, size: 16)
+    static let body1_bold: Font = .custom(FontName.pretendardBold, size: 16)
     static let body1_medium: Font = .custom(FontName.pretendardMedium, size: 16)
     static let body2_semibold: Font = .custom(FontName.pretendardSemiBold, size: 14)
     static let body2_medium: Font = .custom(FontName.pretendardMedium, size: 14)
     
     // caption
-    static let caption_bold: Font = .custom(FontName.PretendardBold, size: 12)
+    static let caption_bold: Font = .custom(FontName.pretendardBold, size: 12)
     static let caption_semibold: Font = .custom(FontName.pretendardSemiBold, size: 12)
     static let caption_medium: Font = .custom(FontName.pretendardMedium, size: 12)
     static let caption_regular: Font = .custom(FontName.pretendardRegular, size: 12)
