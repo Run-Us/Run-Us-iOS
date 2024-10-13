@@ -75,7 +75,7 @@ class MotionManager: ObservableObject {
     
     // 러닝 데이터 측정 가능 여부 확인
     func checkPedometerAuthorization(completion: @escaping (_ : Bool) -> Void) {
-        guard CMPedometer.isDistanceAvailable() || CMPedometer.isPaceAvailable() else {
+        guard CMPedometer.isDistanceAvailable() && CMPedometer.isPaceAvailable() else {
             print("거리 또는 페이스 측정 불가능")
             completion(false)
             return
