@@ -7,8 +7,15 @@
 
 import SwiftUI
 
+enum Tab {
+    case home
+    case run
+    case my
+}
+
 struct TabBar: View {
-    
+    @State private var selectedTab: Tab = .home
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -22,24 +29,57 @@ struct TabBar: View {
                     .padding(16)
                     Divider()
                 }
-                // 탭
-                TabView {
-                    HomeTab()
-                        .tabItem {
+                
+                // 커스텀 탭바
+                VStack {
+                    Spacer()
+                    
+                    // 탭 별 보여줄 페이지
+                    switch (selectedTab) {
+                    case .home: HomeTab()
+                    case .my:   MyTab()
+                    default: EmptyView()
+                    }
+                    
+                    Spacer()
+                    
+                    // 탭 아이콘
+                    HStack {
+                        Spacer()
+                        
+                        // 홈
+                        Button {
+                            selectedTab = .home
+                        } label: {
                             Image("tab_home")
                                 .renderingMode(.template)
+                                .foregroundStyle(selectedTab == .home ? .gray900 : .gray400)
                         }
-                    RunningPage()
-                        .tabItem {
+                        
+                        Spacer()
+                        
+                        // 달리기
+                        Button {
+                            selectedTab = .run
+                        } label: {
                             Image("tab_play")
                         }
-                    MyTab()
-                        .tabItem {
+                        .offset(y: -10)
+                        
+                        Spacer()
+                        
+                        // 마이페이지
+                        Button {
+                            selectedTab = .my
+                        } label: {
                             Image("tab_user")
                                 .renderingMode(.template)
+                                .foregroundStyle(selectedTab == .my ? .gray900 : .gray400)
                         }
+                        
+                        Spacer()
+                    }
                 }
-                .accentColor(.gray900)
             }
             .navigationBarBackButtonHidden()
         }
