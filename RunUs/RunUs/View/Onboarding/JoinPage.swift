@@ -17,39 +17,83 @@ struct JoinPage: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("사용자 정보")) {
-                    TextField("닉네임을 입력하세요", text: $nickname)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                    
-                    TextField("이메일 주소를 입력하세요", text: $email)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                }
+            VStack(alignment:.center) {
                 
-                Section {
-                    Button(action: {
-                        print("닉네임 - \(nickname) : 이메일 - \(email)")
-                        joinService.joinMembership(inputNickName: nickname, inputEmail: email) { success in
-                            if success {
-                                userInfo.set(joinService.joinMemberInfo?.publicId, forKey: "userId")
-                                loginSuccess = true
-                                dismiss()
-                            }
-                        }
-                    }, label: {
-                        Text("저장")
-                    })
-                    .disabled(nickname.isEmpty || email.isEmpty)
-                    
+                Text("만나서 반가워요!")
+                    .font(.title4_semibold)
+                Text("러너 프로필을 만들어 볼까요?")
+                    .font(.body2_medium)
+                    .foregroundColor(.gray500)
+                    .padding(8)
+                Image("default_user_profile")
+                    .overlay {
+                        Image("plus_profile_button")
+                            .offset(x: 30, y: 30)
+                    }
+                
+                HStack {
+                    Text("닉네임")
+                        .font(.body1_bold)
+                        .foregroundColor(.gray700)
+                    Spacer()
                 }
+                .padding(.horizontal)
+                
+                TextField("한글, 영어, 숫자만 입력 가능해요", text: $nickname)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(false)
+                    .foregroundColor(.gray500)
+                    .cornerRadius(8)
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(.gray300, lineWidth: 1)
+                    )
+                    .padding()
+                
+                HStack {
+                    Text("성별")
+                        .font(.body1_bold)
+                        .foregroundColor(.gray700)
+                    Spacer()
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("성별을 선택해주세요")
+                    })
+                }
+                .padding(.horizontal)
+                Spacer()
+                
+                Divider()
+                
+                Button(action: {
+                    print("닉네임 - \(nickname) : 이메일 - \(email)")
+                    joinService.joinMembership(inputNickName: nickname, inputEmail: email) { success in
+                        if success {
+                            userInfo.set(joinService.joinMemberInfo?.publicId, forKey: "userId")
+                            loginSuccess = true
+                            dismiss()
+                        }
+                    }
+                }, label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(width: 361, height: 56)
+                        Text("시작하기")
+                    }
+                })
+                .disabled(nickname.isEmpty || email.isEmpty)
             }
-            .navigationBarTitle("정보 입력")
+            
         }
+        .navigationBarItems(leading: Text("프로필 설정")
+            .font(.body1_medium)
+            .foregroundColor(.gray900))
+        
     }
 }
+
 
 #Preview {
     JoinPage(loginSuccess: .constant(false))
