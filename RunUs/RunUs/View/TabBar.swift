@@ -44,40 +44,44 @@ struct TabBar: View {
                     Spacer()
                     
                     // 탭 아이콘
-                    HStack {
-                        Spacer()
-                        
-                        // 홈
-                        Button {
-                            selectedTab = .home
-                        } label: {
-                            Image("tab_home")
-                                .renderingMode(.template)
-                                .foregroundStyle(selectedTab == .home ? .gray900 : .gray400)
+                    VStack {
+                        Divider()
+                            .offset(y: 10)
+                        HStack {
+                            Spacer()
+                            
+                            // 홈
+                            Button {
+                                selectedTab = .home
+                            } label: {
+                                Image("tab_home")
+                                    .renderingMode(.template)
+                                    .foregroundStyle(selectedTab == .home ? .gray900 : .gray400)
+                            }
+                            
+                            Spacer()
+                            
+                            // 달리기
+                            Button {
+                                selectedTab = .run
+                            } label: {
+                                Image("tab_play")
+                            }
+                            .offset(y: -10)
+                            
+                            Spacer()
+                            
+                            // 마이페이지
+                            Button {
+                                selectedTab = .my
+                            } label: {
+                                Image("tab_user")
+                                    .renderingMode(.template)
+                                    .foregroundStyle(selectedTab == .my ? .gray900 : .gray400)
+                            }
+                            
+                            Spacer()
                         }
-                        
-                        Spacer()
-                        
-                        // 달리기
-                        Button {
-                            selectedTab = .run
-                        } label: {
-                            Image("tab_play")
-                        }
-                        .offset(y: -10)
-                        
-                        Spacer()
-                        
-                        // 마이페이지
-                        Button {
-                            selectedTab = .my
-                        } label: {
-                            Image("tab_user")
-                                .renderingMode(.template)
-                                .foregroundStyle(selectedTab == .my ? .gray900 : .gray400)
-                        }
-                        
-                        Spacer()
                     }
                 }
             }
