@@ -8,18 +8,38 @@
 import SwiftUI
 
 struct TabBar: View {
+    
     var body: some View {
         NavigationStack {
-            TabView {
-                RunningPage()
-                    .tabItem {
-                        Image(systemName: "figure.run")
-                        Text("Run")
+            VStack {
+                // 상단 바
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack {
+                        Image("logo_black")
+                            .resizable()
+                            .frame(width: 104, height: 24)
                     }
-                MyTab()
-                    .tabItem {
-                        Label("My", systemImage: "person.circle")
-                    }
+                    .padding(16)
+                    Divider()
+                }
+                // 탭
+                TabView {
+                    HomeTab()
+                        .tabItem {
+                            Image("tab_home")
+                                .renderingMode(.template)
+                        }
+                    RunningPage()
+                        .tabItem {
+                            Image("tab_play")
+                        }
+                    MyTab()
+                        .tabItem {
+                            Image("tab_user")
+                                .renderingMode(.template)
+                        }
+                }
+                .accentColor(.gray900)
             }
             .navigationBarBackButtonHidden()
         }
