@@ -28,13 +28,13 @@
 		238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238E78F12C83147200D04F58 /* RunUsApp.swift */; };
 		238E78F62C83147300D04F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F52C83147300D04F58 /* Assets.xcassets */; };
 		238E78F92C83147300D04F58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238E78F82C83147300D04F58 /* Preview Assets.xcassets */; };
+		23931D9D2CBA369A00BD8BBA /* Paperlogy-6SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23931D9C2CBA369A00BD8BBA /* Paperlogy-6SemiBold.ttf */; };
+		23931D9F2CBA36EE00BD8BBA /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23931D9E2CBA36EE00BD8BBA /* Pretendard-SemiBold.ttf */; };
+		23931DA22CBA370000BD8BBA /* Paperlogy-7Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23931DA12CBA370000BD8BBA /* Paperlogy-7Bold.ttf */; };
+		23931DA32CBA370000BD8BBA /* Paperlogy-5Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23931DA02CBA370000BD8BBA /* Paperlogy-5Medium.ttf */; };
 		2398F4942CB29B11001D922B /* FinishRunningPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2398F4932CB29B11001D922B /* FinishRunningPage.swift */; };
 		2398F4962CB2B968001D922B /* ShareRunningRecordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2398F4952CB2B968001D922B /* ShareRunningRecordPage.swift */; };
-		2398F4A72CB82933001D922B /* Paperlogy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4A52CB82933001D922B /* Paperlogy-Bold.ttf */; };
-		2398F4A82CB82933001D922B /* Paperlogy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4A62CB82933001D922B /* Paperlogy-Medium.ttf */; };
-		2398F4AA2CB82F28001D922B /* Paperlogy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4A92CB82F28001D922B /* Paperlogy-SemiBold.ttf */; };
 		2398F4AF2CB8303E001D922B /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4AD2CB8303E001D922B /* Pretendard-Regular.ttf */; };
-		2398F4B02CB8303E001D922B /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4AE2CB8303E001D922B /* Pretendard-SemiBold.ttf */; };
 		2398F4B12CB8303E001D922B /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4AC2CB8303E001D922B /* Pretendard-Medium.ttf */; };
 		2398F4B22CB8303E001D922B /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2398F4AB2CB8303E001D922B /* Pretendard-Bold.ttf */; };
 		23A8F7952C9AA2EB00A20EC5 /* RunAlonePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */; };
@@ -82,15 +82,15 @@
 		238E78F12C83147200D04F58 /* RunUsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunUsApp.swift; sourceTree = "<group>"; };
 		238E78F52C83147300D04F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		238E78F82C83147300D04F58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		23931D9C2CBA369A00BD8BBA /* Paperlogy-6SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paperlogy-6SemiBold.ttf"; sourceTree = "<group>"; };
+		23931D9E2CBA36EE00BD8BBA /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
+		23931DA02CBA370000BD8BBA /* Paperlogy-5Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paperlogy-5Medium.ttf"; sourceTree = "<group>"; };
+		23931DA12CBA370000BD8BBA /* Paperlogy-7Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paperlogy-7Bold.ttf"; sourceTree = "<group>"; };
 		2398F4932CB29B11001D922B /* FinishRunningPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRunningPage.swift; sourceTree = "<group>"; };
 		2398F4952CB2B968001D922B /* ShareRunningRecordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRunningRecordPage.swift; sourceTree = "<group>"; };
-		2398F4A52CB82933001D922B /* Paperlogy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paperlogy-Bold.ttf"; sourceTree = "<group>"; };
-		2398F4A62CB82933001D922B /* Paperlogy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paperlogy-Medium.ttf"; sourceTree = "<group>"; };
-		2398F4A92CB82F28001D922B /* Paperlogy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paperlogy-SemiBold.ttf"; sourceTree = "<group>"; };
 		2398F4AB2CB8303E001D922B /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		2398F4AC2CB8303E001D922B /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		2398F4AD2CB8303E001D922B /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
-		2398F4AE2CB8303E001D922B /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
 		23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAlonePage.swift; sourceTree = "<group>"; };
 		8837640C2CB98A360046EC7B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		887940ED2CAAFEC80018C035 /* RunningSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSessionService.swift; sourceTree = "<group>"; };
@@ -144,13 +144,13 @@
 		230314DF2C8884FA00B299D5 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				2398F4A52CB82933001D922B /* Paperlogy-Bold.ttf */,
-				2398F4A62CB82933001D922B /* Paperlogy-Medium.ttf */,
-				2398F4A92CB82F28001D922B /* Paperlogy-SemiBold.ttf */,
+				23931D9E2CBA36EE00BD8BBA /* Pretendard-SemiBold.ttf */,
+				23931D9C2CBA369A00BD8BBA /* Paperlogy-6SemiBold.ttf */,
 				2398F4AB2CB8303E001D922B /* Pretendard-Bold.ttf */,
 				2398F4AC2CB8303E001D922B /* Pretendard-Medium.ttf */,
 				2398F4AD2CB8303E001D922B /* Pretendard-Regular.ttf */,
-				2398F4AE2CB8303E001D922B /* Pretendard-SemiBold.ttf */,
+				23931DA02CBA370000BD8BBA /* Paperlogy-5Medium.ttf */,
+				23931DA12CBA370000BD8BBA /* Paperlogy-7Bold.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -373,13 +373,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2398F4AF2CB8303E001D922B /* Pretendard-Regular.ttf in Resources */,
-				2398F4B02CB8303E001D922B /* Pretendard-SemiBold.ttf in Resources */,
 				2398F4B12CB8303E001D922B /* Pretendard-Medium.ttf in Resources */,
+				23931D9F2CBA36EE00BD8BBA /* Pretendard-SemiBold.ttf in Resources */,
 				2398F4B22CB8303E001D922B /* Pretendard-Bold.ttf in Resources */,
-				2398F4A72CB82933001D922B /* Paperlogy-Bold.ttf in Resources */,
-				2398F4AA2CB82F28001D922B /* Paperlogy-SemiBold.ttf in Resources */,
-				2398F4A82CB82933001D922B /* Paperlogy-Medium.ttf in Resources */,
+				23931D9D2CBA369A00BD8BBA /* Paperlogy-6SemiBold.ttf in Resources */,
 				238E78F92C83147300D04F58 /* Preview Assets.xcassets in Resources */,
+				23931DA22CBA370000BD8BBA /* Paperlogy-7Bold.ttf in Resources */,
+				23931DA32CBA370000BD8BBA /* Paperlogy-5Medium.ttf in Resources */,
 				238E78F62C83147300D04F58 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
