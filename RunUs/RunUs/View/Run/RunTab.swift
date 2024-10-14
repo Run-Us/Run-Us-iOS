@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RunTab: View {
+    @StateObject var mapVM: MapViewModel = .init()
     @State private var selectedRunning = 0
     let typeOfRunning = ["혼자 달리기", "그룹 달리기"]
     
@@ -44,7 +45,7 @@ struct RunTab: View {
                     }
                     
                     switch(selectedRunning) {
-                    case 0: EmptyView()
+                    case 0: runAlone()
                     case 1: EmptyView()
                     default: EmptyView()
                     }
@@ -66,6 +67,23 @@ struct RunTab: View {
                     }
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    func runAlone() -> some View {
+        ZStack(alignment: .bottom) {
+            MapPage(mapVM: mapVM)
+                .ignoresSafeArea()
+            // 지도 위 흰색 그라데이션 효과
+            LinearGradient(colors: [.white.opacity(0.5), .white.opacity(0)], startPoint: .top, endPoint: .bottom)
+            Button {
+                
+            } label: {
+                Image("run_start")
+            }
+            .buttonStyle(.plain)
+            .offset(y: -15)
         }
     }
 }
