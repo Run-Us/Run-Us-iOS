@@ -29,13 +29,14 @@ struct RunningPage: View {
                         width: geometry.size.width
                     )
                     
+                    // runningType으로 group 러닝일 때 RunningMapPage 재활용
                     switch (selectedTab) {
                     case 0:
                         RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
                     case 1:
-                        RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
+                        RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, runningType: .alone, showFinishPage: $showFinishPage)
                     default:
-                        EmptyView()
+                        RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, runningType: .group, showFinishPage: $showFinishPage)
                     }
                 }
             }

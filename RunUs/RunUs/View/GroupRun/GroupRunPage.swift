@@ -30,8 +30,8 @@ struct GroupRunPage: View {
             TabView(selection: $selectedTab) {
                 RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
                     .tag(0)
-                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
-                    .tag(1)
+//                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
+//                    .tag(1)
                 GroupRunMapPage(mapVM: mapVM, showFinishPage: $showFinishPage)
                     .tag(2)
             }

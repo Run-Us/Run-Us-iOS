@@ -14,7 +14,7 @@ struct GroupRunMapPage: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 50) {
-                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
+//                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
                 RunningParticipant()
             }
         }

@@ -10,6 +10,7 @@ import SwiftUI
 struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
+    let runningType: RunningType
     @State private var showStopAlert: Bool = false
     @Binding var showFinishPage: Bool
     
@@ -70,7 +71,10 @@ struct RunningMapPage: View {
                 }
                 
                 // 하단 러닝 정보
-                mapTabInfo(width: geometry.size.width/2)
+                switch (runningType) {
+                case .alone: mapTabInfo(width: geometry.size.width/2)
+                case .group: RunningParticipant()
+                }
             }
         }
     }
@@ -114,5 +118,5 @@ struct RunningMapPage: View {
 }
 
 #Preview {
-    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), showFinishPage: .constant(false))
+    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), runningType: .group, showFinishPage: .constant(false))
 }
