@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RunTab: View {
+    @Environment(\.dismiss) var dismiss
     @StateObject var mapVM: MapViewModel = .init()
     @ObservedObject var runningSession: RunningSessionService = .init()
     @State private var selectedRunning = 0
     let typeOfRunning = ["혼자 달리기", "그룹 달리기"]
-    
     
     var body: some View {
         NavigationStack {
@@ -34,7 +34,7 @@ struct RunTab: View {
                     ToolbarItem(placement: .topBarLeading) {
                         VStack {
                             Button {
-                                
+                                dismiss()
                             } label: {
                                 HStack {
                                     Image("back_button")
