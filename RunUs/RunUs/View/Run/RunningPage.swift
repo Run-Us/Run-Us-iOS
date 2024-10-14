@@ -32,11 +32,27 @@ struct RunningPage: View {
                     // runningType으로 group 러닝일 때 RunningMapPage 재사용
                     switch (selectedTab) {
                     case 0:
-                        RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
+                        RunningProgressPage(
+                            mapVM: mapVM,
+                            motionManager: mapVM.motionManager,
+                            selectedTab: $selectedTab
+                        )
                     case 1:
-                        RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, runningType: .alone, showFinishPage: $showFinishPage)
+                        RunningMapPage(
+                            mapVM: mapVM,
+                            motionManager: mapVM.motionManager,
+                            runningType: .alone,
+                            selectedTab: $selectedTab,
+                            showFinishPage: $showFinishPage
+                        )
                     default:
-                        RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, runningType: .group, showFinishPage: $showFinishPage)
+                        RunningMapPage(
+                            mapVM: mapVM,
+                            motionManager: mapVM.motionManager,
+                            runningType: .group,
+                            selectedTab: $selectedTab,
+                            showFinishPage: $showFinishPage
+                        )
                     }
                 }
             }

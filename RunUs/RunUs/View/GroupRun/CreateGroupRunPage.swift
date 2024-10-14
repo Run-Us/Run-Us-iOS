@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateGroupRunPage: View {
+    @StateObject var mapVM: MapViewModel
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
     @ObservedObject var runningSession: RunningSessionService
     @StateObject var participationService = ParticipationService()
@@ -74,11 +75,11 @@ struct CreateGroupRunPage: View {
             )
         }
         .navigationDestination(isPresented: $startGroupRun, destination:{
-            GroupRunPage()
+            RunningPage(runningType: .group, mapVM: mapVM)
         })
     }
 }
 
 #Preview {
-    CreateGroupRunPage(runningSession: RunningSessionService())
+    CreateGroupRunPage(mapVM: .init(), runningSession: RunningSessionService())
 }

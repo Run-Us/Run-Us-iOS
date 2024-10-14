@@ -12,6 +12,7 @@ struct RunningMapPage: View {
     @StateObject var motionManager: MotionManager
     let runningType: RunningType
     @State private var showStopAlert: Bool = false
+    @Binding var selectedTab: Int
     @Binding var showFinishPage: Bool
     
     var body: some View {
@@ -27,6 +28,7 @@ struct RunningMapPage: View {
                     if mapVM.isRunning {
                         Button(action: {
                             mapVM.stopUpdatingLocation()
+                            selectedTab = 1
                         }, label: {
                             Image("run_pause")
                         })
@@ -118,5 +120,5 @@ struct RunningMapPage: View {
 }
 
 #Preview {
-    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), runningType: .group, showFinishPage: .constant(false))
+    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), runningType: .group, selectedTab: .constant(1), showFinishPage: .constant(false))
 }
