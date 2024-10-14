@@ -28,6 +28,7 @@ struct Map: UIViewRepresentable {
         map.showLocationButton = true
         map.mapView.positionMode = .direction
         map.showZoomControls = false
+        map.showScaleBar = false
         
         return map
     }
@@ -48,7 +49,9 @@ struct Map: UIViewRepresentable {
     // 경로선 그리는 함수
     func addPathOverlay(_ map: NMFMapView) {
         let pathOverlay = NMFPath()
-        pathOverlay.color = .blue
+        pathOverlay.color = .secondary
+        pathOverlay.outlineColor = .primary400
+        pathOverlay.outlineWidth = 1
         pathOverlay.path = NMGLineString(points: mapVM.userPath)
         pathOverlay.mapView = map
     }
