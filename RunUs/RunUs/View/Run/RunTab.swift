@@ -57,6 +57,7 @@ struct RunTab: View {
                 .ignoresSafeArea()
             // 지도 위 흰색 그라데이션 효과
             LinearGradient(colors: [.white.opacity(0.5), .white.opacity(0)], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
             Button {
                 
             } label: {
