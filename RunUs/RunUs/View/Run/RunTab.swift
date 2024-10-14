@@ -31,6 +31,7 @@ struct RunTab: View {
                                         .foregroundStyle(selectedRunning == index ? .gray900 : .gray400)
                                         .padding(EdgeInsets(top: 15, leading: 0, bottom: 13, trailing: 0))
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                         
