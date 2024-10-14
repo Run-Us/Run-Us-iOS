@@ -31,6 +31,7 @@ struct RunningMapPage: View {
                             selectedTab = 1
                         }, label: {
                             Image("run_pause")
+                                .shadow(radius: 2, x: 0, y: 4)
                         })
                         .padding()
                     }
@@ -43,6 +44,7 @@ struct RunningMapPage: View {
                                 WebSocketService.sharedSocket.sendMessageStop()
                             } label: {
                                 Image("run_stop")
+                                    .shadow(radius: 2, x: 0, y: 4)
                             }
                             .alert("러닝을 종료할까요?", isPresented: $showStopAlert) {
                                 HStack {
@@ -66,6 +68,7 @@ struct RunningMapPage: View {
                                 WebSocketService.sharedSocket.sendMessageResume()
                             } label: {
                                 Image("run_start")
+                                    .shadow(radius: 2, x: 0, y: 4)
                             }
                         }
                         .padding()

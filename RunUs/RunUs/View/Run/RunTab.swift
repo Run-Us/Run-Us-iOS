@@ -63,6 +63,7 @@ struct RunTab: View {
                 createRunning()
             } label: {
                 Image("run_start")
+                    .shadow(radius: 2, x: 0, y: 4)
             }
             .buttonStyle(.plain)
             .offset(y: -15)
