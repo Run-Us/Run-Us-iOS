@@ -109,10 +109,10 @@ struct JoinPage: View {
                             .foregroundColor(.white)
                     }
                 })
-                .disabled(nickname.count < 2 || gender == "성별을 선택해주세요" || !nicknameIsValid)
+                .disabled(nickname.count <= 2 || gender == "성별을 선택해주세요" || !nicknameIsValid)
                 .sheet(isPresented: $showGenderPicker, content: {
                     GenderPickerSheet(gender: $gender, showGenderPicker: $showGenderPicker)
-                        .presentationDetents([.medium])
+                        .presentationDetents([.fraction(0.35)])
                 })
             }
             .padding(.top, 24)
@@ -126,7 +126,7 @@ struct JoinPage: View {
     
     func containsSpecialCharacters(text: String) -> Bool {
         let range = NSRange(location: 0, length: text.utf16.count)
-        let regex = try! NSRegularExpression(pattern: "[^A-Za-z0-9]")
+        let regex = try! NSRegularExpression(pattern: "[^A-Za-z0-9가-힣]")
         return regex.firstMatch(in: text, options: [], range: range) != nil
     }
 }
