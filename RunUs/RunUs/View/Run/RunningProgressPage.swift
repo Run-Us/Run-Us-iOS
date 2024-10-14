@@ -15,6 +15,7 @@ struct RunningProgressPage: View {
     
     var body: some View {
         VStack(spacing: 50) {
+            Spacer()
             VStack(spacing: 15) {
                 Text(motionManager.runningInfo.runningTime ?? "00:00")
                     .font(.title2_bold)
@@ -49,6 +50,8 @@ struct RunningProgressPage: View {
             }, label: {
                 Image("run_pause")
             })
+            .padding(.top, 20)
+            Spacer()
         }
         .font(.body1_medium)
         .foregroundStyle(.gray400)

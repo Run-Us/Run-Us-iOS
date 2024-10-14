@@ -57,13 +57,12 @@ struct RunTab: View {
             // 지도 위 흰색 그라데이션 효과
             LinearGradient(colors: [.white.opacity(0.5), .white.opacity(0)], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
-            Button {
-                
-            } label: {
+            NavigationLink(destination: RunningPage(runningType: .alone, mapVM: mapVM)) {
                 Image("run_start")
+                    .buttonStyle(.plain)
+                    .offset(y: -15)
             }
-            .buttonStyle(.plain)
-            .offset(y: -15)
+            
         }
     }
 }
