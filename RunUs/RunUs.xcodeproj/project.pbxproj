@@ -23,6 +23,7 @@
 		236343122C90386D00336D67 /* RunningMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236343112C90386D00336D67 /* RunningMapPage.swift */; };
 		236343142C917B3E00336D67 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236343132C917B3E00336D67 /* MapViewModel.swift */; };
 		236343162C9180D000336D67 /* RunningProgressPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236343152C9180D000336D67 /* RunningProgressPage.swift */; };
+		2372998F2CBCDD2100D0E7F6 /* RunTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2372998E2CBCDD2100D0E7F6 /* RunTab.swift */; };
 		237B430C2C8EFFF1002163B9 /* NaverMapSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 237B430B2C8EFFF1002163B9 /* NaverMapSDK */; };
 		237B430E2C8F0193002163B9 /* MapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B430D2C8F0193002163B9 /* MapPage.swift */; };
 		238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238E78F12C83147200D04F58 /* RunUsApp.swift */; };
@@ -76,6 +77,7 @@
 		236343112C90386D00336D67 /* RunningMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningMapPage.swift; sourceTree = "<group>"; };
 		236343132C917B3E00336D67 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		236343152C9180D000336D67 /* RunningProgressPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningProgressPage.swift; sourceTree = "<group>"; };
+		2372998E2CBCDD2100D0E7F6 /* RunTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTab.swift; sourceTree = "<group>"; };
 		237B430D2C8F0193002163B9 /* MapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPage.swift; sourceTree = "<group>"; };
 		238E78EE2C83147200D04F58 /* RunUs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunUs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		238E78F12C83147200D04F58 /* RunUsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunUsApp.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				236343112C90386D00336D67 /* RunningMapPage.swift */,
 				236343152C9180D000336D67 /* RunningProgressPage.swift */,
 				88E556082C8F20E8003789B7 /* RunningPage.swift */,
+				2372998E2CBCDD2100D0E7F6 /* RunTab.swift */,
 				23A8F7942C9AA2EB00A20EC5 /* RunAlonePage.swift */,
 				2398F4932CB29B11001D922B /* FinishRunningPage.swift */,
 				2398F4952CB2B968001D922B /* ShareRunningRecordPage.swift */,
@@ -409,6 +412,7 @@
 				238E78F22C83147200D04F58 /* RunUsApp.swift in Sources */,
 				2355F66C2C9E9CE700A65108 /* MotionManager.swift in Sources */,
 				88D3BF212CA95FB4009E4365 /* WebSocketService.swift in Sources */,
+				2372998F2CBCDD2100D0E7F6 /* RunTab.swift in Sources */,
 				887940EE2CAAFEC80018C035 /* RunningSessionService.swift in Sources */,
 				236343122C90386D00336D67 /* RunningMapPage.swift in Sources */,
 				887940F42CAB2AD30018C035 /* JoinPage.swift in Sources */,
