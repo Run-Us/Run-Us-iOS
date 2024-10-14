@@ -9,8 +9,10 @@ import SwiftUI
 
 struct RunTab: View {
     @StateObject var mapVM: MapViewModel = .init()
+    @ObservedObject var runningSession: RunningSessionService = .init()
     @State private var selectedRunning = 0
     let typeOfRunning = ["혼자 달리기", "그룹 달리기"]
+    
     
     var body: some View {
         NavigationStack {
@@ -46,7 +48,7 @@ struct RunTab: View {
                     
                     switch(selectedRunning) {
                     case 0: runAlone()
-                    case 1: EmptyView()
+                    case 1: StartGroupRunPage(runningSession: runningSession, mapVM: mapVM)
                     default: EmptyView()
                     }
                 }
