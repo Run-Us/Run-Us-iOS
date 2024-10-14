@@ -7,49 +7,43 @@
 
 import SwiftUI
 
+enum RunningType {
+    case alone
+    case group
+}
+
 struct RunningPage: View {
-    @State var showRunAlonePage = false
-    @State var showStartGroupRunPage = false
-    @State var passcode: String? = ""
-    @ObservedObject var runningSession: RunningSessionService = RunningSessionService()
-    @StateObject var mapVM: MapViewModel = .init()
+    let runningType: RunningType
+    @StateObject var mapVM: MapViewModel
+    @State private var selectedTab: Int = 0
+    @State private var showFinishPage: Bool = false
     
     var body: some View {
-        ZStack {
-            VStack {
-                NavigationLink(destination: StartGroupRunPage(runningSession: self.runningSession, mapVM: self.mapVM), label: {
-                    Text("같이 달리기")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                })
-                
-                Button(action: {
-                    runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
-                        if success {
-                            print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
-                            WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
-                            showRunAlonePage = true
-                        } else {
-                            print("createRunningSession || error")
-                        }
+        NavigationStack {
+            GeometryReader { geometry in
+                VStack(spacing: 0) {
+                    // picker
+                    SegmentedPicker(
+                        selectedTab: $selectedTab,
+                        type: runningType == .alone ? ["개요", "지도"] : ["개요", "지도", "그룹원"],
+                        width: geometry.size.width
+                    )
+                    
+                    switch (selectedTab) {
+                    case 0:
+                        RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
+                    case 1:
+                        RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
+                    default:
+                        EmptyView()
                     }
-                }, label: {
-                    Text("혼자 달리기")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                })
-                .navigationDestination(isPresented: $showRunAlonePage, destination: {
-                    RunAlonePage(mapVM: mapVM, runningSessionAlone: runningSession)
-                })
+                }
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }
 
 #Preview {
-    RunningPage()
+    RunningPage(runningType: .group, mapVM: .init())
 }

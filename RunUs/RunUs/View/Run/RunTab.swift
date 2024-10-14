@@ -32,17 +32,15 @@ struct RunTab: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        VStack {
-                            Button {
-                                dismiss()
-                            } label: {
-                                HStack {
-                                    Image("back_button")
-                                    Text("달리기")
-                                        .font(.body1_medium)
-                                }
-                                .foregroundStyle(.gray900)
+                        Button {
+                            dismiss()
+                        } label: {
+                            HStack {
+                                Image("back_button")
+                                Text("달리기")
+                                    .font(.body1_medium)
                             }
+                            .foregroundStyle(.gray900)
                         }
                     }
                 }
@@ -73,3 +71,15 @@ struct RunTab: View {
 #Preview {
     RunTab()
 }
+
+//@State var passcode: String? = ""
+//@ObservedObject var runningSession: RunningSessionService = RunningSessionService()
+//runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
+//    if success {
+//        print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
+//        WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
+//        showRunAlonePage = true
+//    } else {
+//        print("createRunningSession || error")
+//    }
+//}
