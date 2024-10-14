@@ -14,6 +14,8 @@ struct JoinPage: View {
     @Binding var loginSuccess: Bool
     @ObservedObject var joinService: JoinService = JoinService()
     let userInfo = UserDefaults.standard
+    @State var gender = "성별을 선택해주세요"
+    @State var showGenderPicker = false
     
     var body: some View {
         NavigationView {
@@ -27,8 +29,12 @@ struct JoinPage: View {
                     .padding(8)
                 Image("default_user_profile")
                     .overlay {
-                        Image("plus_profile_button")
-                            .offset(x: 30, y: 30)
+                        Button(action: {
+                            
+                        }, label: {
+                            Image("plus_profile_button")
+                        })
+                        .offset(x: 30, y: 30)
                     }
                 
                 HStack {
@@ -57,9 +63,11 @@ struct JoinPage: View {
                         .foregroundColor(.gray700)
                     Spacer()
                     Button(action: {
-                        
+                        showGenderPicker = true
                     }, label: {
-                        Text("성별을 선택해주세요")
+                        Text("\(gender)")
+                            .font(.body2_medium)
+                            .foregroundColor(.gray500)
                     })
                 }
                 .padding(.horizontal)
@@ -68,14 +76,8 @@ struct JoinPage: View {
                 Divider()
                 
                 Button(action: {
-                    print("닉네임 - \(nickname) : 이메일 - \(email)")
-                    joinService.joinMembership(inputNickName: nickname, inputEmail: email) { success in
-                        if success {
-                            userInfo.set(joinService.joinMemberInfo?.publicId, forKey: "userId")
-                            loginSuccess = true
-                            dismiss()
-                        }
-                    }
+                    print("닉네임 - \(nickname) : 이메일 - \(gender)")
+                    
                 }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
@@ -84,6 +86,10 @@ struct JoinPage: View {
                     }
                 })
                 .disabled(nickname.isEmpty || email.isEmpty)
+                .sheet(isPresented: $showGenderPicker, content: {
+                    GenderPickerSheet(gender: $gender, showGenderPicker: $showGenderPicker)
+                        .presentationDetents([.medium])
+                })
             }
             
         }
