@@ -20,13 +20,12 @@ struct RunUsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RunTab()
-//            LoginPage()
-//                .onOpenURL(perform: { url in
-//                    if AuthApi.isKakaoTalkLoginUrl(url) {
-//                        _ = AuthController.handleOpenUrl(url: url)
-//                    }
-//                })
+            LoginPage()
+                .onOpenURL(perform: { url in
+                    if AuthApi.isKakaoTalkLoginUrl(url) {
+                        _ = AuthController.handleOpenUrl(url: url)
+                    }
+                })
         }
     }
 }
