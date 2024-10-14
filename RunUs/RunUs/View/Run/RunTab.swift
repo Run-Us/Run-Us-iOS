@@ -47,6 +47,7 @@ struct RunTab: View {
                     }
                 }
             }
+            .navigationBarBackButtonHidden()
         }
     }
     
