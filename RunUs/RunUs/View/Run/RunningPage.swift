@@ -29,7 +29,7 @@ struct RunningPage: View {
                         width: geometry.size.width
                     )
                     
-                    // runningType으로 group 러닝일 때 RunningMapPage 재활용
+                    // runningType으로 group 러닝일 때 RunningMapPage 재사용
                     switch (selectedTab) {
                     case 0:
                         RunningProgressPage(mapVM: mapVM, motionManager: mapVM.motionManager, selectedTab: $selectedTab)
@@ -41,6 +41,17 @@ struct RunningPage: View {
                 }
             }
             .navigationBarBackButtonHidden()
+            .onAppear {
+                
+                // 권한이 모두 허용됐을 경우에만 측정 시작
+                mapVM.motionManager.checkPedometerAuthorization { isSuccess in
+                    if isSuccess {
+                        mapVM.motionManager.runningInfo = RunningInfo(startDate: Date())
+                        mapVM.startUpdatingLocation()
+                    }
+                }
+                
+            }
         }
     }
 }

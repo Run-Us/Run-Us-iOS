@@ -12,6 +12,7 @@ struct RunTab: View {
     @StateObject var mapVM: MapViewModel = .init()
     @ObservedObject var runningSession: RunningSessionService = .init()
     @State private var selectedRunning = 0
+    @State private var showRunningPage: Bool = false
     let typeOfRunning = ["혼자 달리기", "그룹 달리기"]
     
     var body: some View {
@@ -57,12 +58,32 @@ struct RunTab: View {
             // 지도 위 흰색 그라데이션 효과
             LinearGradient(colors: [.white.opacity(0.5), .white.opacity(0)], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
-            NavigationLink(destination: RunningPage(runningType: .alone, mapVM: mapVM)) {
+            
+            Button {
+                createRunning()
+            } label: {
                 Image("run_start")
-                    .buttonStyle(.plain)
-                    .offset(y: -15)
+            }
+            .buttonStyle(.plain)
+            .offset(y: -15)
+            .navigationDestination(isPresented: $showRunningPage) {
+                RunningPage(runningType: .alone, mapVM: mapVM)
             }
             
+        }
+    }
+    
+    // socket
+    func createRunning() {
+        runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
+            if success {
+                print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
+                WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
+                showRunningPage = true
+            } else {
+                print("createRunningSession || error")
+                
+            }
         }
     }
 }
@@ -70,15 +91,3 @@ struct RunTab: View {
 #Preview {
     RunTab()
 }
-
-//@State var passcode: String? = ""
-//@ObservedObject var runningSession: RunningSessionService = RunningSessionService()
-//runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
-//    if success {
-//        print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
-//        WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
-//        showRunAlonePage = true
-//    } else {
-//        print("createRunningSession || error")
-//    }
-//}

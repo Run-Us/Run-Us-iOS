@@ -32,8 +32,8 @@ struct GroupRunPage: View {
                     .tag(0)
 //                RunningMapPage(mapVM: mapVM, motionManager: mapVM.motionManager, showFinishPage: $showFinishPage)
 //                    .tag(1)
-                GroupRunMapPage(mapVM: mapVM, showFinishPage: $showFinishPage)
-                    .tag(2)
+//                GroupRunMapPage(mapVM: mapVM, showFinishPage: $showFinishPage)
+//                    .tag(2)
             }
         }
         .navigationBarBackButtonHidden()
