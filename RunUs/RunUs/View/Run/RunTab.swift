@@ -19,19 +19,27 @@ struct RunTab: View {
                     Divider()
                     
                     // Segmented Picker
-                    HStack {
-                        ForEach(0..<typeOfRunning.count, id: \.self) { index in
-                            Spacer()
-                            Button {
-                                selectedRunning = index
-                            } label: {
-                                Text(typeOfRunning[index])
-                                    .font(.body1_medium)
-                                    .foregroundStyle(selectedRunning == index ? .gray900 : .gray400)
-                                    .padding(.vertical, 15)
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            ForEach(0..<typeOfRunning.count, id: \.self) { index in
+                                Button {
+                                    selectedRunning = index
+                                } label: {
+                                    Text(typeOfRunning[index])
+                                        .frame(maxWidth: .infinity)
+                                        .font(.body1_medium)
+                                        .foregroundStyle(selectedRunning == index ? .gray900 : .gray400)
+                                        .padding(EdgeInsets(top: 15, leading: 0, bottom: 13, trailing: 0))
+                                }
                             }
-                            Spacer()
                         }
+                        
+                        // Picket 아래 이동하는 바 (애니메이션 포함)
+                        Rectangle()
+                            .fill(.primary400)
+                            .frame(width: geometry.size.width/CGFloat(typeOfRunning.count), height: 2)
+                            .offset(x: geometry.size.width / CGFloat(typeOfRunning.count) * CGFloat(selectedRunning))
+                            .animation(.easeOut, value: selectedRunning)
                     }
                     
                     switch(selectedRunning) {
