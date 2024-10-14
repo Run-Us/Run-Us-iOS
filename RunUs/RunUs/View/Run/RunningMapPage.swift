@@ -16,6 +16,8 @@ struct RunningMapPage: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 50) {
+                
+                // 상단 지도
                 ZStack(alignment: .bottom) {
                     MapPage(mapVM: mapVM)
                         .frame(height: geometry.size.width)
@@ -25,28 +27,20 @@ struct RunningMapPage: View {
                         Button(action: {
                             mapVM.stopUpdatingLocation()
                         }, label: {
-                            Image(systemName: "pause.circle")
-                                .resizable()
-                                .frame(width: 70, height: 70)
-                                .foregroundStyle(.black)
+                            Image("run_pause")
                         })
                         .padding()
                     }
                     // 계속하기&끝내기 버튼
                     else {
-                        HStack {
-                            Spacer()
+                        HStack(spacing: 40) {
                             Button {
                                 showStopAlert = true
                                 mapVM.stopUpdatingLocation()
                                 WebSocketService.sharedSocket.sendMessageStop()
                             } label: {
-                                Text("끝내기")
-                                    .foregroundColor(.white)
+                                Image("run_stop")
                             }
-                            .padding()
-                            .frame(width: geometry.size.width*0.35)
-                            .background(.black)
                             .alert("러닝을 종료할까요?", isPresented: $showStopAlert) {
                                 HStack {
                                     Button(action: {
@@ -68,17 +62,14 @@ struct RunningMapPage: View {
                                 mapVM.startUpdatingLocation()
                                 WebSocketService.sharedSocket.sendMessageResume()
                             } label: {
-                                Text("계속하기")
-                                    .foregroundColor(.black)
+                                Image("run_start")
                             }
-                            .padding()
-                            .frame(width: geometry.size.width*0.35)
-                            .background(.white)
                         }
-                        .frame(height: 70)
                         .padding()
                     }
                 }
+                
+                // 하단 러닝 정보
                 HStack {
                     VStack(spacing: 15) {
                         Text("시간")
