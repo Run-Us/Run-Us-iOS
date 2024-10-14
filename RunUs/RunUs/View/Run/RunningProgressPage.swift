@@ -32,7 +32,7 @@ struct RunningProgressPage: View {
                         .font(.title1_bold)
                         .foregroundStyle(.gray900)
                 }
-                Text("거리(km)")
+                Text("거리 (km)")
             }
             
             VStack(spacing: 15) {
