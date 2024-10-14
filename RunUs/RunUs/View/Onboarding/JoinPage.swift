@@ -10,12 +10,14 @@ import SwiftUI
 struct JoinPage: View {
     @ObservedObject var joinService: JoinService = JoinService()
     @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @Binding var loginSuccess: Bool
     @State private var nickname: String = ""
     @State private var nicknameIsValid: Bool = true
     @State var gender = "성별을 선택해주세요"
     @State var showGenderPicker = false
     @State var showAddProfile = false
+    @FocusState private var isTextFieldFocused: Bool
     let userInfo = UserDefaults.standard
     
     var body: some View {
@@ -24,10 +26,11 @@ struct JoinPage: View {
                 
                 Text("만나서 반가워요!")
                     .font(.title4_semibold)
+                    .padding(8)
                 Text("러너 프로필을 만들어 볼까요?")
                     .font(.body2_medium)
                     .foregroundColor(.gray500)
-                    .padding(8)
+                
                 Image("default_user_profile")
                     .overlay {
                         Button(action: {
@@ -37,34 +40,36 @@ struct JoinPage: View {
                         })
                         .offset(x: 30, y: 30)
                     }
+                    .padding(36)
                     .sheet(isPresented: $showAddProfile, content: {
                         AddProfileSheet()
                             .presentationDetents([.fraction(0.15)])
                     })
                 
-                HStack {
+                VStack(alignment: .leading) {
                     Text("닉네임")
                         .font(.body1_bold)
                         .foregroundColor(nicknameIsValid ? .gray700 : .error)
-                    Spacer()
+                        .padding(.horizontal)
+                    
+                    TextField("한글, 영어, 숫자만 입력 가능해요", text: $nickname)
+                        .onChange(of: nickname) { newValue in
+                            nicknameIsValid = newValue.count <= 8 && !containsSpecialCharacters(text: newValue)
+                        }
+                        .focused($isTextFieldFocused)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(false)
+                        .foregroundColor(nickname.count > 0 ? .gray900 : .gray500)
+                        .cornerRadius(8)
+                        .padding(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(!nicknameIsValid ? .error :
+                                            nickname.count > 0 ? .gray700 : .gray300, lineWidth: 1)
+                        )
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
                 }
-                .padding(.horizontal)
-                
-                TextField("한글, 영어, 숫자만 입력 가능해요", text: $nickname)
-                    .onChange(of: nickname) { newValue in
-                        nicknameIsValid = newValue.count <= 8 && !containsSpecialCharacters(text: newValue)
-                    }
-                    .autocapitalization(.none)
-                    .disableAutocorrection(false)
-                    .foregroundColor(nickname.count > 0 ? .gray900 : .gray500)
-                    .cornerRadius(8)
-                    .padding(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(!nicknameIsValid ? .error :
-                                        nickname.count > 0 ? .gray700 : .gray300, lineWidth: 1)
-                    )
-                    .padding()
                 
                 HStack {
                     Text("\(containsSpecialCharacters(text: nickname) ? "사용할 수 없는 문자가 포함되어 있어요" : nickname.count <= 8 ? "" : "닉네임은 8자 이내로 설정할 수 있어요" )")
@@ -76,7 +81,6 @@ struct JoinPage: View {
                         .foregroundColor(nicknameIsValid ? .gray400 : .error)
                 }
                 .padding(.horizontal)
-                .padding(.top, -20)
                 
                 HStack {
                     Text("성별")
@@ -87,8 +91,8 @@ struct JoinPage: View {
                         showGenderPicker = true
                     }, label: {
                         Text("\(gender)")
-                            .font(.body2_medium)
-                            .foregroundColor(.gray500)
+                            .font(.body1_medium)
+                            .foregroundColor(.gray700)
                     })
                 }
                 .padding()
@@ -112,15 +116,25 @@ struct JoinPage: View {
                 .disabled(nickname.count <= 2 || gender == "성별을 선택해주세요" || !nicknameIsValid)
                 .sheet(isPresented: $showGenderPicker, content: {
                     GenderPickerSheet(gender: $gender, showGenderPicker: $showGenderPicker)
-                        .presentationDetents([.fraction(0.35)])
+                        .presentationDetents([.fraction(0.3)])
                 })
             }
             .padding(.top, 24)
             
         }
-        .navigationBarItems(leading: Text("프로필 설정")
-            .font(.body1_medium)
-            .foregroundColor(.gray900))
+        .onTapGesture {
+            isTextFieldFocused = false
+        }
+        .navigationBarItems(leading: Button(action: {
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.gray900)
+            Text("프로필 설정")
+                .font(.body1_medium)
+                .foregroundColor(.gray900)
+            
+        })
         
     }
     

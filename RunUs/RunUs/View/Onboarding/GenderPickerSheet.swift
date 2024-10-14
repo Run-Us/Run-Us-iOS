@@ -17,37 +17,27 @@ struct GenderPickerSheet: View {
                 Text("성별 선택")
                     .font(.title5_bold)
                     .foregroundColor(.gray900)
-                Button(action: {
-                    gender = "남성"
-                    showGenderPicker = false
-                }, label: {
-                    Text("남성")
-                        .font(.body2_medium)
-                        .foregroundColor(.gray700)
-                })
+                selectGenderButton(gender: "남성")
                 
-                Button(action: {
-                    gender = "여성"
-                    showGenderPicker = false
-                }, label: {
-                    Text("여성")
-                        .font(.body2_medium)
-                        .foregroundColor(.gray700)
-                })
+                selectGenderButton(gender: "여성")
                 
-                Button(action: {
-                    gender = "기타"
-                    showGenderPicker = false
-                }, label: {
-                    Text("기타")
-                        .font(.body2_medium)
-                        .foregroundColor(.gray700)
-                })
+                selectGenderButton(gender: "기타")
                 
             }
             .frame(height: 261)
             .padding()
         }
+    }
+    @ViewBuilder
+    func selectGenderButton(gender: String) -> some View {
+        Button(action: {
+            self.gender = gender
+            showGenderPicker = false
+        }, label: {
+            Text(gender)
+                .font(.body2_medium)
+                .foregroundColor(.gray700)
+        })
     }
 }
 

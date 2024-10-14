@@ -50,9 +50,11 @@ struct LoginPage: View {
                         Image("kakao_login_button")
                         
                     })
-                    .fullScreenCover(isPresented: $showJoinPage) {
+                    .navigationDestination(isPresented: $showJoinPage) {
                         JoinPage(loginSuccess: $loginSuccess)
+                            .navigationBarBackButtonHidden(true)
                     }
+                    
                     Button(action: {
                         
                     }, label: {
