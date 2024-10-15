@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PasscodeView: View {
+struct PasscodeGenerator: View {
     @Binding var passcode: String
     @Binding var isValid: Bool
     @State var isInitialize: Bool = false

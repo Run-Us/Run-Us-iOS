@@ -14,6 +14,8 @@ struct CreateGroupRunPage: View {
     @StateObject var participationService = ParticipationService()
     @State var showStartGroupRunAlter = false
     @State var startGroupRun = false
+    @State var passcode: String
+    @State private var isValid: Bool = true
     
     var body: some View {
         NavigationView {
@@ -24,6 +26,7 @@ struct CreateGroupRunPage: View {
                     Text("더 많은 보상 받아보세요!")
                         .font(.title4_semibold)
                         .foregroundStyle(.gray900)
+                        .padding(12)
                     
                     Button(action: {
                         
@@ -35,17 +38,36 @@ struct CreateGroupRunPage: View {
                                 .font(.title5_bold)
                                 .foregroundStyle(.gray900)
                         }
-                        .backgroundStyle(.white)
+                        .padding(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
+                        .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .foregroundStyle(.gray300)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray300, lineWidth: 1)
+                        )
                     })
+                    // 인증번호
                     VStack {
-                        // 인증번호
-                        Text(runningSession.latestSessionResponse?.payload.passcode ?? "error")
-                            .font(.system(size: 82, weight: .bold))
-                        
+                        PasscodeGenerator(passcode: $passcode, isValid: $isValid)
+                        Text("러너에게 인증코드 4자리를 보여주세요")
+                            .font(.body2_medium)
+                            .foregroundStyle(.gray500)
                     }
-                    .padding(.vertical)
+                    .padding(72)
+                    
+                    
+                    Divider()
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("달리기 시작!")
+                            .font(.title5_bold)
+                            .foregroundStyle(.white)
+                            .frame(width: 361, height: 56)
+                    })
+                    .background(.primary400)
+                    .cornerRadius(8)
+                    .padding(8)
                     
                 }
             }
@@ -69,6 +91,7 @@ struct CreateGroupRunPage: View {
                         dismiss()
                     }, label: {
                         Image(systemName: "chevron.left")
+                            .resizable()
                             .frame(width: 8, height: 14)
                     })
                     Text("대기방")
@@ -99,5 +122,5 @@ struct CreateGroupRunPage: View {
 }
 
 #Preview {
-    CreateGroupRunPage(mapVM: .init(), runningSession: RunningSessionService())
+    CreateGroupRunPage(mapVM: .init(), runningSession: RunningSessionService(), passcode: "0000")
 }
