@@ -108,7 +108,7 @@ struct JoinPage: View {
                 
                 Button(action: {
                     print("닉네임 - \(nickname) : 성별 - \(gender)")
-                    
+                    loginSuccess = true
                 }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
@@ -130,6 +130,9 @@ struct JoinPage: View {
         }
         .onTapGesture {
             isTextFieldFocused = false
+        }
+        .onDisappear {
+            self.dismiss()
         }
         .navigationBarItems(leading: Button(action: {
             presentationMode.wrappedValue.dismiss()
