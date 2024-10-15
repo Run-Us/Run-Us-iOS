@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct StartGroupRunPage: View {
+    @Environment(\.dismiss) var dismiss
     @State var showInputJoinCode = false
     @State var showJoinGroupRunPage = false
     @State var showCreateGroupRunPage = false
     @State var joinCode: String = ""
     @ObservedObject var runningSession: RunningSessionService
     @StateObject var mapVM: MapViewModel
+    
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
@@ -54,6 +56,7 @@ struct StartGroupRunPage: View {
                 .padding(8)
                 .navigationDestination(isPresented: $showCreateGroupRunPage, destination: {
                     CreateGroupRunPage(mapVM: mapVM, runningSession: runningSession )
+                        .navigationBarBackButtonHidden()
                 })
                 
             }

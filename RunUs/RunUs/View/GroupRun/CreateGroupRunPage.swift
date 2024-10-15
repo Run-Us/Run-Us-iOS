@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateGroupRunPage: View {
+    @Environment(\.dismiss) var dismiss
     @StateObject var mapVM: MapViewModel
     @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
     @ObservedObject var runningSession: RunningSessionService
@@ -52,13 +53,21 @@ struct CreateGroupRunPage: View {
                 }
             }
         }
-        .navigationTitle("대기방")
-        .navigationBarItems(trailing: Button(action: {
-            showStartGroupRunAlter = true
-        }) {
-            Text("시작하기")
-                .foregroundColor(.blue)
-        })
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                HStack(spacing: 10) {
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "chevron.left")
+                            .frame(width: 8, height: 14)
+                    })
+                    Text("대기방")
+                        .font(.body1_medium)
+                }
+            }
+        }
+        .foregroundStyle(.gray900)
         .alert(isPresented: $showStartGroupRunAlter) {
             Alert(
                 title: Text("그룹 러닝을 시작할까요?"),

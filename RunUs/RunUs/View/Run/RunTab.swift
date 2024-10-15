@@ -37,9 +37,16 @@ struct RunTab: View {
                             dismiss()
                         } label: {
                             HStack(spacing: 10) {
-                                Image(systemName: "chevron.left")
-                                    .resizable()
-                                    .frame(width: 8, height: 14)
+                                if selectedRunning == 0 {
+                                    Image(systemName: "chevron.left")
+                                        .resizable()
+                                        .frame(width: 8, height: 14)
+                                }
+                                else {
+                                    Image(systemName: "xmark")
+                                        .resizable()
+                                        .frame(width: 14, height: 14)
+                                }
                                 Text("달리기")
                                     .font(.body1_medium)
                             }
