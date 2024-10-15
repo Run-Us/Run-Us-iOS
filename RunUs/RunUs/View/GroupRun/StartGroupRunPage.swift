@@ -28,7 +28,7 @@ struct StartGroupRunPage: View {
                         .cornerRadius(10)
                 })
                 .navigationDestination(isPresented: $showCreateGroupRunPage, destination: {
-                    CreateGroupRunPage(runningSession: runningSession )
+                    CreateGroupRunPage(mapVM: mapVM, runningSession: runningSession )
                 })
                 // Join Group Button
                 Button(action: {

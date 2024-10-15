@@ -15,35 +15,46 @@ struct RunningProgressPage: View {
     
     var body: some View {
         VStack(spacing: 50) {
+            Spacer()
             VStack(spacing: 15) {
-                Text("시간")
                 Text(motionManager.runningInfo.runningTime ?? "00:00")
+                    .font(.title2_bold)
+                    .foregroundStyle(.gray900)
+                Text("시간")
             }
-            Divider()
+            
             VStack(spacing: 15) {
-                Text("평균 페이스")
-                Text(motionManager.runningInfo.averagePace ?? "-' --''")
-            }
-            Divider()
-            VStack(spacing: 15) {
-                Text("거리")
                 if let distance = motionManager.runningInfo.distance {
-                    Text("\(distance, specifier: "%.2f")km")
+                    Text("\(distance, specifier: "%.2f")")
+                        .font(.title1_bold)
+                        .foregroundStyle(.gray900)
                 } else {
-                    Text("0.00km")
+                    Text("0.00")
+                        .font(.title1_bold)
+                        .foregroundStyle(.gray900)
                 }
+                Text("거리 (km)")
             }
+            
+            VStack(spacing: 15) {
+                Text(motionManager.runningInfo.averagePace ?? "-’--”")
+                    .font(.title2_bold)
+                    .foregroundStyle(.gray900)
+                Text("평균 페이스")
+            }
+            
             Button(action: {
                 selectedTab = 1
                 WebSocketService.sharedSocket.sendMessagePause()
                 mapVM.stopUpdatingLocation()
             }, label: {
-                Image(systemName: "pause.circle")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                    .foregroundStyle(.black)
+                Image("run_pause")
             })
+            .padding(.top, 20)
+            Spacer()
         }
+        .font(.body1_medium)
+        .foregroundStyle(.gray400)
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 enum Tab {
     case home
-    case run
     case my
 }
 
@@ -38,7 +37,6 @@ struct TabBar: View {
                     switch (selectedTab) {
                     case .home: HomeTab()
                     case .my:   MyTab()
-                    default: EmptyView()
                     }
                     
                     Spacer()
@@ -62,12 +60,10 @@ struct TabBar: View {
                             Spacer()
                             
                             // 달리기
-                            Button {
-                                selectedTab = .run
-                            } label: {
+                            NavigationLink(destination: RunTab()) {
                                 Image("tab_play")
+                                    .offset(y: -10)
                             }
-                            .offset(y: -10)
                             
                             Spacer()
                             
