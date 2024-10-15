@@ -10,6 +10,7 @@ import SwiftUI
 struct GenderPickerSheet: View {
     @Binding var gender: String
     @Binding var showGenderPicker: Bool
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         GeometryReader { geometry in
@@ -26,12 +27,17 @@ struct GenderPickerSheet: View {
             }
             .padding()
         }
+        .onDisappear(perform: {
+            showGenderPicker = false
+            dismiss()
+        })
     }
+    
     @ViewBuilder
     func selectGenderButton(gender: String) -> some View {
         Button(action: {
             self.gender = gender
-            showGenderPicker = false
+            self.showGenderPicker = false
         }, label: {
             Text(gender)
                 .font(.body2_medium)

@@ -43,7 +43,7 @@ struct JoinPage: View {
                     }
                     .padding(36)
                     .sheet(isPresented: $showAddProfile, content: {
-                        AddProfileSheet()
+                        AddProfileSheet(showAddProfile: $showAddProfile)
                             .presentationDetents([.fraction(0.15)])
                     })
                 

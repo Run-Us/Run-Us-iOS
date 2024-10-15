@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddProfileSheet: View {
+    @Binding var showAddProfile: Bool
+    
     var body: some View {
         GeometryReader { geomtry in
             VStack(alignment: .leading, spacing: 34) {
@@ -17,7 +19,7 @@ struct AddProfileSheet: View {
                     .padding(.top, 16)
                 
                 Button(action: {
-                    
+                    showAddProfile = false
                 }, label: {
                     HStack {
                         Image("imageIcon")
@@ -29,9 +31,12 @@ struct AddProfileSheet: View {
             }
             .padding()
         }
+        .onDisappear(perform: {
+            showAddProfile = false
+        })
     }
 }
 
 #Preview {
-    AddProfileSheet()
+    AddProfileSheet(showAddProfile: .constant(false))
 }
