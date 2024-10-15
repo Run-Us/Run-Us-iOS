@@ -10,7 +10,6 @@ import SwiftUI
 struct CreateGroupRunPage: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var mapVM: MapViewModel
-    @State var noticeBar = NoticeBar(noticeContent: .constant("러너에게 아래 인증번호를 알려주세요"))
     @ObservedObject var runningSession: RunningSessionService
     @StateObject var participationService = ParticipationService()
     @State var showStartGroupRunAlter = false
@@ -21,9 +20,18 @@ struct CreateGroupRunPage: View {
             GeometryReader { geometry in
                 ZStack {
                     VStack {
-                        // 알림창
-                        noticeBar
-                            .frame(width: geometry.size.width)
+                        // goal
+                        Text("더 많은 보상 받아보세요!")
+                            .font(.title4_semibold)
+                            .foregroundStyle(.gray900)
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            HStack {
+                                Image("")
+                            }
+                        })
                         VStack {
                             // 인증번호
                             Text("인증번호")
