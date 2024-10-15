@@ -17,38 +17,39 @@ struct CreateGroupRunPage: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                ZStack {
-                    VStack {
-                        // goal
-                        Text("더 많은 보상 받아보세요!")
-                            .font(.title4_semibold)
-                            .foregroundStyle(.gray900)
+            ZStack {
+                Color(.tone)
+                VStack(alignment: .center) {
+                    // goal
+                    Text("더 많은 보상 받아보세요!")
+                        .font(.title4_semibold)
+                        .foregroundStyle(.gray900)
+                    
+                    Button(action: {
                         
-                        Button(action: {
-                            
-                        }, label: {
-                            HStack {
-                                Image("")
-                            }
-                        })
-                        VStack {
-                            // 인증번호
-                            Text("인증번호")
-                            Text(runningSession.latestSessionResponse?.payload.passcode ?? "error")
-                                .font(.system(size: 82, weight: .bold))
-                            if participationService.participantNames.isEmpty {
-                                EmptyView()
-                            } else {
-                                ParticipantList(grouprunParticipants: participationService.participantNames)
-                            }
-                            
+                    }, label: {
+                        HStack {
+                            Image("goal_flag")
+                                .frame(width: 24, height: 24)
+                            Text("목표 추가하기")
+                                .font(.title5_bold)
+                                .foregroundStyle(.gray900)
                         }
-                        .padding(.vertical)
+                        .backgroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .foregroundStyle(.gray300)
+                    })
+                    VStack {
+                        // 인증번호
+                        Text(runningSession.latestSessionResponse?.payload.passcode ?? "error")
+                            .font(.system(size: 82, weight: .bold))
                         
                     }
+                    .padding(.vertical)
+                    
                 }
             }
+            .ignoresSafeArea()
         }
         .onAppear {
             print("getParticipantList || runningId: \(runningSession.latestSessionResponse?.payload.runningKey ?? "empty")")
