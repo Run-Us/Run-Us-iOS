@@ -40,26 +40,29 @@ struct LoginPage: View {
                                 .frame(width: 8, height: 8)
                         }
                     }
+                    .padding(.bottom)
                     
-                    
-                    Button(action: {
-                        authVM.kakaoLogin { isSuccess in
-                            showJoinPage = isSuccess
+                    VStack {
+                        // kakao login
+                        Button(action: {
+                            authVM.kakaoLogin { isSuccess in
+                                showJoinPage = isSuccess
+                            }
+                        }, label: {
+                            Image("kakao_login_button")
+                            
+                        })
+                        .navigationDestination(isPresented: $showJoinPage) {
+                            JoinPage(loginSuccess: $loginSuccess)
+                                .navigationBarBackButtonHidden(true)
                         }
-                    }, label: {
-                        Image("kakao_login_button")
-                        
-                    })
-                    .navigationDestination(isPresented: $showJoinPage) {
-                        JoinPage(loginSuccess: $loginSuccess)
-                            .navigationBarBackButtonHidden(true)
+                        // apple login
+                        Button(action: {
+                            
+                        }, label: {
+                            Image("apple_login_button")
+                        })
                     }
-                    
-                    Button(action: {
-                        
-                    }, label: {
-                        Image("apple_login_button")
-                    })
                 }
                 .padding(.horizontal, 20)
             }

@@ -24,7 +24,6 @@ struct GenderPickerSheet: View {
                 selectGenderButton(gender: "기타")
                 
             }
-            .frame(height: 261)
             .padding()
         }
     }

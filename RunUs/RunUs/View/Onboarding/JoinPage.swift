@@ -35,6 +35,7 @@ struct JoinPage: View {
                     .overlay {
                         Button(action: {
                             showAddProfile = true
+                            print("add profile")
                         }, label: {
                             Image("plus_profile_button")
                         })
@@ -89,6 +90,7 @@ struct JoinPage: View {
                     Spacer()
                     Button(action: {
                         showGenderPicker = true
+                        print("add gender")
                     }, label: {
                         Text("\(gender)")
                             .font(.body1_medium)
@@ -116,7 +118,7 @@ struct JoinPage: View {
                 .disabled(nickname.count <= 2 || gender == "성별을 선택해주세요" || !nicknameIsValid)
                 .sheet(isPresented: $showGenderPicker, content: {
                     GenderPickerSheet(gender: $gender, showGenderPicker: $showGenderPicker)
-                        .presentationDetents([.fraction(0.3)])
+                        .presentationDetents([.fraction(0.25)])
                 })
             }
             .padding(.top, 24)
