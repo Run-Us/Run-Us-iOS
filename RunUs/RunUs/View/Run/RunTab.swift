@@ -36,8 +36,10 @@ struct RunTab: View {
                         Button {
                             dismiss()
                         } label: {
-                            HStack {
-                                Image("back_button")
+                            HStack(spacing: 10) {
+                                Image(systemName: "chevron.left")
+                                    .resizable()
+                                    .frame(width: 8, height: 14)
                                 Text("달리기")
                                     .font(.body1_medium)
                             }
