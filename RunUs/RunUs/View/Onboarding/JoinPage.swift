@@ -6,18 +6,21 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct JoinPage: View {
     @ObservedObject var joinService: JoinService = JoinService()
     @Environment(\.dismiss) var dismiss
     @Environment(\.presentationMode) var presentationMode
     @Binding var loginSuccess: Bool
+    @State var selectedProfile: [UIImage] = []
     @State private var nickname: String = ""
     @State private var nicknameIsValid: Bool = true
     @State var gender = "성별을 선택해주세요"
     @State var showGenderPicker = false
     @State var showAddProfile = false
     @FocusState private var isTextFieldFocused: Bool
+    @State var isPresentedError: Bool = false
     let userInfo = UserDefaults.standard
     
     var body: some View {
@@ -31,11 +34,12 @@ struct JoinPage: View {
                     .font(.body2_medium)
                     .foregroundColor(.gray500)
                 
-                Image("default_user_profile")
+                profileImage
                     .overlay {
                         Button(action: {
                             showAddProfile = true
                             print("add profile")
+                            
                         }, label: {
                             Image("plus_profile_button")
                         })
@@ -43,7 +47,7 @@ struct JoinPage: View {
                     }
                     .padding(36)
                     .sheet(isPresented: $showAddProfile, content: {
-                        AddProfileSheet(showAddProfile: $showAddProfile)
+                        AddProfileSheet(showAddProfile: $showAddProfile, selectedImages: $selectedProfile, isPresentedError: $isPresentedError)
                             .presentationDetents([.fraction(0.15)])
                     })
                 
@@ -54,7 +58,7 @@ struct JoinPage: View {
                         .padding(.horizontal)
                     
                     TextField("한글, 영어, 숫자만 입력 가능해요", text: $nickname)
-                        .onChange(of: nickname) { newValue in
+                        .onChange(of: nickname) { _,newValue in
                             nicknameIsValid = newValue.count <= 8 && !containsSpecialCharacters(text: newValue)
                         }
                         .focused($isTextFieldFocused)
@@ -138,6 +142,25 @@ struct JoinPage: View {
             
         })
         
+    }
+    
+    var profileImage: some View {
+        Group {
+            if selectedProfile.isEmpty {
+                Image("default_user_profile")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 120, height: 120)
+                    .clipShape(RoundedRectangle(cornerRadius: 52))
+                
+            } else {
+                Image(uiImage: selectedProfile[0])
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 120, height: 120)
+                    .clipShape(RoundedRectangle(cornerRadius: 52))
+            }
+        }
     }
     
     func containsSpecialCharacters(text: String) -> Bool {
