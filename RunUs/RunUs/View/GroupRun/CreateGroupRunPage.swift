@@ -49,6 +49,7 @@ struct CreateGroupRunPage: View {
                     // 인증번호
                     VStack {
                         PasscodeGenerator(passcode: $passcode, isValid: $isValid)
+                            .padding(.bottom, 5)
                         Text("러너에게 인증코드 4자리를 보여주세요")
                             .font(.body2_medium)
                             .foregroundStyle(.gray500)

@@ -23,11 +23,7 @@ struct PasscodeGenerator: View {
     @ViewBuilder
     func createCodeBox(code: Character, isValid: Bool) -> some View {
         ZStack {
-            if isValid {
-                Image("passcode_box")
-            } else {
-                Image("passcode_box.red")
-            }
+            Image(isValid ? "passcode_box" : "passcode_box.red")
             Text(String(!isValid || isInitialize ? "0" : code))
                 .font(.title2_bold)
                 .foregroundStyle(!isValid || isInitialize ? .gray300 : .primary400)
