@@ -16,30 +16,45 @@ struct StartGroupRunPage: View {
     @StateObject var mapVM: MapViewModel
     var body: some View {
         ZStack {
-            VStack {
+            VStack(alignment: .center) {
                 // Create Group Button
-                Button(action: {
-                    createGroup()
-                }, label: {
-                    Text("그룹 생성하기")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(.blue)
-                        .cornerRadius(10)
-                })
-                .navigationDestination(isPresented: $showCreateGroupRunPage, destination: {
-                    CreateGroupRunPage(mapVM: mapVM, runningSession: runningSession )
-                })
+                Image("start_grouprun_image")
+                    .padding(36)
+                
+                Text("친구와 함께 달려보세요!")
+                    .font(.title4_semibold)
+                    .foregroundStyle(.gray900)
+                Text("그룹 달리기를 통해 친구와 같이 기록을 저장하세요")
+                    .font(.body2_medium)
+                    .foregroundStyle(.gray500)
+                
+                Spacer()
+                Divider()
+                    .padding(.vertical, 12)
                 // Join Group Button
                 Button(action: {
                     showInputJoinCode.toggle()
                 }, label: {
-                    Text("그룹 참가하기")
-                        .foregroundColor(.white)
-                        .padding()
+                    Text("이미 친구가 방을 만들었나요?")
+                        .font(.caption_medium)
+                        .underline()
+                        .foregroundColor(.gray500)
                 })
-                .background(.blue)
-                .cornerRadius(10)
+                // create Group Button
+                Button(action: {
+                    createGroup()
+                }, label: {
+                    Text("그룹 생성하기")
+                        .font(.title5_bold)
+                        .foregroundStyle(.white)
+                        .frame(width: 361, height: 56)
+                })
+                .background(.primary400)
+                .cornerRadius(8)
+                .padding(8)
+                .navigationDestination(isPresented: $showCreateGroupRunPage, destination: {
+                    CreateGroupRunPage(mapVM: mapVM, runningSession: runningSession )
+                })
                 
             }
             
