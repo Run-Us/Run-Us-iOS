@@ -15,7 +15,7 @@ struct PasscodeGenerator: View {
     var body: some View {
         HStack {
             
-            ForEach(Array(passcode.enumerated()), id: \.offset) { index, code in
+            ForEach(Array(fillZeroForCode(passcode).enumerated()), id: \.offset) { index, code in
                 createCodeBox(code: code, isValid: isValid)
             }
         }
@@ -28,6 +28,11 @@ struct PasscodeGenerator: View {
                 .font(.title2_bold)
                 .foregroundStyle(!isValid || isInitialize ? .gray300 : .primary400)
         }
+    }
+    
+    func fillZeroForCode(_ code: String) -> String {
+        let paddedCode = code.padding(toLength: 4, withPad: "0", startingAt: 0)
+        return paddedCode
     }
 }
 
