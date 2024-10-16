@@ -16,7 +16,7 @@ struct ProgressBar: View {
                 RoundedRectangle(cornerRadius: 4)
                     .fill(.gray200)
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(.secondary)
+                    .fill(Color.highlight)
                     .frame(width: geometry.size.width * min(progress, 1.0)) // 현재는 1km가 max
             }
         }
@@ -25,5 +25,5 @@ struct ProgressBar: View {
 }
 
 #Preview {
-    ProgressBar(progress: 4.65)
+    ProgressBar(progress: 0.65)
 }
