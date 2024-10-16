@@ -22,7 +22,7 @@ struct StartGroupRunPage: View {
                 VStack {
                     // Create Group Button
                     Image("login_view_2")
-                        .padding(36)
+                        .padding(.vertical, 36)
                     
                     Text("친구와 함께 달려보세요!")
                         .font(.title4_semibold)
@@ -34,6 +34,7 @@ struct StartGroupRunPage: View {
                         .padding(8)
                     
                     Spacer()
+                        
                     Divider()
                     // Join Group Button
                     Button(action: {
