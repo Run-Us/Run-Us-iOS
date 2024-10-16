@@ -59,7 +59,7 @@ struct CreateGroupRunPage: View {
                     
                     Divider()
                     Button(action: {
-                        
+                        showStartGroupRunAlter = true
                     }, label: {
                         Text("달리기 시작!")
                             .font(.title5_bold)
@@ -103,15 +103,9 @@ struct CreateGroupRunPage: View {
         .foregroundStyle(.gray900)
         .alert(isPresented: $showStartGroupRunAlter) {
             Alert(
-                title: Text("그룹 러닝을 시작할까요?"),
+                title: Text("그룹 달리기를 시작할까요?"),
                 primaryButton: .default(Text("시작하기"), action: {
-                    let startRunningInfo = [
-                        "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
-                        "runningId": runningSession.latestSessionResponse?.payload.runningKey ?? "",
-                        "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""
-                    ]
-                    WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
-                    startGroupRun = true
+                    startRun()
                 }),
                 secondaryButton: .cancel(Text("취소"))
             )
@@ -120,8 +114,17 @@ struct CreateGroupRunPage: View {
             RunningPage(runningType: .group, mapVM: mapVM)
         })
     }
+    func startRun() {
+        let startRunningInfo = [
+            "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+            "runningId": runningSession.latestSessionResponse?.payload.runningKey ?? "",
+            "runningKey": runningSession.latestSessionResponse?.payload.runningKey ?? ""
+        ]
+        WebSocketService.sharedSocket.sendMessage(body: startRunningInfo, destination: "/app/runnings/start")
+        startGroupRun = true
+    }
 }
 
 #Preview {
-    CreateGroupRunPage(mapVM: .init(), runningSession: RunningSessionService(), passcode: "0000")
+    CreateGroupRunPage(mapVM: .init(), runningSession: RunningSessionService(), passcode: "2312")
 }
