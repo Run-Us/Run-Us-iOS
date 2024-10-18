@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProgressBar: View {
-    @State var progress: Double
+    @Binding var progress: Double?
     
     var body: some View {
         GeometryReader { geometry in
@@ -17,7 +17,7 @@ struct ProgressBar: View {
                     .fill(.gray200)
                 RoundedRectangle(cornerRadius: 4)
                     .fill(Color.highlight)
-                    .frame(width: geometry.size.width * min(progress, 1.0)) // 현재는 1km가 max
+                    .frame(width: geometry.size.width * min(progress ?? 0.0, 1.0)) // 현재는 1km가 max
             }
         }
         .frame(height: 8)
@@ -25,5 +25,5 @@ struct ProgressBar: View {
 }
 
 #Preview {
-    ProgressBar(progress: 0.65)
+    ProgressBar(progress: .constant(0.65))
 }

@@ -26,7 +26,7 @@ struct RunningPage: View {
         NavigationStack {
             GeometryReader { geometry in
                 VStack(spacing: 0) {
-                    ProgressBar(progress: mapVM.motionManager.runningInfo.distance ?? 0.0)
+                    ProgressBar(progress: $mapVM.motionManager.runningInfo.distance)
                         .padding(.horizontal, 50)
                         .padding(.vertical, 25)
                     
