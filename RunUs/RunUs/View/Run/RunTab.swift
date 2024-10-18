@@ -75,20 +75,6 @@ struct RunTab: View {
             
         }
     }
-    
-    // socket
-    func createRunning() {
-        runningSession.createRunningSession(currentLatitude: mapVM.userLocation.coordinate.latitude, currentLongitude: mapVM.userLocation.coordinate.longitude) { success, result in
-            if success {
-                print("Try WebSocket Connect || runningId: \(result?.payload.runningKey ?? "error")")
-                WebSocketService.sharedSocket.connect(runningSessionInfo: result?.payload)
-                showRunningPage = true
-            } else {
-                print("createRunningSession || error")
-                
-            }
-        }
-    }
 }
 
 #Preview {
