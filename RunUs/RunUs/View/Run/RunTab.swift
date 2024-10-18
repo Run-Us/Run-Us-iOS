@@ -62,7 +62,7 @@ struct RunTab: View {
                 .ignoresSafeArea()
             
             Button {
-                createRunning()
+                showRunningPage = true
             } label: {
                 Image("run_start")
                     .shadow(radius: 2, x: 0, y: 4)

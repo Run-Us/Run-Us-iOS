@@ -17,6 +17,10 @@ struct RunningPage: View {
     @StateObject var mapVM: MapViewModel
     @State private var selectedTab: Int = 0
     @State private var showFinishPage: Bool = false
+    let pickerText: Dictionary<RunningType,[String]> = [
+        .alone: ["개요", "지도"],
+        .group: ["개요", "지도", "그룹원"]
+    ]
     
     var body: some View {
         NavigationStack {
@@ -31,7 +35,7 @@ struct RunningPage: View {
                     // picker
                     SegmentedPicker(
                         selectedTab: $selectedTab,
-                        type: runningType == .alone ? ["개요", "지도"] : ["개요", "지도", "그룹원"],
+                        type: pickerText[runningType] ?? [],
                         width: geometry.size.width
                     )
                     
@@ -66,7 +70,17 @@ struct RunningPage: View {
                         .tag(2)
                     }
                     .tabViewStyle(PageTabViewStyle())
-                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+                    
+                    // custom page dots
+                    HStack {
+                        if let picker = pickerText[runningType] {
+                            ForEach(picker.indices, id: \.self) { index in
+                                Circle()
+                                    .frame(width: 8, height: 8)
+                                    .foregroundStyle(index == selectedTab ? .primary500 : .primary200)
+                            }
+                        }
+                    }
                 }
             }
             .navigationBarBackButtonHidden()
@@ -86,5 +100,5 @@ struct RunningPage: View {
 }
 
 #Preview {
-    RunningPage(runningType: .alone, mapVM: .init())
+    RunningPage(runningType: .group, mapVM: .init())
 }
