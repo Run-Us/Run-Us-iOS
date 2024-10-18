@@ -36,14 +36,16 @@ struct RunningPage: View {
                     )
                     
                     // runningType으로 group 러닝일 때 RunningMapPage 재사용
-                    switch (selectedTab) {
-                    case 0:
+                    TabView(selection: $selectedTab) {
+                        // 개요
                         RunningProgressPage(
                             mapVM: mapVM,
                             motionManager: mapVM.motionManager,
                             selectedTab: $selectedTab
                         )
-                    case 1:
+                        .tag(0)
+                        
+                        // 지도
                         RunningMapPage(
                             mapVM: mapVM,
                             motionManager: mapVM.motionManager,
@@ -51,7 +53,9 @@ struct RunningPage: View {
                             selectedTab: $selectedTab,
                             showFinishPage: $showFinishPage
                         )
-                    default:
+                        .tag(1)
+                        
+                        // 그룹원
                         RunningMapPage(
                             mapVM: mapVM,
                             motionManager: mapVM.motionManager,
@@ -59,7 +63,10 @@ struct RunningPage: View {
                             selectedTab: $selectedTab,
                             showFinishPage: $showFinishPage
                         )
+                        .tag(2)
                     }
+                    .tabViewStyle(PageTabViewStyle())
+                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
                 }
             }
             .navigationBarBackButtonHidden()
@@ -79,5 +86,5 @@ struct RunningPage: View {
 }
 
 #Preview {
-    RunningPage(runningType: .group, mapVM: .init())
+    RunningPage(runningType: .alone, mapVM: .init())
 }
