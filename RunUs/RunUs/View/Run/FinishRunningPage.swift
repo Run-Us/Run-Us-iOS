@@ -11,6 +11,8 @@ struct FinishRunningPage: View {
     var mapVM: MapViewModel
     var runningInfo: RunningInfo
     @State private var showShareRecordPage: Bool = false
+    @State private var title: String = ""
+    @State private var explanation: String = ""
     
     init(mapVM: MapViewModel) {
         self.mapVM = mapVM
@@ -20,26 +22,17 @@ struct FinishRunningPage: View {
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
-                VStack(spacing: 30) {
-                    Text("수고하셨습니다")
-                        .font(.system(size: 30, weight: .bold))
-                    runInfoText(type: "시간", info: runningInfo.runningTime ?? "0:00")
-                    runInfoText(type: "거리", info: String(format: "%.2fkm", runningInfo.distance ?? 0.0))
-                    runInfoText(type: "평균 페이스", info: runningInfo.averagePace ?? "-' --''")
+                Divider()
+                VStack(spacing: 25) {
+                    // 지도 이미지
+                    
+                    // 제목
+                    textField(title: "제목", contents: $title, maxCount: 20)
+                    
+                    // 설명
+                    textField(title: "설명", contents: $explanation, maxCount: 200)
                 }
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 50)
-                
-                Button {
-                    showShareRecordPage = true
-                } label: {
-                    Text("다음")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundStyle(.white)
-                        .frame(width: geometry.size.width - 40)
-                        .padding(.vertical, 15)
-                        .background(.black)
-                }
-                .position(x: geometry.size.width / 2 , y: geometry.size.height - 50)
+                .padding(16)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -65,16 +58,39 @@ struct FinishRunningPage: View {
     }
     
     @ViewBuilder
-    func runInfoText(type: String, info: String) -> some View {
-        HStack {
-            Text(type)
-            Spacer()
-            Text(info)
+    func textField(title: String, contents: Binding<String>, maxCount: Int) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(title)
+                .font(.body1_bold)
+            ZStack(alignment: .topLeading) {
+                // input text
+                TextEditor(text: contents)
+                    .font(.body2_medium)
+                    .padding(8)
+                    .frame(height: title == "제목" ? 48 : 110)
+                    .foregroundColor(.gray900)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(.gray300)
+                    )
+                // placeholder
+                if contents.wrappedValue.isEmpty {
+                    Text(title == "제목" ? "이 활동의 제목을 지어주세요" : "오늘 러닝은 어떠셨는지 궁금해요")
+                        .font(.body2_medium)
+                        .foregroundStyle(.gray500)
+                        .padding(EdgeInsets(top: 15, leading: 12, bottom: 15, trailing: 12))
+                }
+            }
+
+            // 글자수
+            HStack {
+                Spacer()
+                Text("\(contents.wrappedValue.count)/\(maxCount)")
+                    .foregroundStyle(.gray400)
+                    .font(.caption_regular)
+            }
         }
-        .font(.system(size: 18, weight: .semibold))
-        .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
-        .border(.black)
-        .padding(.horizontal, 20)
     }
 }
 
