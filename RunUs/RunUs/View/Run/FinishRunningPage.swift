@@ -31,8 +31,24 @@ struct FinishRunningPage: View {
                     
                     // 설명
                     textField(title: "설명", contents: $explanation, maxCount: 200)
+                    
+                    Spacer()
+                    
+                    // 저장 버튼
+                    Button {
+                        
+                    } label: {
+                        Text("저장하기")
+                            .font(.title5_bold)
+                            .foregroundStyle(.white)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .frame(width: geometry.size.width - 32, height: 56)
+                            )
+                    }
                 }
                 .padding(16)
+
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -67,12 +83,12 @@ struct FinishRunningPage: View {
                 TextEditor(text: contents)
                     .font(.body2_medium)
                     .padding(8)
-                    .frame(height: title == "제목" ? 48 : 110)
+                    .frame(height: title == "제목" ? 47 : 110)
                     .foregroundColor(.gray900)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(.gray300)
+                            .stroke(contents.wrappedValue.count > 0 ? .gray700 : .gray300)
                     )
                 // placeholder
                 if contents.wrappedValue.isEmpty {
