@@ -46,22 +46,6 @@ struct RunningMapPage: View {
                                 Image("run_stop")
                                     .shadow(radius: 2, x: 0, y: 4)
                             }
-                            .alert("러닝을 종료할까요?", isPresented: $showStopAlert) {
-                                HStack {
-                                    Button(action: {
-                                        mapVM.startUpdatingLocation()
-                                    }, label: {
-                                        Text("취소")
-                                    })
-                                    Button(action: {
-                                        mapVM.stopUpdatingLocation()
-                                        WebSocketService.sharedSocket.sendMessageAggregate()
-                                        showFinishPage = true
-                                    }, label: {
-                                        Text("끝내기")
-                                    })
-                                }
-                            }
                             
                             Button {
                                 mapVM.startUpdatingLocation()
@@ -80,6 +64,25 @@ struct RunningMapPage: View {
                 case .alone: mapTabInfo(width: geometry.size.width/2)
                 case .group: RunningParticipant()
                 }
+            }
+            .popup(
+                isPresented: $showStopAlert,
+                title: "러닝을 종료하시겠어요?",
+                subtitle: "시간: \(motionManager.runningInfo.runningTime ?? "0:00") / 거리: \(String(format: "%.2fkm", motionManager.runningInfo.distance ?? 0.0))",
+                buttonText: "끝내기",
+                buttonColor: .primary400,
+                cancelAction: {
+                    // 취소 : 다시 위치 측정 시작
+                    mapVM.startUpdatingLocation()
+                },
+                buttonAction: {
+                    // 끝내기
+                    mapVM.stopUpdatingLocation()
+                    WebSocketService.sharedSocket.sendMessageAggregate()
+                    showFinishPage = true
+            })
+            .navigationDestination(isPresented: $showFinishPage) {
+                FinishRunningPage(mapVM: mapVM)
             }
         }
     }
