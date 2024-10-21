@@ -41,6 +41,22 @@ struct FinishRunningPage: View {
                 }
                 .position(x: geometry.size.width / 2 , y: geometry.size.height - 50)
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack(spacing: 6) {
+                        Button {
+                            // TODO: 활동 삭제 팝업 띄우기
+                        } label: {
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .frame(width: 14, height: 14)
+                        }
+                        Text("활동 저장하기")
+                            .font(.body1_medium)
+                    }
+                    .foregroundStyle(.gray900)
+                }
+            }
         }
         .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $showShareRecordPage) {
