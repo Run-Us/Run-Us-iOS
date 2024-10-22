@@ -10,7 +10,7 @@ import SwiftUI
 struct RunningPostPage: View {
     @StateObject var mapVM: MapViewModel
     let runningPost: RunningPost
-    @State private var showNextPage: Bool = false
+    @State private var backToTabBar: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -83,7 +83,7 @@ struct RunningPostPage: View {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 6) {
                         Button {
-                            
+                            backToTabBar = true
                         } label: {
                             Image(systemName: "xmark")
                                 .resizable()
@@ -95,7 +95,7 @@ struct RunningPostPage: View {
                     .foregroundStyle(.gray900)
                 }
             }
-            .navigationDestination(isPresented: $showNextPage) {
+            .navigationDestination(isPresented: $backToTabBar) {
                 TabBar()
             }
         }
