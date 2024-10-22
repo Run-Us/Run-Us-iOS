@@ -13,6 +13,7 @@ struct FinishRunningPage: View {
     @State private var showRunningPostPage: Bool = false
     @State private var title: String = ""
     @State private var explanation: String = ""
+    @State private var showDeletePopUp: Bool = false
     
     init(mapVM: MapViewModel) {
         self.mapVM = mapVM
@@ -54,7 +55,7 @@ struct FinishRunningPage: View {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 6) {
                         Button {
-                            // TODO: 활동 삭제 팝업 띄우기
+                            showDeletePopUp = true
                         } label: {
                             Image(systemName: "xmark")
                                 .resizable()
@@ -66,6 +67,16 @@ struct FinishRunningPage: View {
                     .foregroundStyle(.gray900)
                 }
             }
+            .popup(
+                isPresented: $showDeletePopUp,
+                title: "활동을 삭제하시겠어요?",
+                subtitle: "시간: \(mapVM.motionManager.runningInfo.runningTime ?? "0:00") / 거리: \(String(format: "%.2fkm", mapVM.motionManager.runningInfo.distance ?? 0.0))",
+                buttonText: "삭제하기",
+                buttonColor: .error,
+                cancelAction: {},
+                buttonAction: {
+                    // TODO: 활동 삭제
+                })
         }
         .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $showRunningPostPage) {

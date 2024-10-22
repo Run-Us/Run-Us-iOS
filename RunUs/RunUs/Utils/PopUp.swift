@@ -30,7 +30,7 @@ struct PopUp: ViewModifier {
                     // Text
                     VStack(spacing: 10) {
                         Text(title)
-                            .font(.title5_bold)
+                            .font(.title4_semibold)
                         Text(subtitle)
                             .foregroundStyle(.gray600)
                             .font(.body2_medium)
