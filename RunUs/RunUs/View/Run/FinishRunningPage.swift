@@ -69,7 +69,7 @@ struct FinishRunningPage: View {
         }
         .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $showRunningPostPage) {
-            RunningPostPage(mapVM: mapVM)
+            RunningPostPage(mapVM: mapVM, runningPost: RunningPost(title: title, contents: explanation, runningInfo: runningInfo))
         }
     }
     

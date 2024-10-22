@@ -100,7 +100,7 @@ struct RunningMapPage: View {
                 }
                 Spacer()
                 VStack(spacing: 10) {
-                    Text(motionManager.runningInfo.averagePace ?? "-'--''")
+                    Text(motionManager.runningInfo.averagePace ?? "-’--”")
                         .font(.title3_bold)
                         .foregroundStyle(.gray900)
                     Text("평균 페이스")

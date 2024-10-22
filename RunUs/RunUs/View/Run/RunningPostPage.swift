@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RunningPostPage: View {
     @StateObject var mapVM: MapViewModel
+    let runningPost: RunningPost
     @State private var showNextPage: Bool = false
     
     var body: some View {
@@ -16,7 +17,7 @@ struct RunningPostPage: View {
             GeometryReader { geometry in
                 Divider()
                 
-                VStack {
+                VStack(alignment: .leading, spacing: 24) {
                     // 유저 정보
                     HStack(spacing: 24) {
                         // 프로필 사진
@@ -34,10 +35,39 @@ struct RunningPostPage: View {
                     }
                     
                     // title
+                    Text(runningPost.title)
+                        .font(.title4_semibold)
                     
                     // 완료한 러닝 정보
+                    HStack(spacing: 32) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("거리")
+                                .font(.caption_regular)
+                                .foregroundStyle(.gray500)
+                            Text(String(format: "%.2fkm", runningPost.runningInfo.distance ?? 0.0))
+                                .font(.title5_bold)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("페이스")
+                                .font(.caption_regular)
+                                .foregroundStyle(.gray500)
+                            Text(runningPost.runningInfo.averagePace ?? "-’--”")
+                                .font(.title5_bold)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("시간")
+                                .font(.caption_regular)
+                                .foregroundStyle(.gray500)
+                            Text(runningPost.runningInfo.runningTime ?? "0h 0m")
+                                .font(.title5_bold)
+                        }
+                    }
                     
                     // contents
+                    Text(runningPost.contents)
+                        .font(.caption_medium)
                     
                     // 지도 이미지
                     
@@ -73,5 +103,5 @@ struct RunningPostPage: View {
 }
 
 #Preview {
-    RunningPostPage(mapVM: .init())
+    RunningPostPage(mapVM: .init(), runningPost: RunningPost(title: "모닝런", contents: "휴우우우우우", runningInfo: RunningInfo()))
 }
