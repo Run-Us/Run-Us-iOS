@@ -9,58 +9,46 @@ import SwiftUI
 
 struct RunningPostPage: View {
     @StateObject var mapVM: MapViewModel
-    @FocusState private var isTextFieldFocused: Bool
-    @State private var runningTitle: String = ""
-    @State private var runningContents: String = ""
     @State private var showNextPage: Bool = false
     
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
+                Divider()
+                
                 VStack {
-                    Divider()
-                    VStack(spacing: 20) {
-                        HStack {
-                            Text("피드에 저장하기")
-                                .font(.system(size: 25, weight: .bold))
-                            Spacer()
-                        }
-                        HStack {
-                            Text("나의 기록을 저장하고, 크루에 공유해보세요!")
-                            Spacer()
-                        }
+                    // 유저 정보
+                    HStack(spacing: 24) {
+                        // 프로필 사진
+                        Image("default_user_profile")
+                            .resizable()
+                            .frame(width: 40, height: 40)
                         
-                        MapPage(mapVM: mapVM)
-                            .frame(height: max(geometry.size.width - 20, 0))
-                        
-                        VStack(spacing: 15) {
-                            inputContents(title: "제목", contents: "힘차게 모닝런", text: $runningTitle)
-                            Divider()
-                            inputContents(title: "설명", contents: "오늘의 러닝에 대해 적어주세요", text: $runningContents)
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("닉네임")
+                                .font(.title5_medium)
+                            Text("2024년 9월 25일 (목) 오후 4:24")
+                                .font(.caption_regular)
+                                .foregroundStyle(.gray500)
                         }
-                        .padding()
-                        
                     }
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 30)
                     
-                    Button {
-                        showNextPage = true
-                    } label: {
-                        Text("피드에 글 올리기")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundStyle(.white)
-                            .frame(width: max(geometry.size.width - 40, 0))
-                            .padding(.vertical, 15)
-                            .background(.black)
-                    }
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2 - 50)
+                    // title
+                    
+                    // 완료한 러닝 정보
+                    
+                    // contents
+                    
+                    // 지도 이미지
+                    
+                    // 구간별 페이스
+                    
                 }
-                .frame(width: max(geometry.size.width - 20, 0))
+                .foregroundStyle(.gray900)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 25)
             }
             .navigationBarBackButtonHidden()
-            .onTapGesture {
-                isTextFieldFocused = false
-            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 6) {
@@ -80,22 +68,6 @@ struct RunningPostPage: View {
             .navigationDestination(isPresented: $showNextPage) {
                 TabBar()
             }
-        }
-    }
-    
-    
-    @ViewBuilder
-    func inputContents(title: String, contents: String, text: Binding<String>) -> some View {
-        HStack(spacing: 20) {
-            Text(title)
-                .font(.system(size: 17))
-            TextField(contents, text: text)
-                .font(.system(size: 15))
-                .focused($isTextFieldFocused)
-                .onAppear {
-                    // text clear button
-                    UITextField.appearance().clearButtonMode = .whileEditing
-                }
         }
     }
 }
