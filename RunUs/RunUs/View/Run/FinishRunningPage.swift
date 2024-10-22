@@ -10,7 +10,7 @@ import SwiftUI
 struct FinishRunningPage: View {
     var mapVM: MapViewModel
     var runningInfo: RunningInfo
-    @State private var showShareRecordPage: Bool = false
+    @State private var showRunningPostPage: Bool = false
     @State private var title: String = ""
     @State private var explanation: String = ""
     
@@ -36,7 +36,7 @@ struct FinishRunningPage: View {
                     
                     // 저장 버튼
                     Button {
-                        
+                        showRunningPostPage = true
                     } label: {
                         Text("저장하기")
                             .font(.title5_bold)
@@ -68,8 +68,8 @@ struct FinishRunningPage: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .navigationDestination(isPresented: $showShareRecordPage) {
-            ShareRunningRecordPage(mapVM: mapVM)
+        .navigationDestination(isPresented: $showRunningPostPage) {
+            RunningPostPage(mapVM: mapVM)
         }
     }
     
