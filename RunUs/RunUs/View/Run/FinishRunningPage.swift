@@ -14,6 +14,7 @@ struct FinishRunningPage: View {
     @State private var title: String = ""
     @State private var explanation: String = ""
     @State private var showDeletePopUp: Bool = false
+    @FocusState private var isEditorFocused: Bool
     
     init(mapVM: MapViewModel) {
         self.mapVM = mapVM
@@ -78,6 +79,9 @@ struct FinishRunningPage: View {
                     // TODO: 활동 삭제
                 })
         }
+        .onTapGesture {
+            isEditorFocused = false
+        }
         .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $showRunningPostPage) {
             RunningPostPage(mapVM: mapVM, runningPost: RunningPost(title: title, contents: explanation, runningInfo: runningInfo))
@@ -92,6 +96,7 @@ struct FinishRunningPage: View {
             ZStack(alignment: .topLeading) {
                 // input text
                 TextEditor(text: contents)
+                    .focused($isEditorFocused)
                     .font(.body2_medium)
                     .padding(8)
                     .frame(height: title == "제목" ? 47 : 110)
