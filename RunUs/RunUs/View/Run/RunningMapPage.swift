@@ -11,7 +11,7 @@ struct RunningMapPage: View {
     @StateObject var mapVM: MapViewModel
     @StateObject var motionManager: MotionManager
     let runningType: RunningType
-    @State private var showStopAlert: Bool = false
+    @Binding var showStopAlert: Bool
     @Binding var selectedTab: Int
     @Binding var showFinishPage: Bool
     
@@ -65,22 +65,6 @@ struct RunningMapPage: View {
                 case .group: RunningParticipant()
                 }
             }
-            .popup(
-                isPresented: $showStopAlert,
-                title: "러닝을 종료하시겠어요?",
-                subtitle: "시간: \(motionManager.runningInfo.runningTime ?? "0:00") / 거리: \(String(format: "%.2fkm", motionManager.runningInfo.distance ?? 0.0))",
-                buttonText: "끝내기",
-                buttonColor: .primary400,
-                cancelAction: {
-                    // 취소 : 다시 위치 측정 시작
-                    mapVM.startUpdatingLocation()
-                },
-                buttonAction: {
-                    // 끝내기
-                    mapVM.stopUpdatingLocation()
-                    WebSocketService.sharedSocket.sendMessageAggregate()
-                    showFinishPage = true
-            })
             .navigationDestination(isPresented: $showFinishPage) {
                 FinishRunningPage(mapVM: mapVM)
             }
@@ -126,5 +110,5 @@ struct RunningMapPage: View {
 }
 
 #Preview {
-    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), runningType: .group, selectedTab: .constant(1), showFinishPage: .constant(false))
+    RunningMapPage(mapVM: MapViewModel(), motionManager: MotionManager(), runningType: .group, showStopAlert: .constant(false), selectedTab: .constant(1), showFinishPage: .constant(false))
 }
