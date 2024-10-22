@@ -67,7 +67,7 @@ struct RunningPostPage: View {
                     
                     // contents
                     Text(runningPost.contents)
-                        .font(.caption_medium)
+                        .font(.body2_medium)
                     
                     // 지도 이미지
                     
