@@ -19,6 +19,13 @@ struct RunningPage: View {
     @State private var showFinishPage: Bool = false
     @State private var showStopPopUp: Bool = false
     
+    var pickerList: [String] {
+        switch (runningType) {
+        case .alone:  return ["개요", "지도"]
+        case .group:  return ["개요", "지도", "그룹원"]
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
@@ -26,7 +33,7 @@ struct RunningPage: View {
                     // picker
                     SegmentedPicker(
                         selectedTab: $selectedTab,
-                        type: runningType == .alone ? ["개요", "지도"] : ["개요", "지도", "그룹원"],
+                        type: pickerList,
                         width: geometry.size.width
                     )
                     
